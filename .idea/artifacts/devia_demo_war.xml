@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="devia-demo:war">
+    <output-path>$PROJECT_DIR$/devia-demo/target</output-path>
+    <root id="archive" name="devia.war">
+      <element id="artifact" artifact-name="devia-demo:war exploded" />
+    </root>
+  </artifact>
+</component>
