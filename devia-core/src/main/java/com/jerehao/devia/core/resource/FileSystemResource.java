@@ -46,7 +46,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
     public FileSystemResource(String path) {
         if(path == null)
             throw new NullPointerException("Path cannot be null");
-        this.file = new File(path);
+        this.file = ResourceUtils.getFile(path);
         this.path = ResourceUtils.formatPathToUnix(path);
     }
 

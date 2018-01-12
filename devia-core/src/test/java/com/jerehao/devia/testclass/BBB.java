@@ -14,42 +14,16 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.testclass;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-03 10:00 jerehao
+ * @version 0.0.1 2018-01-12 15:45 jerehao
  */
-public abstract class BeanDefinition {
-
-    protected String name;
-
-    protected Class<?> clazz;
-
-    protected BeanScope scope;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Class<?> getClazz() {
-
-        return clazz;
-    }
-
-    public void setClazz(Class<?> clazz) {
-        this.clazz = clazz;
-    }
-
-    public BeanScope getScope() {
-        return scope;
-    }
-
-    public void setScope(BeanScope scope) {
-        this.scope = scope;
-    }
+@AAA
+@Retention(RetentionPolicy.RUNTIME)
+public @interface BBB {
 }

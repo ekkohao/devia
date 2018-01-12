@@ -12,7 +12,7 @@
         <module>devia-core</module>
         <module>devia-demo</module>
     </modules>
-    <name>Devia</name>
+    <beanName>Devia</beanName>
 
     <properties>
         <!--project version-->
@@ -38,6 +38,18 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.21.0-GA</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
             </dependency>
 
             <dependency>

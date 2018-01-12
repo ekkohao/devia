@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.testclass;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:37 jerehao
+ * @version 0.0.1 2018-01-12 19:03 jerehao
  */
-public class Bean<T> extends BeanDefinition {
 
-    private T singletonInstance;
 
-    public Bean() {
-        setScope(BeanScope.SINGLETON);
+public class Mother {
+
+    private String name;
+
+    public Mother() {
+        this.name = "mami";
     }
 
-    public T getInstance() {
-        return singletonInstance;
+    public String getName() {
+        return name;
     }
 
-    public void setInstance(T singletonInstance) {
-        this.singletonInstance = singletonInstance;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.getName().hashCode();
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -14,30 +14,37 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.beans.support;
 
-import com.jerehao.devia.beans.support.Bean;
-import com.jerehao.devia.beans.support.DeviaBean;
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
+import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:11 jerehao
+ * @version 0.0.1 2018-01-12 11:04 jerehao
  */
-public interface BeanFactory {
+public interface Bean<T> {
 
+    T getBeanInstance();
 
-    <T> void addBean(Bean<T> bean);
+    String getBeanName();
 
-    <T> Bean<T> getBean(String beanName);
+    Class<T> getClazz();
 
-    <T> Bean<T> getBean(Class<T> beanClass);
+    BeanScope getScope();
 
-    <T> Bean<T> getBean(Type type);
+    Set<Type> getTypes();
+
+    Set<? extends Annotation> getQualifiers();
+
+    Set<FieldInjectPoint> getFieldInjectPoints();
+
+    Set<MethodInjectPoint> getMethodInjectPoints();
 
     BeanBuilder getBeanBuilder();
-
-
 }

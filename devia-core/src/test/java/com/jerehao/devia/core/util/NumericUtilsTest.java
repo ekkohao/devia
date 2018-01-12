@@ -14,31 +14,20 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.build.DeviaBeanBuilder;
-import com.jerehao.devia.logging.Logger;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:28 jerehao
+ * @version 0.0.1 2018-01-10 13:39 jerehao
  */
-
-public class DeviaBeanFactory extends AbstractBeanFactory {
-
-    private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
-
-    private static final BeanFactory instance;
-
-    static {
-        instance = new DeviaBeanFactory();
-    }
-
-    public static BeanFactory getInstance() {
-        return instance;
-    }
-
-    private DeviaBeanFactory() {
-        super.setBeanBuilder(new DeviaBeanBuilder(this));
+public class NumericUtilsTest {
+    @Test
+    public void testGetMinPositive() {
+        Assert.assertEquals(NumericUtils.getMinPositive(0, 1, 5, 2), 0);
+        Assert.assertEquals(NumericUtils.getMinPositive(-1, 1, 5, 2), 1);
+        Assert.assertEquals(NumericUtils.getMinPositive(5, 1, 5, 2), 1);
     }
 }

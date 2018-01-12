@@ -14,31 +14,20 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.testclass;
 
-import com.jerehao.devia.beans.build.DeviaBeanBuilder;
-import com.jerehao.devia.logging.Logger;
+import javax.inject.Qualifier;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:28 jerehao
+ * @version 0.0.1 2018-01-12 15:43 jerehao
  */
-
-public class DeviaBeanFactory extends AbstractBeanFactory {
-
-    private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
-
-    private static final BeanFactory instance;
-
-    static {
-        instance = new DeviaBeanFactory();
-    }
-
-    public static BeanFactory getInstance() {
-        return instance;
-    }
-
-    private DeviaBeanFactory() {
-        super.setBeanBuilder(new DeviaBeanBuilder(this));
-    }
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface AAA {
 }

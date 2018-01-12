@@ -14,31 +14,21 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.build.DeviaBeanBuilder;
-import com.jerehao.devia.logging.Logger;
+import java.util.Objects;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:28 jerehao
+ * @version 0.0.1 2018-01-12 9:27 jerehao
  */
+public final class Assert {
 
-public class DeviaBeanFactory extends AbstractBeanFactory {
-
-    private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
-
-    private static final BeanFactory instance;
-
-    static {
-        instance = new DeviaBeanFactory();
+    public static void notNull(Object o) {
+        if(Objects.isNull(o))
+            throw new IllegalStateException("[Assert failed] - to expect this argument not null but get null.");
     }
 
-    public static BeanFactory getInstance() {
-        return instance;
-    }
 
-    private DeviaBeanFactory() {
-        super.setBeanBuilder(new DeviaBeanBuilder(this));
-    }
+    private Assert() {};
 }

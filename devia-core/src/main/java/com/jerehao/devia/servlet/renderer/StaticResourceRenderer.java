@@ -37,7 +37,6 @@ import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Base64;
 
-import static org.apache.commons.io.FileUtils.getFile;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>

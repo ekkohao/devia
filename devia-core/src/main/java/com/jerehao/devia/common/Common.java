@@ -18,7 +18,6 @@ package com.jerehao.devia.common;
 
 import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.listener.ServletListener;
-import org.apache.commons.io.FileUtils;
 
 import javax.servlet.ServletContext;
 import java.io.File;
@@ -35,26 +34,26 @@ public final class Common {
 
     private Common(){}
 
-    public static File getWebAppFile(final String path) {
-        final ServletContext servletContext = ServletListener.getServletContext();
-        File file;
-        try {
-            final URL resource = servletContext.getResource(path);
-            if(null != resource) {
-                file = FileUtils.toFile(resource);
-                if (null == file) {
-                    final File tempDir = (File) servletContext.getAttribute(ServletContext.TEMPDIR);
-                    file = new File(tempDir.getPath() + path);
-                    FileUtils.copyURLToFile(resource, file);
-                    file.deleteOnExit();
-                }
-                return file;
-            }
-        } catch (IOException e) {
-            LOGGER.error("cannot read file with path='" + path + "'", e);
-        }
-        return null;
-    }
+//    public static File getWebAppFile(final String path) {
+//        final ServletContext servletContext = ServletListener.getServletContext();
+//        File file;
+//        try {
+//            final URL resource = servletContext.getResource(path);
+//            if(null != resource) {
+//                file = FileUtils.toFile(resource);
+//                if (null == file) {
+//                    final File tempDir = (File) servletContext.getAttribute(ServletContext.TEMPDIR);
+//                    file = new File(tempDir.getPath() + path);
+//                    FileUtils.copyURLToFile(resource, file);
+//                    file.deleteOnExit();
+//                }
+//                return file;
+//            }
+//        } catch (IOException e) {
+//            LOGGER.error("cannot read file with path='" + path + "'", e);
+//        }
+//        return null;
+//    }
 
 
 }

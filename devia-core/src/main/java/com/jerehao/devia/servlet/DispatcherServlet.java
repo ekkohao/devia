@@ -16,11 +16,10 @@
 
 package com.jerehao.devia.servlet;
 
-import com.jerehao.devia.beans.ComponentScan;
+import com.jerehao.devia.application.ApplicationManager;
 import com.jerehao.devia.core.resource.FileSystemResource;
 import com.jerehao.devia.core.resource.Resource;
 import com.jerehao.devia.logging.Logger;
-import com.jerehao.devia.servlet.handler.Handler;
 import com.jerehao.devia.servlet.handler.RequestDispatcherHandler;
 import com.jerehao.devia.servlet.handler.StaticResourceHandler;
 
@@ -30,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -146,9 +144,10 @@ public final class DispatcherServlet extends HttpServlet {
     }
 
     private void afterServletContextConfig() {
-        //TODO DO ComponentScan
-        ComponentScan cs = new ComponentScan(scanPaths);
-        cs.getClasses();
+
+        ApplicationManager.setScanPaths(scanPaths);
+        ApplicationManager.start();
+
     }
 
     /**

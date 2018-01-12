@@ -14,12 +14,21 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.demo;
+
+import com.jerehao.devia.beans.annotation.Component;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:35 jerehao
+ * @version 0.0.1 2018-01-10 17:21 jerehao
  */
-public enum BeanScope {
-    SINGLETON, REQUEST, SESSION;
+
+@Singleton
+@Named("customName")
+@Component
+public class App {
+    App() {}
 }

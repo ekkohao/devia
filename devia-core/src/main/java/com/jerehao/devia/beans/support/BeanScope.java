@@ -14,31 +14,26 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.beans.support;
 
-import com.jerehao.devia.beans.build.DeviaBeanBuilder;
-import com.jerehao.devia.logging.Logger;
+import javax.inject.Scope;
+import javax.inject.Singleton;
+import java.lang.annotation.Annotation;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:28 jerehao
+ * @version 0.0.1 2018-01-12 11:09 jerehao
  */
+public enum  BeanScope {
+    SINGLETON(Singleton.class);
 
-public class DeviaBeanFactory extends AbstractBeanFactory {
+    Class<? extends Annotation> clazz;
 
-    private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
-
-    private static final BeanFactory instance;
-
-    static {
-        instance = new DeviaBeanFactory();
+    BeanScope(Class<? extends Annotation> singletonClass) {
+        this.clazz = singletonClass;
     }
 
-    public static BeanFactory getInstance() {
-        return instance;
-    }
-
-    private DeviaBeanFactory() {
-        super.setBeanBuilder(new DeviaBeanBuilder(this));
+    public Class<? extends Annotation> getClazz() {
+        return clazz;
     }
 }

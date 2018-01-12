@@ -14,31 +14,28 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
+package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.build.DeviaBeanBuilder;
 import com.jerehao.devia.logging.Logger;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.File;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:28 jerehao
+ * @version 0.0.1 2018-01-10 15:47 jerehao
  */
+public class FileUtilsTest {
 
-public class DeviaBeanFactory extends AbstractBeanFactory {
+    private static final Logger LOGGER = Logger.getLogger(FileUtilsTest.class);
 
-    private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
-
-    private static final BeanFactory instance;
-
-    static {
-        instance = new DeviaBeanFactory();
-    }
-
-    public static BeanFactory getInstance() {
-        return instance;
-    }
-
-    private DeviaBeanFactory() {
-        super.setBeanBuilder(new DeviaBeanBuilder(this));
+    @Test
+    public void testListAllFiles() {
+        String path = "D:/__ProgramFilesX86/Apache-Tomcat-8.0.46/webapps/ROOT/";
+        for (File file : FileUtils.listAllFile(path)) {
+            //Assert.assertEquals(file.getPath(), "");
+            //LOGGER.info("File - [" + file.getPath() +"]");
+        }
     }
 }

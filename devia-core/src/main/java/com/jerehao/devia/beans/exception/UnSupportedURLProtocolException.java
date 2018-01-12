@@ -14,31 +14,19 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans;
-
-import com.jerehao.devia.beans.build.DeviaBeanBuilder;
-import com.jerehao.devia.logging.Logger;
+package com.jerehao.devia.beans.exception;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-09 16:28 jerehao
+ * @version 0.0.1 2018-01-11 9:00 jerehao
  */
+public class UnSupportedURLProtocolException extends RuntimeException {
 
-public class DeviaBeanFactory extends AbstractBeanFactory {
-
-    private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
-
-    private static final BeanFactory instance;
-
-    static {
-        instance = new DeviaBeanFactory();
+    public UnSupportedURLProtocolException() {
+        super();
     }
 
-    public static BeanFactory getInstance() {
-        return instance;
-    }
-
-    private DeviaBeanFactory() {
-        super.setBeanBuilder(new DeviaBeanBuilder(this));
+    public UnSupportedURLProtocolException(String msg) {
+        super(msg);
     }
 }

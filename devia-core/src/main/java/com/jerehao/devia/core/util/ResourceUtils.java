@@ -17,6 +17,7 @@
 package com.jerehao.devia.core.util;
 
 
+import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.helper.StaticResource;
 import org.apache.commons.lang3.StringUtils;
 
@@ -33,6 +34,8 @@ import java.net.URL;
  * @version 0.0.1 2018-01-03 11:10 jerehao
  */
 public class ResourceUtils {
+
+    private static final Logger LOGGER = Logger.getLogger(ResourceUtils.class);
 
     public static final String FOLDER_SEPARATOR = "/";
 
@@ -54,6 +57,8 @@ public class ResourceUtils {
     public static final String WSJAR_URL_PROTOCOL = "wsjar";
 
     public static final String ZIP_URL_PROTOCOL = "zip";
+
+    public static final String VFS_URL_PROTOCOL = "vfs";
 
     public static final String CODE_SOURCE_URL_PROTOCOL = "code-source";
 
@@ -78,16 +83,42 @@ public class ResourceUtils {
         return true;
     }
 
-    public static File getFile(URL url) throws IOException {
+    public static File getFile(URL url) {
         if(url == null)
             return null;
-        if(!FILE_URL_PROTOCOL.equals(url.getProtocol()))
-            throw new IOException("resource url '" + url + "' isn't a file url, it cannot be resolved a file");
-        try {
-            return new File(toURI(url).getSchemeSpecificPart());
-        } catch (URISyntaxException e) {
-            return new File(url.getFile());
+        if(!FILE_URL_PROTOCOL.equals(url.getProtocol())) {
+            LOGGER.info("resource url '" + url + "' isn't a file url, it cannot be resolved a file");
+            return null;
         }
+
+        File file = null;
+        try {
+            file = new File(toURI(url).getSchemeSpecificPart());
+        } catch (URISyntaxException ignored) {
+            String path = url.getPath();
+            if(path.startsWith(FILE_URL_PREFIX))
+                file = new File(path.substring(FILE_URL_PREFIX.length()));
+            else
+                file = new File(path);
+        }
+
+        return file;
+    }
+
+    public static File getFile(String path) {
+        File file = null;
+
+        if(StringUtils.isEmpty(path))
+            path = "/";
+        try {
+            file = new File(new URL(path).toURI().getSchemeSpecificPart());
+        } catch (URISyntaxException | MalformedURLException e) {
+            if(path.startsWith(FILE_URL_PREFIX))
+                file = new File(path.substring(FILE_URL_PREFIX.length()));
+            else
+                file = new File(path);
+        }
+        return file;
     }
 
     /**
@@ -148,4 +179,11 @@ public class ResourceUtils {
     }
 
 
+    public static boolean isVFSURL(URL url) {
+        return StringUtils.equals(url.getProtocol(), VFS_URL_PROTOCOL);
+    }
+
+    public static boolean isFileSystemURL(URL url) {
+        return StringUtils.equals(url.getProtocol(), FILE_URL_PROTOCOL);
+    }
 }

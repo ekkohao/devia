@@ -16,11 +16,20 @@
 
 package com.jerehao.devia.core.util;
 
+import com.jerehao.devia.logging.Logger;
+
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.*;
+
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-03 11:21 jerehao
  */
 public class ClassUtils {
+
+    private static final Logger LOGGER = Logger.getLogger(ClassUtils.class);
 
     private ClassUtils(){}
 
@@ -38,6 +47,72 @@ public class ClassUtils {
         }
 
         return classLoader;
+    }
+
+    public static boolean isAbstract(final Class<?> clazz) {
+        return Modifier.isAbstract(clazz.getModifiers());
+    }
+
+    public static boolean isInterface(final Class<?> clazz) {
+        return Modifier.isInterface(clazz.getModifiers());
+    }
+
+    public static boolean isConcrete(final Class<?> clazz) {
+        return !isAbstract(clazz) && !isInterface(clazz) && !clazz.isAnnotation();
+    }
+
+    public static Set<Type> getAllTypes(final Class<?> clazz) {
+        Set<Type> types = new LinkedHashSet<>();
+        Type current = clazz;
+        Class<?> currentClass;
+
+        while (current != null && !current.equals(Object.class)) {
+            Type[] interfaces = null;
+            types.add(current);
+
+            if(current instanceof Class<?>)
+                currentClass = (Class<?>) current;
+            else if(current instanceof ParameterizedType)
+                currentClass = (Class<?>) ((ParameterizedType) current).getRawType();
+            else {
+                LOGGER.warn("Cannot resolver type [" + current.getTypeName() + "]");
+                break;
+            }
+
+            interfaces = currentClass.getGenericInterfaces();
+            current = currentClass.getGenericSuperclass();
+
+            if(interfaces == null || interfaces.length < 1)
+                continue;
+            for(Type type : interfaces) {
+                types.add(type);
+
+                //find interface all extends
+                List<Type> supers = new LinkedList<>();
+                supers.add(type);
+                while (!supers.isEmpty()) {
+                    Type currentInterface = supers.remove(0);
+
+                    Type[] superInterfaces = new Type[]{};
+                    if(currentInterface instanceof Class<?>) {
+                        superInterfaces = ((Class<?>) currentInterface).getGenericInterfaces();
+                    }
+                    else if(currentInterface instanceof ParameterizedType) {
+                        superInterfaces = ((Class<?>) ((ParameterizedType) currentInterface).getRawType()).getGenericInterfaces();
+                    }
+                    else {
+                        LOGGER.warn("Cannot resolver type [" + currentInterface.getTypeName() + "]");
+                        continue;
+                    }
+                    Collections.addAll(types, superInterfaces);
+                    Collections.addAll(supers,superInterfaces);
+                }
+
+            }
+
+        }
+
+        return types;
     }
 
 }
