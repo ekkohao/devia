@@ -21,9 +21,19 @@ package com.jerehao.devia.beans.exception;
  * @version 0.0.1 2018-01-11 20:41 jerehao
  */
 public class NoBeanNameException extends BeanCreateException {
-    public NoBeanNameException() {}
+    public NoBeanNameException() {
+        super();
+    }
 
-    public NoBeanNameException(String msg) {
-        super(msg);
+    public NoBeanNameException(String message) {
+        super(message);
+    }
+
+    public NoBeanNameException(Throwable cause) {
+        super(cause);
+    }
+
+    public NoBeanNameException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

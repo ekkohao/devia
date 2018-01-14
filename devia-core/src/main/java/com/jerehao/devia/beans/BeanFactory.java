@@ -16,11 +16,17 @@
 
 package com.jerehao.devia.beans;
 
+import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
 import com.jerehao.devia.beans.support.Bean;
 import com.jerehao.devia.beans.support.DeviaBean;
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.support.inject.Qualifiee;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -29,15 +35,18 @@ import java.lang.reflect.Type;
 public interface BeanFactory {
 
 
-    <T> void addBean(Bean<T> bean);
+    <T> void addBean(Bean<T> bean) throws BeanCreateException;
 
-    <T> Bean<T> getBean(String beanName);
+    <T> Bean<T> getBean(String beanName) throws MultipleBeanException, NoSuchBeanException;
 
-    <T> Bean<T> getBean(Class<T> beanClass);
+    <T> Bean<T> getBean(Class<T> beanClass) throws MultipleBeanException, NoSuchBeanException;
 
-    <T> Bean<T> getBean(Type type);
+    <T> Bean<T> getBean(Class<T> beanClass, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
+
+    <T> Bean<T> getBean(Type type) throws MultipleBeanException, NoSuchBeanException;
+
+    <T> Bean<T> getBean(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
 
     BeanBuilder getBeanBuilder();
-
 
 }

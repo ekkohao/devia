@@ -20,13 +20,21 @@ package com.jerehao.devia.beans.exception;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-11 20:42 jerehao
  */
-public class BeanCreateException extends Exception {
+public class BeanCreateException extends BeanException {
 
     public BeanCreateException() {
-
+        super();
     }
 
-    public BeanCreateException(String msg) {
-        super(msg);
+    public BeanCreateException(String message) {
+        super(message);
+    }
+
+    public BeanCreateException(Throwable cause) {
+        super(cause);
+    }
+
+    public BeanCreateException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

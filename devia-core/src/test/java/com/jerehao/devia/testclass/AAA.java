@@ -16,7 +16,9 @@
 
 package com.jerehao.devia.testclass;
 
-import javax.inject.Qualifier;
+
+import com.jerehao.devia.beans.annotation.jsr330.Qualifier;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

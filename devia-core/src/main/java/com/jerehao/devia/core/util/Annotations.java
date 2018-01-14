@@ -16,10 +16,8 @@
 
 package com.jerehao.devia.core.util;
 
-import org.apache.commons.lang3.ArrayUtils;
-import sun.reflect.annotation.AnnotationType;
+import com.jerehao.devia.beans.annotation.jsr330.*;
 
-import javax.inject.Named;
 import java.lang.annotation.*;
 import java.util.*;
 
@@ -27,22 +25,42 @@ import java.util.*;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-12 14:12 jerehao
  */
-public class AnnotationUtils {
+public class Annotations {
 
-    //to store already parsed
-    private static final Map<Class<?>, Set<Class<? extends Annotation>>> classMetaAnnotationMap;
+    public static final Class<Inject> INJECT_ClASS = Inject.class;
+
+    public static final Class<Named> NAMED_CLASS = Named.class;
+
+    public static final Class<Qualifier> QUALIFIER_CLASS = Qualifier.class;
+
+    public static final Class<Scope> SCOPE_CLASS = Scope.class;
+
+    public static final Class<Singleton> SINGLETON_CLASS = Singleton.class;
+
+    private static final Set<Class<? extends Annotation>> alreadyKnownQualifierAnnotation;
 
     static {
-        classMetaAnnotationMap = new HashMap<>();
+        alreadyKnownQualifierAnnotation = new HashSet<>();
+        alreadyKnownQualifierAnnotation.add(NAMED_CLASS);
     }
 
+    //元注解@Qualifier定义的注解
+    public static boolean isQualifierAnnotation(Class<? extends Annotation> annotationType) {
+        if(alreadyKnownQualifierAnnotation.contains(annotationType))
+            return true;
+        else if (getMetaAnnotations(annotationType).contains(QUALIFIER_CLASS)) {
+            alreadyKnownQualifierAnnotation.add(annotationType);
+            return true;
+        }
+        return false;
+
+    }
+
+    //获取普通类或注解类的元注解
     public static Set<Class<? extends Annotation>> getMetaAnnotations(Class<?> clazz) {
         final Set<Class<? extends Annotation>> alreadyParses = new HashSet<>();
         final List<Class<? extends Annotation>> needParses = new LinkedList<>();
         final Set<Class<? extends Annotation>> metaAnnotations = new HashSet<>();
-
-        if(classMetaAnnotationMap.containsKey(clazz))
-            return classMetaAnnotationMap.get(clazz);
 
         //exclude some meta annotation that we don't want to get
         alreadyParses.add(Target.class);
@@ -80,7 +98,6 @@ public class AnnotationUtils {
             }
         }
 
-        classMetaAnnotationMap.put(clazz,metaAnnotations);
         return metaAnnotations;
     }
 
@@ -95,5 +112,5 @@ public class AnnotationUtils {
         return elementTypes.length == 1 && elementTypes[0] == ElementType.ANNOTATION_TYPE;
     }
 
-    private AnnotationUtils(){}
+    private Annotations(){}
 }

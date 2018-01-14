@@ -14,27 +14,26 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.support;
-
-
-import com.jerehao.devia.core.util.Annotations;
-
-import java.lang.annotation.Annotation;
+package com.jerehao.devia.beans.exception;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 11:09 jerehao
+ * @version 0.0.1 2018-01-14 19:44 jerehao
  */
-public enum  BeanScope {
-    SINGLETON(Annotations.SINGLETON_CLASS);
-
-    Class<? extends Annotation> annotationType;
-
-    BeanScope(Class<? extends Annotation> annotationType) {
-        this.annotationType = annotationType;
+public class BeanException extends Exception {
+    public BeanException() {
+        super();
     }
 
-    public Class<? extends Annotation> getAnnotationType() {
-        return annotationType;
+    public BeanException(String message) {
+        super(message);
+    }
+
+    public BeanException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public BeanException(Throwable cause) {
+        super(cause);
     }
 }

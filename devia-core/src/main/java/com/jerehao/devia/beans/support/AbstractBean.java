@@ -16,15 +16,17 @@
 
 package com.jerehao.devia.beans.support;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Qualifier;
 
+import com.jerehao.devia.beans.annotation.jsr330.Named;
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.exception.BeanCreateException;
 import com.jerehao.devia.beans.exception.NoBeanNameException;
+import com.jerehao.devia.beans.support.inject.ConstructorInjectPoint;
 import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
 import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
-import com.jerehao.devia.core.util.AnnotationUtils;
+import com.jerehao.devia.beans.support.inject.Qualifiee;
+import com.jerehao.devia.common.annotation.Nullable;
+import com.jerehao.devia.core.util.Annotations;
 import com.jerehao.devia.core.util.Assert;
 import com.jerehao.devia.core.util.ClassUtils;
 import com.jerehao.devia.core.util.ReflectionUtils;
@@ -32,9 +34,10 @@ import com.jerehao.devia.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -45,14 +48,10 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractBean.class);
 
-    private static final Class<Inject> INJECT_ANNOTATION_CLASS = Inject.class;
-
-    private static final Class<Named> NAMED_ANNOTATION_CLASS = Named.class;
-
     private T singletonInstance = null;
 
 
-    protected AbstractBean(Class<T> clazz, BeanBuilder beanBuilder) throws NoBeanNameException {
+    protected AbstractBean(Class<T> clazz, BeanBuilder beanBuilder) throws BeanCreateException {
         Assert.notNull(clazz);
         setBeanBuilder(beanBuilder);
         initBean(clazz);
@@ -62,7 +61,7 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     public T getBeanInstance() {
         if(singletonInstance == null)
             try {
-                singletonInstance = this.getBeanBuilder().getBeanReference(this);
+                singletonInstance = this.getBeanBuilder().createBeanInstance(this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -71,20 +70,45 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     }
 
     @Override
+    public boolean hasConstructorInjectPoint() {
+        return this.getConstructorInjectPoint() != null;
+    }
+
+    @Override
+    public boolean satisfiedQualifiees(@Nullable Set<Qualifiee> qualifiees) {
+        if(qualifiees == null)
+            return true;
+
+        for(Qualifiee qualifiee : qualifiees) {
+            if(Objects.equals(Annotations.NAMED_CLASS, qualifiee.getAnnotation().annotationType())) {
+                Named checkingNamed = (Named) qualifiee.getAnnotation();
+                String checkingName = StringUtils.isEmpty(checkingNamed.value()) ? qualifiee.getName() : checkingNamed.value();
+                if(!StringUtils.equals(checkingName, getBeanName()))
+                    return false;
+            }
+            else if(!containsQualifiee(qualifiee.getAnnotation().annotationType())){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public int hashCode() {
         return this.getBeanName().hashCode();
     }
 
-    private void initBean(Class<T> clazz) throws NoBeanNameException {
+    private void initBean(Class<T> clazz) throws BeanCreateException {
         //clazz must be set first, because all init*() method after use it
-        setClazz(clazz);
+        setBeanClass(clazz);
+        setProxyClass(clazz); ///TODO AOP Transaction
 
         setScope(BeanScope.SINGLETON);
 
         setBeanName(determineBeanName(clazz));
         addTypes(ClassUtils.getAllTypes(clazz));
 
-        initQualifiers();
+        initQualifiees();
 
         initFieldInjects();
         initMethodInjects();
@@ -100,18 +124,18 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     protected void initBean() {
     };
 
-    private void initQualifiers() {
-        for(Annotation annotation : getClazz().getAnnotations()) {
-            if (AnnotationUtils.getMetaAnnotations(annotation.annotationType()).contains(Qualifier.class)) {
-                addQualifier(annotation);
-            }
+    private void initQualifiees() {
+        for(Annotation annotation : getBeanClass().getAnnotations()) {
+            if (Annotations.isQualifierAnnotation(annotation.annotationType()))
+                    addQualifiee(annotation.annotationType(), new Qualifiee(annotation, getBeanName()));
+
         }
     }
 
     private void initFieldInjects() {
-        final Set<Field> fields = ReflectionUtils.getAllFields(getClazz());
+        final Set<Field> fields = ReflectionUtils.getAllFields(getBeanClass());
         for(final Field field : fields) {
-            if(field == null || !field.isAnnotationPresent(INJECT_ANNOTATION_CLASS))
+            if(field == null || !field.isAnnotationPresent(Annotations.INJECT_ClASS))
                 continue;
 
             FieldInjectPoint injectPoint = new FieldInjectPoint(field);
@@ -121,9 +145,9 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     }
 
     private void initMethodInjects() {
-        final Set<Method> methods = ReflectionUtils.getAllMethods(getClazz());
+        final Set<Method> methods = ReflectionUtils.getAllMethods(getBeanClass());
         for(final Method method : methods) {
-            if(method == null || !method.isAnnotationPresent(INJECT_ANNOTATION_CLASS))
+            if(method == null || !method.isAnnotationPresent(Annotations.INJECT_ClASS))
                 continue;
 
             MethodInjectPoint injectPoint = new MethodInjectPoint(method);
@@ -132,22 +156,27 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
         }
     }
 
-    private void initConstructorInjects() {
-
-    }
-
-    private String determineFieldRestrictName(Field field) {
-        if(field.isAnnotationPresent(NAMED_ANNOTATION_CLASS)) {
-            Named named = field.getAnnotation(NAMED_ANNOTATION_CLASS);
-            return named.value();
+    private void initConstructorInjects() throws BeanCreateException {
+        Constructor<T>[] constructors = (Constructor<T>[]) getBeanClass().getConstructors();
+        boolean findInject = false;
+        for (Constructor<T> constructor : constructors) {
+            if(constructor == null || !constructor.isAnnotationPresent(Annotations.INJECT_ClASS))
+                continue;
+            if(!findInject) {
+                setConstructorInjectPoint(new ConstructorInjectPoint<T>(constructor));
+                findInject = true;
+            }
+            else
+                throw new BeanCreateException("find multiply inject constructor for class [" + getBeanClass().getTypeName() + "]");
         }
-        return "";
+        if(!findInject)
+            setConstructorInjectPoint(null);
     }
 
     private String determineBeanName(final Class<?> clazz) throws NoBeanNameException {
         String beanName = "";
-        if(clazz.isAnnotationPresent(Named.class))
-            beanName = clazz.getAnnotation(Named.class).value();
+        if(clazz.isAnnotationPresent(Annotations.NAMED_CLASS))
+            beanName = clazz.getAnnotation(Annotations.NAMED_CLASS).value();
         if(StringUtils.isEmpty(beanName)) {
             beanName = clazz.getSimpleName();
             if(!StringUtils.isEmpty(beanName))

@@ -26,7 +26,15 @@ public class UnSupportedURLProtocolException extends RuntimeException {
         super();
     }
 
-    public UnSupportedURLProtocolException(String msg) {
-        super(msg);
+    public UnSupportedURLProtocolException(String message) {
+        super(message);
+    }
+
+    public UnSupportedURLProtocolException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public UnSupportedURLProtocolException(Throwable cause) {
+        super(cause);
     }
 }

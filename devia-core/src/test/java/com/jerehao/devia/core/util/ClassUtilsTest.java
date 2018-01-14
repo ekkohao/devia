@@ -16,21 +16,16 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.BeanFactory;
 import com.jerehao.devia.beans.DeviaBeanFactory;
+import com.jerehao.devia.beans.annotation.jsr330.Inject;
+import com.jerehao.devia.beans.annotation.jsr330.Named;
 import com.jerehao.devia.testclass.BBB;
 import org.junit.Test;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Singleton;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Target;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.sql.Types;
 import java.util.Arrays;
 import java.util.Set;
 
@@ -38,8 +33,7 @@ import java.util.Set;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-11 17:26 jerehao
  */
-@Singleton
-@Named
+
 @BBB
 public class ClassUtilsTest {
 
@@ -58,7 +52,7 @@ public class ClassUtilsTest {
     public void testGetMeta() {
         Set<Class<? extends Annotation>> classes;
 
-        classes = AnnotationUtils.getMetaAnnotations(ClassUtilsTest.class);
+        classes = Annotations.getMetaAnnotations(ClassUtilsTest.class);
 
         for (Class<? extends Annotation> clazz : classes)
             System.out.println(clazz.getName());
@@ -66,7 +60,6 @@ public class ClassUtilsTest {
 
     @Test
     public void testGetAllFields() {
-        for(Method method : ReflectionUtils.getAllMethods(DeviaBeanFactory.class))
-            System.out.println(method.toGenericString() + method.isAnnotationPresent(Inject.class));
+        System.out.println(Arrays.toString(Named.class.getDeclaredMethods()));
     }
 }

@@ -16,13 +16,13 @@
 
 package com.jerehao.devia.beans.support.inject;
 
-import com.jerehao.devia.core.util.AnnotationUtils;
+import com.jerehao.devia.core.util.Annotations;
 
-import javax.inject.Qualifier;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -35,7 +35,7 @@ public class FieldInjectPoint {
 
     private Field field;
 
-    private Set<Annotation> qualifiers = new HashSet<>();
+    private Set<Qualifiee> qualifiees = new LinkedHashSet<>();
 
     public FieldInjectPoint(Field field) {
         this.field = field;
@@ -49,8 +49,8 @@ public class FieldInjectPoint {
 
     private void initQualifiers() {
         for(Annotation annotation : field.getAnnotations()) {
-            if(AnnotationUtils.getMetaAnnotations(annotation.annotationType()).contains(Qualifier.class))
-                qualifiers.add(annotation);
+            if(Annotations.isQualifierAnnotation(annotation.annotationType()))
+                qualifiees.add(new Qualifiee(annotation, this.field.getName()));
         }
     }
 
@@ -62,7 +62,7 @@ public class FieldInjectPoint {
         return this.type;
     }
 
-    public Set<Annotation> getQualifiers() {
-        return qualifiers;
+    public Set<Qualifiee> getQualifiees() {
+        return qualifiees;
     }
 }

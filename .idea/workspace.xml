@@ -7,30 +7,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d353a0-20a3-4760-a224-8f09d21cfd5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/UnSupportedURLProtocolException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/ComponentScan.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/devia_demo_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/devia_demo_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/jerehao.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/jerehao.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE.txt" afterPath="$PROJECT_DIR$/LICENSE.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/devia-core.iml" afterPath="$PROJECT_DIR$/devia-core/devia-core.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/pom.xml" afterPath="$PROJECT_DIR$/devia-core/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/BeanFactory.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/BeanFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/DeviaBeanFactory.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/DeviaBeanFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/common/Common.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/common/Common.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/resource/FileSystemResource.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/resource/FileSystemResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ClassUtils.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ClassUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ResourceUtils.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ResourceUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/servlet/DispatcherServlet.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/servlet/DispatcherServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/servlet/renderer/StaticResourceRenderer.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/servlet/renderer/StaticResourceRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Component.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Component.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanCreateException.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanCreateException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoBeanNameException.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoBeanNameException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoSuchBeanException.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoSuchBeanException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/UnSupportedURLProtocolException.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/UnSupportedURLProtocolException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/Bean.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/Bean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanScope.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanScope.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/FieldInjectPoint.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/FieldInjectPoint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/MethodInjectPoint.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/MethodInjectPoint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/ClassUtilsTest.java" afterPath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/ClassUtilsTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/AAA.java" afterPath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/AAA.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Child.java" afterPath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Child.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Mother.java" afterPath="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Mother.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-demo/devia-demo.iml" afterPath="$PROJECT_DIR$/devia-demo/devia-demo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/devia-demo/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/devia-demo/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/Bean.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/BeanDefinition.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/BeanScope.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/AnnotationUtils.java" afterPath="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/Annotations.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/devia-core/target/" />
@@ -44,58 +48,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="DeviaBeanFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/DeviaBeanFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="609">
+                <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeanTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/bean/BeanTest.java">
+      <file leaf-file-name="ParameterInjectPoint.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="56" column="35" lean-forward="true" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+            <state relative-caret-position="54">
+              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractBeanFactory.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="64" column="62" lean-forward="false" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeviaBeanBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/DeviaBeanBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding>
-                <element signature="e#1288#1289#0" expanded="true" />
-                <element signature="e#1322#1323#0" expanded="true" />
+                <element signature="e#2013#2014#0" expanded="true" />
+                <element signature="e#2046#2047#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,8 +78,8 @@
       <file leaf-file-name="AbstractBeanBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBeanBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="84" column="84" lean-forward="true" selection-start-line="84" selection-start-column="84" selection-end-line="84" selection-end-column="84" />
+            <state relative-caret-position="378">
+              <caret line="71" column="7" lean-forward="true" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -134,57 +108,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/BeanScope.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/UnSupportedURLProtocolException.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstracBeanBuilder.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstracBeanFactory.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBeanFactory.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoSuchBeanExcepiton.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/CustomTest.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ClassUtils.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/application/ApplicationManager.java" />
         <option value="$PROJECT_DIR$/devia-demo/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/UnSupportedURLProtocolException.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoSuchBeanException.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanCreateException.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoBeanNameException.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/DeviaBeanFactory.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/BeanDefinition.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/Assert.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/Bean.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBean.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/devia-core/pom.xml" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanScope.java" />
         <option value="$PROJECT_DIR$/devia-demo/src/main/java/com/jerehao/devia/demo/App.java" />
         <option value="$PROJECT_DIR$/devia-demo/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/devia-core/src/main/resources/log4j2.xml" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Component.java" />
         <option value="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Singleton.java" />
         <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/AAA.java" />
         <option value="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Qualifier.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/AAA.java" />
         <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/BBB.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/AnnotationUtils.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/InjectPoint.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ReflectionUtils.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/ClassUtilsTest.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Mother.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/MethodInjectPoint.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/Bean.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/FieldInjectPoint.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/BeanBuilder.java" />
         <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/bean/BeanTest.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/DeviaBeanBuilder.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Component.java" />
+        <option value="$PROJECT_DIR$/devia-core/pom.xml" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/MethodInjectPoint.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ConstructorInjectPoint.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Mother.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/AAA.java" />
         <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Child.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBeanBuilder.java" />
-        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/ClassUtilsTest.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/Annotations.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/Qualifee.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/Bean.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/FieldInjectPoint.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/Qualifiee.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanScope.java" />
         <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/BeanFactory.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanException.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanCreateException.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoBeanNameException.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/UnSupportedURLProtocolException.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/MultipleBeanException.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoSuchBeanException.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/common/annotation/Nullable.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java" />
+        <option value="$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBeanBuilder.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -297,7 +271,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -380,6 +353,18 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="devia" type="462c0819:PsiDirectoryNode" />
               <item name="beans" type="462c0819:PsiDirectoryNode" />
+              <item name="annotation" type="462c0819:PsiDirectoryNode" />
+              <item name="jsr330" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devia" type="462c0819:PsiDirectoryNode" />
+              <item name="devia-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="devia" type="462c0819:PsiDirectoryNode" />
+              <item name="beans" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -424,28 +409,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-core" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-core" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="devia" type="b2602c69:ProjectViewProjectNode" />
@@ -543,103 +507,7 @@
             </path>
             <path>
               <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devia" type="462c0819:PsiDirectoryNode" />
-              <item name="devia-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: javax.inject:javax.inject:1" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: javax.inject:javax.inject:1" type="70bed36:NamedLibraryElementNode" />
-              <item name="javax.inject-1.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: javax.inject:javax.inject:1" type="70bed36:NamedLibraryElementNode" />
-              <item name="javax.inject-1.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="inject" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -647,6 +515,7 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -660,26 +529,28 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.jerehao.devia.beans.support.inject" />
-      <recent name="com.jerehao.devia.beans.annotation" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.jerehao" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\__Project\JAVA\devia\devia-core\src\main\resources" />
-      <recent name="E:\__Project\JAVA\devia\devia-demo\src\main\webapp\WEB-INF" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.jerehao.devia.beans.exception" />
       <recent name="com.jerehao.devia.servlet.exception" />
       <recent name="com.jerehao.devia.servlet.renderer" />
       <recent name="com.jerehao.devia.core.io" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.jerehao" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\__Project\JAVA\devia\devia-demo\src\main\webapp\resources\css" />
       <recent name="E:\__Project\JAVA\devia\devia-demo\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.jerehao.devia.common.annotation" />
+      <recent name="com.jerehao.devia.beans.support.inject" />
+      <recent name="com.jerehao.devia.beans.annotation" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\__Project\JAVA\devia\devia-core\src\main\java\com\jerehao\devia\beans\annotation\jsr330" />
+      <recent name="E:\__Project\JAVA\devia\devia-core\src\main\resources" />
+      <recent name="E:\__Project\JAVA\devia\devia-demo\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -694,7 +565,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BeanTest.testBean">
+  <component name="RunManager" selected="JUnit.ClassUtilsTest.testGetAllFields">
     <configuration name="BeanTest.testBean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="devia-core" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -967,8 +838,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.BeanTest.testBean" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ClassUtilsTest.testGetAllFields" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ClassUtilsTest.testGetAllFields" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.BeanTest.testBean" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.ClassUtilsTest.testGetMeta" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.ClassUtilsTest.testGetType" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.ClassUtilsTest.test" />
@@ -982,27 +853,6 @@
     <option name="ACTIVE_ACTIONS" value=",SHOW_PROPERTIES" />
   </component>
   <component name="TestHistory">
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 19h 21m 15s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 19h 26m 30s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 19h 27m 48s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 20h 03m 30s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 20h 09m 38s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 20h 11m 01s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BeanTest_testBean - 2018.01.12 at 20h 12m 12s.xml">
-      <configuration name="BeanTest.testBean" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BeanTest_testBean - 2018.01.12 at 20h 13m 37s.xml">
       <configuration name="BeanTest.testBean" configurationId="JUnit" />
     </history-entry>
@@ -1011,6 +861,27 @@
     </history-entry>
     <history-entry file="BeanTest_testBean - 2018.01.12 at 20h 55m 06s.xml">
       <configuration name="BeanTest.testBean" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_testBean - 2018.01.14 at 16h 15m 56s.xml">
+      <configuration name="BeanTest.testBean" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_testBean - 2018.01.14 at 16h 17m 45s.xml">
+      <configuration name="BeanTest.testBean" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_testBean - 2018.01.14 at 16h 18m 57s.xml">
+      <configuration name="BeanTest.testBean" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClassUtilsTest_testGetAllFields - 2018.01.14 at 17h 36m 42s.xml">
+      <configuration name="ClassUtilsTest.testGetAllFields" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClassUtilsTest_testGetAllFields - 2018.01.14 at 17h 36m 58s.xml">
+      <configuration name="ClassUtilsTest.testGetAllFields" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClassUtilsTest_testGetAllFields - 2018.01.14 at 17h 37m 34s.xml">
+      <configuration name="ClassUtilsTest.testGetAllFields" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClassUtilsTest_testGetAllFields - 2018.01.14 at 17h 37m 47s.xml">
+      <configuration name="ClassUtilsTest.testGetAllFields" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -1032,11 +903,11 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24567474" sideWeight="0.50214595" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.115340255" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42560554" sideWeight="0.49785408" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26448497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32671675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34486735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1067,213 +938,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="87">
-            <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.pom">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar!/javax/inject/Inject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar!/javax/inject/Named.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Inject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="182" column="19" lean-forward="true" selection-start-line="182" selection-start-column="19" selection-end-line="182" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Named.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="31" column="10" lean-forward="true" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1247">
-          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Scope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Inject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="866">
-          <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanScope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1001#1002#0" expanded="true" />
-            <element signature="e#1044#1045#0" expanded="true" />
-            <element signature="e#1097#1098#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/application/ApplicationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="72" column="41" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-demo/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/annotation/Documented.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="40" column="4" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="5397" column="30" lean-forward="false" selection-start-line="5397" selection-start-column="30" selection-end-line="5397" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/annotation/Retention.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="28" column="11" lean-forward="true" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.7/commons-lang3-3.7.jar!/org/apache/commons/lang3/ArrayUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="260" column="26" lean-forward="false" selection-start-line="260" selection-start-column="26" selection-end-line="260" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-demo/src/main/java/com/jerehao/devia/demo/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Singleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1-sources.jar!/javax/inject/Qualifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="57" column="18" lean-forward="false" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/BBB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/annotation/Target.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
@@ -1286,31 +950,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/AnnotationUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/InjectPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/InjectPoint.java" />
     <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/ClassUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1318,9 +965,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1348,175 +992,442 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
-          <folding>
-            <element signature="e#1661#1662#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/MethodInjectPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="47" column="31" lean-forward="false" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1602#1603#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/AAA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="83" column="13" lean-forward="false" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2250#2251#0" expanded="true" />
-            <element signature="e#2284#2285#0" expanded="true" />
-            <element signature="e#3084#3085#0" expanded="true" />
-            <element signature="e#3130#3131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/FieldInjectPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1671#1672#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/ClassUtilsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="866">
-          <caret line="68" column="63" lean-forward="false" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/DeviaBeanFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Mother.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/Bean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="32" column="6" lean-forward="false" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/bean/BeanTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="56" column="35" lean-forward="true" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+        <state relative-caret-position="928">
+          <caret line="56" column="35" lean-forward="false" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/BeanBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="64" column="62" lean-forward="false" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/DeviaBeanBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="435">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/BeanBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/reflect/Executable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="42" column="22" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/reflect/Constructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="59" column="46" lean-forward="true" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/DeviaBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/reflect/Parameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="197" column="36" lean-forward="false" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/jsr330/Inject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="183" column="27" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="41" column="8" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-demo/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/MethodInjectPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="42" column="36" lean-forward="true" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
           <folding>
-            <element signature="e#1288#1289#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
+            <element signature="e#1654#1655#0" expanded="true" />
+            <element signature="e#1683#1684#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Child.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
-          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        <state relative-caret-position="377">
+          <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBeanBuilder.java">
+    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/AAA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="84" column="84" lean-forward="true" selection-start-line="84" selection-start-column="84" selection-end-line="84" selection-end-column="84" />
+        <state relative-caret-position="406">
+          <caret line="30" column="8" lean-forward="false" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/testclass/Mother.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/annotation/jsr330/Named.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/test/java/com/jerehao/devia/core/util/ClassUtilsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="721">
+          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/FieldInjectPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="37" column="57" lean-forward="false" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1789#1790#0" expanded="true" />
+            <element signature="e#1822#1823#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/Qualifiee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="54" column="54" lean-forward="true" selection-start-line="54" selection-start-column="54" selection-end-line="54" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1317#1318#0" expanded="true" />
+            <element signature="e#1379#1380#0" expanded="true" />
+            <element signature="e#1718#1719#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ConstructorInjectPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/core/util/Annotations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-164">
+          <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" column="42" lean-forward="true" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/BeanFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        <state relative-caret-position="547">
+          <caret line="42" column="60" lean-forward="false" selection-start-line="42" selection-start-column="60" selection-end-line="42" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/DeviaBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#822#823#0" expanded="true" />
+            <element signature="e#845#846#0" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#919#920#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1090#1091#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/BeanCreateException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="30" />
+          <folding>
+            <element signature="e#839#840#0" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1021#1022#0" expanded="true" />
+            <element signature="e#1088#1089#0" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoBeanNameException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#844#845#0" expanded="true" />
+            <element signature="e#867#868#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#998#999#0" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1093#1094#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/UnSupportedURLProtocolException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding>
+            <element signature="e#865#866#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#950#951#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="e#1059#1060#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1187#1188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/MultipleBeanException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#865#866#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1106#1107#0" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/exception/NoSuchBeanException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="22" column="54" lean-forward="false" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/Bean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/common/annotation/Nullable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/jre/lib/rt.jar!/com/sun/istack/internal/Nullable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/BeanDefinition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="85" column="19" lean-forward="false" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2367#2368#0" expanded="true" />
+            <element signature="e#2426#2427#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/reflect/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/util/Objects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="57" column="26" lean-forward="false" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+          <folding>
+            <element signature="e#1410#1411#0" expanded="false" />
+            <element signature="e#1471#1472#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/__ProgramFilesX64/Java/jdk1.8.0_131/src.zip!/java/lang/SuppressWarnings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/AbstractBeanFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        <state relative-caret-position="464">
+          <caret line="120" column="42" lean-forward="true" selection-start-line="120" selection-start-column="42" selection-end-line="120" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4003#4027#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/AbstractBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/support/inject/ParameterInjectPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2013#2014#0" expanded="true" />
+            <element signature="e#2046#2047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devia-core/src/main/java/com/jerehao/devia/beans/build/AbstractBeanBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="71" column="7" lean-forward="true" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="609">
+            <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2018, jerehao.com
+ * Copyright (C) 2009 The JSR-330 Expert Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.annotation;
+package com.jerehao.devia.beans.annotation.jsr330;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-10 20:17 jerehao
+ * Identifies a type that the injector only instantiates once. Not inherited.
+ *
+ * @see Scope @Scope
  */
-
-
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
+@Scope
 @Documented
-public @interface Component {
-
-}
+@Retention(RUNTIME)
+public @interface Singleton {}

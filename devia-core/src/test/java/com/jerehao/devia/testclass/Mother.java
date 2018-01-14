@@ -16,12 +16,16 @@
 
 package com.jerehao.devia.testclass;
 
+
+import com.jerehao.devia.beans.annotation.jsr330.Named;
+
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-12 19:03 jerehao
  */
 
 
+@Named("mother")
 public class Mother {
 
     private String name;

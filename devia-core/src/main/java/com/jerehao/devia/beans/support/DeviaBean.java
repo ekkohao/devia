@@ -17,6 +17,7 @@
 package com.jerehao.devia.beans.support;
 
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.exception.BeanCreateException;
 import com.jerehao.devia.beans.exception.NoBeanNameException;
 
 /**
@@ -25,7 +26,7 @@ import com.jerehao.devia.beans.exception.NoBeanNameException;
  */
 public class DeviaBean<T> extends AbstractBean<T> {
 
-    public DeviaBean(Class<T> clazz, BeanBuilder beanBuilder) throws NoBeanNameException {
+    public DeviaBean(Class<T> clazz, BeanBuilder beanBuilder) throws BeanCreateException {
         super(clazz, beanBuilder);
     }
 }

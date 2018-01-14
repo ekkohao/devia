@@ -16,13 +16,13 @@
 
 package com.jerehao.devia.beans.support.inject;
 
-import com.jerehao.devia.core.util.AnnotationUtils;
+import com.jerehao.devia.core.util.Annotations;
 
-import javax.inject.Qualifier;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
+import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -31,13 +31,21 @@ import java.util.Set;
  */
 public class ParameterInjectPoint {
 
+    private Parameter parameter;
+
     private Type type;
 
-    private Set<Annotation> qualifiers = new HashSet<>();
+    private Set<Qualifiee> qualifiees = new LinkedHashSet<>();
 
-    public ParameterInjectPoint(Type type, Annotation[] annotations) {
-        this.type = type;
-        initInjectPoint(annotations);
+//    public ParameterInjectPoint(Type type, Annotation[] annotations) {
+//        this.type = type;
+//        initInjectPoint(annotations);
+//    }
+
+    public ParameterInjectPoint(Parameter parameter) {
+        this.parameter = parameter;
+        this.type = parameter.getParameterizedType();
+        initInjectPoint(parameter.getDeclaredAnnotations());
     }
 
     private void initInjectPoint(Annotation[] annotations) {
@@ -46,8 +54,8 @@ public class ParameterInjectPoint {
 
     private void initQualifiers(Annotation[] annotations) {
         for(Annotation annotation : annotations) {
-            if(AnnotationUtils.getMetaAnnotations(annotation.annotationType()).contains(Qualifier.class))
-                qualifiers.add(annotation);
+            if(Annotations.isQualifierAnnotation(annotation.annotationType()))
+                qualifiees.add(new Qualifiee(annotation, this.parameter.getName()));
         }
     }
 
@@ -56,7 +64,11 @@ public class ParameterInjectPoint {
         return this.type;
     }
 
-    public Set<Annotation> getQualifiers() {
-        return qualifiers;
+    public Set<Qualifiee> getQualifiees() {
+        return qualifiees;
+    }
+
+    public Parameter getParameter() {
+        return parameter;
     }
 }

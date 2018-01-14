@@ -17,14 +17,14 @@
 package com.jerehao.devia.beans.support;
 
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.support.inject.ConstructorInjectPoint;
 import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
 import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
+import com.jerehao.devia.beans.support.inject.Qualifiee;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -34,7 +34,9 @@ public abstract class BeanDefinition<T> implements Bean<T> {
 
     private String beanName;
 
-    private Class<T> clazz;
+    private Class<T> beanClass;
+
+    private Class<T> proxyClass;
 
     private BeanScope scope;
 
@@ -42,33 +44,55 @@ public abstract class BeanDefinition<T> implements Bean<T> {
 
     private final Set<Type> types = new LinkedHashSet<>();
 
-    private final Set<Annotation> qualifiers = new LinkedHashSet<>();
+    private final Map<Class<? extends Annotation>, Qualifiee> qualifieeMap = new HashMap<>();
 
     private final Set<FieldInjectPoint> fieldInjectPoints = new LinkedHashSet<>();
 
     private final Set<MethodInjectPoint> methodInjectPoints = new LinkedHashSet<>();
 
-    private Set<Method> needInjectConstructor;
+    private ConstructorInjectPoint<T> constructorInjectPoint = null;
 
+    @Override
     public String getBeanName() {
         return beanName;
     }
 
-    public Class<T> getClazz() {
-
-        return clazz;
+    @Override
+    public Class<T> getBeanClass() {
+        return beanClass;
     }
 
+    @Override
+    public Class<T> getProxyClass() {
+        return proxyClass;
+    }
+
+    @Override
     public BeanScope getScope() {
         return scope;
     }
 
+    @Override
     public Set<Type> getTypes() {
         return types;
     }
 
-    public Set<? extends Annotation> getQualifiers() {
-        return qualifiers;
+    @Override
+    public Collection<Qualifiee> getQualifiees() {
+        return qualifieeMap.values();
+    }
+
+    @Override
+    public boolean containsQualifiee(Class<? extends Annotation> clazz) {
+        return this.qualifieeMap.containsKey(clazz);
+    }
+
+    @Override
+    public Qualifiee getQualifiee(Class<? extends Annotation> clazz) {
+        if(containsQualifiee(clazz))
+            return this.qualifieeMap.get(clazz);
+        else
+            return null;
     }
 
     @Override
@@ -82,6 +106,11 @@ public abstract class BeanDefinition<T> implements Bean<T> {
     }
 
     @Override
+    public ConstructorInjectPoint<T> getConstructorInjectPoint() {
+        return constructorInjectPoint;
+    }
+
+    @Override
     public BeanBuilder getBeanBuilder() {
         return beanBuilder;
     }
@@ -92,8 +121,12 @@ public abstract class BeanDefinition<T> implements Bean<T> {
         this.beanName = beanName;
     }
 
-    protected void setClazz(Class<T> clazz) {
-        this.clazz = clazz;
+    protected void setBeanClass(Class<T> clazz) {
+        this.beanClass = clazz;
+    }
+
+    protected void setProxyClass(Class<T> proxyClass) {
+        this.proxyClass = proxyClass;
     }
 
     protected void setScope(BeanScope scope) {
@@ -104,8 +137,8 @@ public abstract class BeanDefinition<T> implements Bean<T> {
         this.types.addAll(types);
     }
 
-    protected void addQualifier(Annotation qualifier) {
-        this.qualifiers.add(qualifier);
+    protected void addQualifiee(Class<? extends Annotation> clazz,Qualifiee qualifiee) {
+        this.qualifieeMap.put(clazz, qualifiee);
     }
 
     protected void addFieldInjectPoint(FieldInjectPoint fieldInjectPoint) {
@@ -116,7 +149,13 @@ public abstract class BeanDefinition<T> implements Bean<T> {
         this.methodInjectPoints.add(methodInjectPoint);
     }
 
+    protected void setConstructorInjectPoint(ConstructorInjectPoint<T> constructorInjectPoint) {
+        this.constructorInjectPoint = constructorInjectPoint;
+    }
+
     protected void setBeanBuilder(BeanBuilder beanBuilder) {
         this.beanBuilder = beanBuilder;
     }
+
+
 }

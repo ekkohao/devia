@@ -20,10 +20,21 @@ package com.jerehao.devia.beans.exception;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-11 16:55 jerehao
  */
-public class NoSuchBeanException extends RuntimeException {
+public class NoSuchBeanException extends BeanException {
 
-    public NoSuchBeanException(String msg) {
-        super(msg);
+    public NoSuchBeanException() {
+        super();
     }
 
+    public NoSuchBeanException(String message) {
+        super(message);
+    }
+
+    public NoSuchBeanException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public NoSuchBeanException(Throwable cause) {
+        super(cause);
+    }
 }

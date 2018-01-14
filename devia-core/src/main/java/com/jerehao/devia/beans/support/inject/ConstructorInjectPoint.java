@@ -17,6 +17,7 @@
 package com.jerehao.devia.beans.support.inject;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
@@ -25,21 +26,21 @@ import java.lang.reflect.Type;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-12 10:10 jerehao
  */
-public class MethodInjectPoint {
+public class ConstructorInjectPoint<T> {
 
     private ParameterInjectPoint[] parameterInjectPoints;
 
-    private final Method method;
+    private final Constructor<T> constructor;
 
-    public MethodInjectPoint(Method method) {
-        this.method = method;
+    public ConstructorInjectPoint(Constructor<T> constructor) {
+        this.constructor = constructor;
         initParamFieldInjectPoints();
     }
 
     private void initParamFieldInjectPoints() {
-        Parameter[] parameters = method.getParameters();
-        //Type[] paramTypes =  method.getGenericParameterTypes();
-        //Annotation[][] annotations = method.getParameterAnnotations();
+        //Type[] paramTypes =  constructor.getGenericParameterTypes();
+        //Annotation[][] annotations = constructor.getParameterAnnotations();
+        Parameter[] parameters = constructor.getParameters();
         int len = parameters.length;
         parameterInjectPoints = new ParameterInjectPoint[len];
         for(int i = 0 ; i < len; ++ i) {
@@ -47,8 +48,8 @@ public class MethodInjectPoint {
         }
     }
 
-    public Method getMethod() {
-        return method;
+    public Constructor<T> getConstructor() {
+        return constructor;
     }
 
     public ParameterInjectPoint[] getParameterInjectPoints() {

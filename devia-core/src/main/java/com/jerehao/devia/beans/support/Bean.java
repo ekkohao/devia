@@ -17,11 +17,14 @@
 package com.jerehao.devia.beans.support;
 
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.support.inject.ConstructorInjectPoint;
 import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
 import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
+import com.jerehao.devia.beans.support.inject.Qualifiee;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -34,17 +37,29 @@ public interface Bean<T> {
 
     String getBeanName();
 
-    Class<T> getClazz();
+    Class<T> getBeanClass();
+
+    Class<T> getProxyClass();
 
     BeanScope getScope();
 
     Set<Type> getTypes();
 
-    Set<? extends Annotation> getQualifiers();
+    Collection<Qualifiee> getQualifiees();
+
+    boolean containsQualifiee(Class<? extends Annotation> clazz);
+
+    Qualifiee getQualifiee(Class<? extends Annotation> clazz);
 
     Set<FieldInjectPoint> getFieldInjectPoints();
 
     Set<MethodInjectPoint> getMethodInjectPoints();
+
+    ConstructorInjectPoint<T> getConstructorInjectPoint();
+
+    boolean hasConstructorInjectPoint();
+
+    boolean satisfiedQualifiees(Set<Qualifiee> qualifiees);
 
     BeanBuilder getBeanBuilder();
 }

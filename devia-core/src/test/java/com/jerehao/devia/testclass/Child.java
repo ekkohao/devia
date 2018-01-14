@@ -16,8 +16,9 @@
 
 package com.jerehao.devia.testclass;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+
+import com.jerehao.devia.beans.annotation.jsr330.Inject;
+import com.jerehao.devia.beans.annotation.jsr330.Named;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -31,6 +32,10 @@ public class Child {
 
     public Mother getMother() {
         return mother;
+    }
+
+    @Inject
+    public Child(@Named("mother") Mother mother) {
     }
 
     @Inject

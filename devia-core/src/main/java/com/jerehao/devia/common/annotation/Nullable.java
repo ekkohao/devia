@@ -14,27 +14,17 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.support;
+package com.jerehao.devia.common.annotation;
 
-
-import com.jerehao.devia.core.util.Annotations;
-
-import java.lang.annotation.Annotation;
+import java.lang.annotation.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 11:09 jerehao
+ * @version 0.0.1 2018-01-14 20:07 jerehao
  */
-public enum  BeanScope {
-    SINGLETON(Annotations.SINGLETON_CLASS);
 
-    Class<? extends Annotation> annotationType;
-
-    BeanScope(Class<? extends Annotation> annotationType) {
-        this.annotationType = annotationType;
-    }
-
-    public Class<? extends Annotation> getAnnotationType() {
-        return annotationType;
-    }
+@Documented
+@Retention(RetentionPolicy.CLASS)
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE})
+public @interface Nullable {
 }
