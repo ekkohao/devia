@@ -17,14 +17,14 @@
 package com.jerehao.devia.beans.support;
 
 
+import com.jerehao.devia.beans.BeanFactory;
 import com.jerehao.devia.beans.annotation.Named;
 import com.jerehao.devia.beans.build.BeanBuilder;
 import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
 import com.jerehao.devia.beans.exception.NoBeanNameException;
-import com.jerehao.devia.beans.support.inject.ConstructorInjectPoint;
-import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
-import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
-import com.jerehao.devia.beans.support.inject.Qualifiee;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
+import com.jerehao.devia.beans.support.inject.*;
 import com.jerehao.devia.common.annotation.Nullable;
 import com.jerehao.devia.core.util.AnnotationUtils;
 import com.jerehao.devia.core.util.Assert;
@@ -34,10 +34,7 @@ import com.jerehao.devia.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.Objects;
 import java.util.Set;
 
@@ -49,7 +46,7 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractBean.class);
 
-    private T singletonInstance = null;
+    private T prototype = null;
 
 
     protected AbstractBean(Class<T> clazz, BeanBuilder beanBuilder) throws BeanCreateException {
@@ -59,15 +56,12 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     }
 
     @Override
-    public T getBeanInstance() {
-        if(singletonInstance == null)
-            try {
-                singletonInstance = this.getBeanBuilder().createBeanInstance(this);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public T create() throws BeanCreateException, NoSuchBeanException, MultipleBeanException {
+        T instance = getInstance();
 
-        return singletonInstance;
+        resolveFieldInjectPoints(instance);
+
+        return instance;
     }
 
     @Override
@@ -104,6 +98,55 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     @Override
     public int hashCode() {
         return this.getBeanName().hashCode();
+    }
+
+    private T getInstance() throws MultipleBeanException, NoSuchBeanException, BeanCreateException {
+        try {
+            if(!this.hasConstructorInjectPoint())
+                return this.getProxyClass().newInstance();
+
+            // TODO 未处理代理类
+            Constructor<T> constructor =  this.getConstructorInjectPoint().getConstructor();
+            ParameterInjectPoint[] parameterInjectPoints = this.getConstructorInjectPoint().getParameterInjectPoints();
+            int len = parameterInjectPoints.length;
+            Object[] args = new Object[len];
+            for(int i = 0; i < len; ++i) {
+                ParameterInjectPoint parameterInjectPoint = parameterInjectPoints[i];
+                Type type = parameterInjectPoint.getType();
+                Set<Qualifiee> qualifiees = parameterInjectPoint.getQualifiees();
+                args[i] = getBeanBuilder().getBeanFactory().get(type, qualifiees);
+            }
+
+            return constructor.newInstance(args);
+        } catch (IllegalAccessException e) {
+            throw new BeanCreateException("Cannot resolve class [" + getBeanClass().getName() + "]");
+        } catch (InstantiationException e) {
+            throw new BeanCreateException("Cannot instantiate class [" + getBeanClass().getName() + "]");
+        } catch (InvocationTargetException e) {
+            throw new BeanCreateException("Cannot call inject constructor for class [" + getBeanClass().getName() + "]");
+        }
+
+    }
+
+    private void resolveFieldInjectPoints(T instance) throws BeanCreateException, MultipleBeanException, NoSuchBeanException {
+        BeanFactory beanFactory = this.getBeanBuilder().getBeanFactory();
+        for(FieldInjectPoint fieldInjectPoint : this.getFieldInjectPoints()) {
+
+            Field field = fieldInjectPoint.getField();
+            try {
+                if(field.isAccessible())
+                    field.set(instance, beanFactory.get(fieldInjectPoint.getType(), fieldInjectPoint.getQualifiees()));
+                else {
+                    field.setAccessible(true);
+                    field.set(instance, beanFactory.get(fieldInjectPoint.getType(), fieldInjectPoint.getQualifiees()));
+                    field.setAccessible(false);
+                }
+            } catch (IllegalAccessException e) {
+                throw new BeanCreateException("Cannot resolve field [" + instance.getClass() + "#" + field.getName() + "]");
+            }
+
+        }
+
     }
 
     private void initBean(Class<T> clazz) throws BeanCreateException {

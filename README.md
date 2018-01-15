@@ -43,3 +43,5 @@ Devia注解：
 @Scope(BeanScope)   ->     @Singleton
 @Qualifier 不转化，直接支持
 provider<T> 不转化，直接支持
+
+bean创建过程优化，完成到Context.get()

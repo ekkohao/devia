@@ -17,7 +17,18 @@
 package com.jerehao.devia.beans;
 
 import com.jerehao.devia.beans.build.DeviaBeanBuilder;
+import com.jerehao.devia.beans.context.Context;
+import com.jerehao.devia.beans.context.PrototypeContext;
+import com.jerehao.devia.beans.context.SingletonContext;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
+import com.jerehao.devia.beans.support.Bean;
+import com.jerehao.devia.beans.support.BeanScope;
+import com.jerehao.devia.beans.support.inject.Qualifiee;
 import com.jerehao.devia.logging.Logger;
+
+import java.lang.reflect.Type;
+import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -30,15 +41,49 @@ public class DeviaBeanFactory extends AbstractBeanFactory {
 
     private static final BeanFactory instance;
 
+    private Context singletonContext;
+
+    private Context prototypeContext;
+
     static {
         instance = new DeviaBeanFactory();
     }
 
-    public static BeanFactory getInstance() {
+    public static BeanFactory getBeanFactory() {
         return instance;
     }
 
     private DeviaBeanFactory() {
         super.setBeanBuilder(new DeviaBeanBuilder(this));
+        singletonContext = new SingletonContext();
+        prototypeContext = new PrototypeContext();
+    }
+
+    @Override
+    public <T> T get(String beanName) throws MultipleBeanException, NoSuchBeanException {
+        return get(getBean(beanName));
+    }
+
+    @Override
+    public <T> T get(Type type) throws MultipleBeanException, NoSuchBeanException {
+        return get(getBean(type));
+    }
+
+    @Override
+    public <T> T get(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException {
+        return get(getBean(type, qualifiees));
+    }
+
+    private <T> T get(Bean<T> bean) {
+        Context context = getContext(bean);
+        return context.get(bean);
+    }
+
+    private Context getContext(Bean<?> bean) {
+        if(bean.getScope() == BeanScope.SINGLETON)
+            return this.singletonContext;
+        else if(bean.getScope() == BeanScope.PROTOTYPE)
+            return this.prototypeContext;
+        throw new RuntimeException("Not support scope [" + bean.getScope().name() + "] yet.");
     }
 }

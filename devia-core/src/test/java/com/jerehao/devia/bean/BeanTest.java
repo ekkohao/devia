@@ -35,7 +35,7 @@ import java.util.Arrays;
 public class BeanTest {
     @Test
     public void testBean() {
-        BeanFactory beanFactory = DeviaBeanFactory.getInstance();
+        BeanFactory beanFactory = DeviaBeanFactory.getBeanFactory();
         BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
 
         beanBuilder.createBean(Mother.class);

@@ -17,12 +17,16 @@
 package com.jerehao.devia.beans.support;
 
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
 import com.jerehao.devia.beans.support.inject.ConstructorInjectPoint;
 import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
 import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
 import com.jerehao.devia.beans.support.inject.Qualifiee;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Set;
@@ -33,7 +37,7 @@ import java.util.Set;
  */
 public interface Bean<T> {
 
-    T create();
+    T create() throws BeanCreateException, NoSuchBeanException, MultipleBeanException;
 
     T getBeanInstance();
 

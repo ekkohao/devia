@@ -66,7 +66,7 @@ public final class ApplicationManager {
     private ApplicationManager() {}
 
     private static void initBeanFactory() {
-        beanFactory = DeviaBeanFactory.getInstance();
+        beanFactory = DeviaBeanFactory.getBeanFactory();
         final BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
 
         Set<Class<?>> classes = ComponentScan.getPathClasses(scanPaths);

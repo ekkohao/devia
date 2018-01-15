@@ -43,6 +43,12 @@ public interface BeanFactory {
 
     <T> Bean<T> getBean(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
 
+    <T> T get(String beanName) throws MultipleBeanException, NoSuchBeanException;
+
+    <T> T get(Type type) throws MultipleBeanException, NoSuchBeanException;
+
+    <T> T get(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
+
     BeanBuilder getBeanBuilder();
 
 }
