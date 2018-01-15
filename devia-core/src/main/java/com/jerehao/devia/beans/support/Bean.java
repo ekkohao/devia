@@ -33,6 +33,8 @@ import java.util.Set;
  */
 public interface Bean<T> {
 
+    T create();
+
     T getBeanInstance();
 
     String getBeanName();

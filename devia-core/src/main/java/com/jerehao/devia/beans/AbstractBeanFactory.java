@@ -26,7 +26,6 @@ import com.jerehao.devia.common.annotation.NotNull;
 import com.sun.istack.internal.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.*;
 
@@ -38,7 +37,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     private BeanBuilder beanBuilder;
 
-    private Set<Bean<?>> beans = new LinkedHashSet<>();
+    private Map<String, Bean<?>> name2BeanMap = new HashMap<>();
 
     private Map<Type, List<Bean<?>>> type2BeansMap = new HashMap<>();
 
@@ -54,46 +53,12 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         this.beanBuilder = beanBuilder;
     }
 
-    @SuppressWarnings({"all"})
+    @SuppressWarnings("unchecked")
     @Override
     public <T> Bean<T> getBean(String beanName) throws MultipleBeanException, NoSuchBeanException {
-        Bean<T> find = null;
-        for (Bean<?> bean : beans) {
-            if (StringUtils.equals(bean.getBeanName(), beanName)) {
-                if(find == null) {
-                    find = (Bean<T>) bean;
-                }
-                else {
-                    String msg;
-                    msg = "There is multiple bean exists, so we can't decide which one you wangt get.";
-                    msg += "\n\t\t\t1. " + find.getBeanClass().getTypeName();
-                    msg += "\n\t\t\t2. " + bean.getBeanClass().getTypeName();
-                    throw new MultipleBeanException(msg);
-                }
-            }
-        }
-        if(find == null)
-            throw new NoSuchBeanException("Cannot find bean with name [" + beanName + "]");
-        return find;
-    }
-
-
-    @Override
-    public <T> Bean<T> getBean(Class<T> beanClass) throws MultipleBeanException, NoSuchBeanException {
-        return getBean(beanClass, null);
-    }
-
-    @Override
-    public <T> Bean<T> getBean(Class<T> beanClass, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException {
-        Iterator<Type> itr = type2BeansMap.keySet().iterator();
-        Bean<T> find = null;
-        while (itr.hasNext()) {
-            find = getBean(type2BeansMap.get(itr.next()), qualifiees);
-        }
-
-        if(find == null)
-            throw new NoSuchBeanException("Cannot find bean with class [" + beanClass.getName() + "]");
-        return find;
+        if(name2BeanMap.containsKey(beanName))
+            return (Bean<T>) name2BeanMap.get(beanName);
+        throw new NoSuchBeanException("Cannot find bean with name [" + beanName + "]");
     }
 
     @Override
@@ -112,7 +77,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         return find;
     }
 
-    @SuppressWarnings("all")
+    @SuppressWarnings("unchecked")
     private <T> Bean<T> getBean(@NotNull List<Bean<?>> beanList, @Nullable Set<Qualifiee> qualifiees) throws MultipleBeanException {
         Bean<T> find = null;
         for(Bean<?> bean : beanList) {
@@ -134,22 +99,16 @@ public abstract class AbstractBeanFactory implements BeanFactory {
     public <T> void addBean(Bean<T> bean) throws BeanCreateException {
         if(bean == null)
             return;
-        if(beans.add(bean)) {
-            for (Type type : bean.getTypes())
-                putType2BeansMap(type, bean);
-        }
-        else
+
+        if(name2BeanMap.putIfAbsent(bean.getBeanName(), bean) != null)
             throw new BeanCreateException("There is already bean with name [" + bean.getBeanName() + "]");
 
-    }
+        for (Type type : bean.getTypes()) {
+            if(!type2BeansMap.containsKey(type))
+                type2BeansMap.putIfAbsent(type, new LinkedList<>());
 
-    private void putType2BeansMap(Type type, Bean<?> bean) {
-        if(type2BeansMap.containsKey(type))
             type2BeansMap.get(type).add(bean);
-        else  {
-            List<Bean<?>> list = new LinkedList<>();
-            list.add(bean);
-            type2BeansMap.put(type,list);
         }
     }
+
 }

@@ -17,24 +17,13 @@
 package com.jerehao.devia.beans.support;
 
 
-import com.jerehao.devia.core.util.Annotations;
-
-import java.lang.annotation.Annotation;
-
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-12 11:09 jerehao
  */
 public enum  BeanScope {
-    SINGLETON(Annotations.SINGLETON_CLASS);
-
-    Class<? extends Annotation> annotationType;
-
-    BeanScope(Class<? extends Annotation> annotationType) {
-        this.annotationType = annotationType;
-    }
-
-    public Class<? extends Annotation> getAnnotationType() {
-        return annotationType;
-    }
+    SINGLETON,
+    PROTOTYPE,
+    REQUEST,
+    SESSION;
 }

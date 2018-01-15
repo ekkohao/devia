@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.annotation.jsr330;
+package com.jerehao.devia.beans.annotation;
+
+import com.jerehao.devia.beans.annotation.scope.Singleton;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -47,7 +49,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  *
  * <p><tt><blockquote style="padding-left: 2em; text-indent: -2em;">
  *       {@literal @}Inject<sub><i>opt</i></sub>
- *       <i>Annotations<sub>opt</sub></i>
+ *       <i>AnnotationUtils<sub>opt</sub></i>
  *       public
  *       <i>SimpleTypeName</i>()
  *       <i>Throws<sub>opt</sub></i>

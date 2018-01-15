@@ -16,7 +16,9 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.annotation.jsr330.*;
+import com.jerehao.devia.beans.annotation.Inject;
+import com.jerehao.devia.beans.annotation.Named;
+import com.jerehao.devia.beans.annotation.Scope;
 
 import java.lang.annotation.*;
 import java.util.*;
@@ -25,30 +27,27 @@ import java.util.*;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-12 14:12 jerehao
  */
-public class Annotations {
+public class AnnotationUtils {
 
     public static final Class<Inject> INJECT_ClASS = Inject.class;
 
     public static final Class<Named> NAMED_CLASS = Named.class;
 
-    public static final Class<Qualifier> QUALIFIER_CLASS = Qualifier.class;
-
     public static final Class<Scope> SCOPE_CLASS = Scope.class;
-
-    public static final Class<Singleton> SINGLETON_CLASS = Singleton.class;
 
     private static final Set<Class<? extends Annotation>> alreadyKnownQualifierAnnotation;
 
     static {
         alreadyKnownQualifierAnnotation = new HashSet<>();
         alreadyKnownQualifierAnnotation.add(NAMED_CLASS);
+        alreadyKnownQualifierAnnotation.add(JSR330.NAMED_CLASS);
     }
 
     //元注解@Qualifier定义的注解
     public static boolean isQualifierAnnotation(Class<? extends Annotation> annotationType) {
         if(alreadyKnownQualifierAnnotation.contains(annotationType))
             return true;
-        else if (getMetaAnnotations(annotationType).contains(QUALIFIER_CLASS)) {
+        else if (getMetaAnnotations(annotationType).contains(JSR330.QUALIFIER_CLASS)) {
             alreadyKnownQualifierAnnotation.add(annotationType);
             return true;
         }
@@ -112,5 +111,20 @@ public class Annotations {
         return elementTypes.length == 1 && elementTypes[0] == ElementType.ANNOTATION_TYPE;
     }
 
-    private Annotations(){}
+    private AnnotationUtils(){}
+
+    public static class JSR330 {
+
+        public static final Class<javax.inject.Inject> INJECT_ClASS = javax.inject.Inject.class;
+
+        public static final Class<javax.inject.Named> NAMED_CLASS = javax.inject.Named.class;
+
+        public static final Class<javax.inject.Qualifier> QUALIFIER_CLASS = javax.inject.Qualifier.class;
+
+        public static final Class<javax.inject.Scope> SCOPE_CLASS = javax.inject.Scope.class;
+
+        public static final Class<javax.inject.Singleton> SINGLETON_CLASS = javax.inject.Singleton.class;
+
+        private JSR330() {}
+    }
 }

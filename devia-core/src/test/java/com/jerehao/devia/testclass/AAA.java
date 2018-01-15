@@ -17,8 +17,6 @@
 package com.jerehao.devia.testclass;
 
 
-import com.jerehao.devia.beans.annotation.jsr330.Qualifier;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -28,7 +26,6 @@ import java.lang.annotation.Target;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-12 15:43 jerehao
  */
-@Qualifier
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.ANNOTATION_TYPE)
 public @interface AAA {

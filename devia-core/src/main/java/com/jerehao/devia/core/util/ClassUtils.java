@@ -93,7 +93,7 @@ public class ClassUtils {
                 while (!supers.isEmpty()) {
                     Type currentInterface = supers.remove(0);
 
-                    Type[] superInterfaces = new Type[]{};
+                    Type[] superInterfaces;
                     if(currentInterface instanceof Class<?>) {
                         superInterfaces = ((Class<?>) currentInterface).getGenericInterfaces();
                     }
@@ -113,6 +113,17 @@ public class ClassUtils {
         }
 
         return types;
+    }
+
+    public static boolean equalsAny(Class<?> clazz, Class<?>... classes) {
+        if(classes == null || classes.length < 1)
+            return false;
+        for(Class<?> clz : classes) {
+            if(Objects.equals(clz, clazz))
+                return true;
+        }
+
+        return false;
     }
 
 }

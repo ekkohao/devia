@@ -16,12 +16,11 @@
 
 package com.jerehao.devia.beans.support.inject;
 
-import com.jerehao.devia.core.util.Annotations;
+import com.jerehao.devia.core.util.AnnotationUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -54,7 +53,7 @@ public class ParameterInjectPoint {
 
     private void initQualifiers(Annotation[] annotations) {
         for(Annotation annotation : annotations) {
-            if(Annotations.isQualifierAnnotation(annotation.annotationType()))
+            if(AnnotationUtils.isQualifierAnnotation(annotation.annotationType()))
                 qualifiees.add(new Qualifiee(annotation, this.parameter.getName()));
         }
     }

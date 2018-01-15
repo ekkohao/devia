@@ -39,10 +39,6 @@ public interface BeanFactory {
 
     <T> Bean<T> getBean(String beanName) throws MultipleBeanException, NoSuchBeanException;
 
-    <T> Bean<T> getBean(Class<T> beanClass) throws MultipleBeanException, NoSuchBeanException;
-
-    <T> Bean<T> getBean(Class<T> beanClass, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
-
     <T> Bean<T> getBean(Type type) throws MultipleBeanException, NoSuchBeanException;
 
     <T> Bean<T> getBean(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;

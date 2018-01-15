@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.annotation;
+package com.jerehao.devia.beans.provider;
 
-import java.lang.annotation.*;
+import javax.inject.Provider;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-10 20:17 jerehao
+ * @version 0.0.1 2018-01-15 10:11 jerehao
  */
 
 
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface Component {
+public abstract class AbstractProvider<T> implements Provider<T> {
+
 
 }

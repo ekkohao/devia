@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.annotation.jsr330;
+package com.jerehao.devia.beans.annotation;
+
+import com.jerehao.devia.beans.support.BeanScope;
 
 import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -33,11 +37,12 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  *     ...
  *   }</pre>
  */
-@Qualifier
+
 @Documented
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RUNTIME)
-public @interface Named {
+public @interface Scope {
 
     /** The name. */
-    String value() default "";
+    BeanScope value() default BeanScope.SINGLETON;
 }

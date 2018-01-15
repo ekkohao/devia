@@ -16,8 +16,6 @@
 
 package com.jerehao.devia.demo;
 
-import com.jerehao.devia.beans.annotation.Component;
-
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -28,7 +26,6 @@ import javax.inject.Singleton;
 
 @Singleton
 @Named("customName")
-@Component
 public class App {
     App() {}
 }

@@ -16,15 +16,12 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.DeviaBeanFactory;
-import com.jerehao.devia.beans.annotation.jsr330.Inject;
-import com.jerehao.devia.beans.annotation.jsr330.Named;
+import com.jerehao.devia.beans.annotation.Named;
 import com.jerehao.devia.testclass.BBB;
 import org.junit.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Target;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Set;
@@ -52,7 +49,7 @@ public class ClassUtilsTest {
     public void testGetMeta() {
         Set<Class<? extends Annotation>> classes;
 
-        classes = Annotations.getMetaAnnotations(ClassUtilsTest.class);
+        classes = AnnotationUtils.getMetaAnnotations(ClassUtilsTest.class);
 
         for (Class<? extends Annotation> clazz : classes)
             System.out.println(clazz.getName());

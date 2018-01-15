@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.annotation.jsr330;
+package com.jerehao.devia.beans.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -22,11 +22,21 @@ import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Identifies a type that the injector only instantiates once. Not inherited.
+ * String-based {@linkplain Qualifier qualifier}.
  *
- * @see Scope @Scope
+ * <p>Example usage:
+ *
+ * <pre>
+ *   public class Car {
+ *     &#064;Inject <b>@Named("driver")</b> Seat driverSeat;
+ *     &#064;Inject <b>@Named("passenger")</b> Seat passengerSeat;
+ *     ...
+ *   }</pre>
  */
-@Scope
 @Documented
 @Retention(RUNTIME)
-public @interface Singleton {}
+public @interface Named {
+
+    /** The name. */
+    String value() default "";
+}
