@@ -16,6 +16,9 @@
 
 package com.jerehao.devia.beans.context;
 
+import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
 import com.jerehao.devia.beans.support.Bean;
 import com.jerehao.devia.beans.support.BeanScope;
 import com.jerehao.devia.beans.support.inject.Qualifiee;
@@ -44,8 +47,9 @@ public abstract class AbstractContext implements Context {
         return this.scope;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public <T> T get(Bean<T> bean) {
+    public <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException {
 
         if(instances.containsKey(bean)) {
             return (T) instances.get(bean);

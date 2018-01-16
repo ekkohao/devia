@@ -37,17 +37,17 @@ public interface BeanFactory {
 
     <T> void addBean(Bean<T> bean) throws BeanCreateException;
 
-    <T> Bean<T> getBean(String beanName) throws MultipleBeanException, NoSuchBeanException;
+    <T> Bean<T> getBean(String beanName) throws NoSuchBeanException;
 
     <T> Bean<T> getBean(Type type) throws MultipleBeanException, NoSuchBeanException;
 
     <T> Bean<T> getBean(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
 
-    <T> T get(String beanName) throws MultipleBeanException, NoSuchBeanException;
+    <T> T get(String beanName);
 
-    <T> T get(Type type) throws MultipleBeanException, NoSuchBeanException;
+    <T> T get(Type type);
 
-    <T> T get(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException;
+    <T> T get(Type type, Set<Qualifiee> qualifiees);
 
     BeanBuilder getBeanBuilder();
 

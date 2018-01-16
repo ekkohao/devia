@@ -20,6 +20,8 @@ import com.jerehao.devia.beans.build.DeviaBeanBuilder;
 import com.jerehao.devia.beans.context.Context;
 import com.jerehao.devia.beans.context.PrototypeContext;
 import com.jerehao.devia.beans.context.SingletonContext;
+import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.BeanException;
 import com.jerehao.devia.beans.exception.MultipleBeanException;
 import com.jerehao.devia.beans.exception.NoSuchBeanException;
 import com.jerehao.devia.beans.support.Bean;
@@ -60,23 +62,38 @@ public class DeviaBeanFactory extends AbstractBeanFactory {
     }
 
     @Override
-    public <T> T get(String beanName) throws MultipleBeanException, NoSuchBeanException {
-        return get(getBean(beanName));
+    public <T> T get(String beanName) {
+        try {
+            return get(getBean(beanName));
+        } catch (BeanException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
     }
 
     @Override
-    public <T> T get(Type type) throws MultipleBeanException, NoSuchBeanException {
-        return get(getBean(type));
+    public <T> T get(Type type)  {
+        try {
+            return get(getBean(type));
+        } catch (BeanException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
     }
 
     @Override
-    public <T> T get(Type type, Set<Qualifiee> qualifiees) throws MultipleBeanException, NoSuchBeanException {
-        return get(getBean(type, qualifiees));
+    public <T> T get(Type type, Set<Qualifiee> qualifiees) {
+        try {
+            return get(getBean(type, qualifiees));
+        } catch (BeanException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
     }
 
-    private <T> T get(Bean<T> bean) {
+    private <T> T get(Bean<T> bean) throws BeanCreateException, NoSuchBeanException, MultipleBeanException {
         Context context = getContext(bean);
-        return context.get(bean);
+            return context.get(bean);
     }
 
     private Context getContext(Bean<?> bean) {

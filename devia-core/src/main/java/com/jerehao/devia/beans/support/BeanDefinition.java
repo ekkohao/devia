@@ -16,6 +16,7 @@
 
 package com.jerehao.devia.beans.support;
 
+import com.jerehao.devia.beans.BeanFactory;
 import com.jerehao.devia.beans.build.BeanBuilder;
 import com.jerehao.devia.beans.support.inject.ConstructorInjectPoint;
 import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
@@ -40,7 +41,7 @@ public abstract class BeanDefinition<T> implements Bean<T> {
 
     private BeanScope scope;
 
-    private BeanBuilder beanBuilder;
+    private BeanFactory beanFactory;
 
     private final Set<Type> types = new LinkedHashSet<>();
 
@@ -95,24 +96,24 @@ public abstract class BeanDefinition<T> implements Bean<T> {
             return null;
     }
 
-    @Override
-    public Set<FieldInjectPoint> getFieldInjectPoints() {
+    //@Override
+    protected Set<FieldInjectPoint> getFieldInjectPoints() {
         return fieldInjectPoints;
     }
 
-    @Override
-    public Set<MethodInjectPoint> getMethodInjectPoints() {
+    //@Override
+    protected Set<MethodInjectPoint> getMethodInjectPoints() {
         return methodInjectPoints;
     }
 
-    @Override
-    public ConstructorInjectPoint<T> getConstructorInjectPoint() {
+    //@Override
+    protected ConstructorInjectPoint<T> getConstructorInjectPoint() {
         return constructorInjectPoint;
     }
 
     @Override
-    public BeanBuilder getBeanBuilder() {
-        return beanBuilder;
+    public BeanFactory getBeanFactory() {
+        return beanFactory;
     }
 
     //setter
@@ -153,8 +154,8 @@ public abstract class BeanDefinition<T> implements Bean<T> {
         this.constructorInjectPoint = constructorInjectPoint;
     }
 
-    protected void setBeanBuilder(BeanBuilder beanBuilder) {
-        this.beanBuilder = beanBuilder;
+    protected void setBeanFactory(BeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
     }
 
 

@@ -55,7 +55,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> Bean<T> getBean(String beanName) throws MultipleBeanException, NoSuchBeanException {
+    public <T> Bean<T> getBean(String beanName) throws NoSuchBeanException {
         if(name2BeanMap.containsKey(beanName))
             return (Bean<T>) name2BeanMap.get(beanName);
         throw new NoSuchBeanException("Cannot find bean with name [" + beanName + "]");

@@ -14,25 +14,23 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.context;
+package com.jerehao.devia.beans.annotation.interceptor;
 
-import com.jerehao.devia.beans.exception.BeanCreateException;
-import com.jerehao.devia.beans.exception.MultipleBeanException;
-import com.jerehao.devia.beans.exception.NoSuchBeanException;
-import com.jerehao.devia.beans.support.Bean;
-import com.jerehao.devia.beans.support.BeanScope;
-import com.jerehao.devia.beans.support.inject.Qualifiee;
-
-import java.lang.reflect.Type;
-import java.util.Set;
+import java.lang.annotation.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-15 18:46 jerehao
+ * @version 0.0.1 2018-01-16 9:06 jerehao
  */
-public interface Context {
 
-    BeanScope getScope();
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Documented
+public @interface Interceptor {
 
-    <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException;
+    /**
+     * the path pattern to intercept
+     * @return path pattern
+     */
+    String[] value();
 }

@@ -19,7 +19,6 @@ package com.jerehao.devia.beans.support;
 
 import com.jerehao.devia.beans.BeanFactory;
 import com.jerehao.devia.beans.annotation.Named;
-import com.jerehao.devia.beans.build.BeanBuilder;
 import com.jerehao.devia.beans.exception.BeanCreateException;
 import com.jerehao.devia.beans.exception.MultipleBeanException;
 import com.jerehao.devia.beans.exception.NoBeanNameException;
@@ -31,6 +30,7 @@ import com.jerehao.devia.core.util.Assert;
 import com.jerehao.devia.core.util.ClassUtils;
 import com.jerehao.devia.core.util.ReflectionUtils;
 import com.jerehao.devia.logging.Logger;
+import javassist.util.proxy.ProxyFactory;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.annotation.Annotation;
@@ -49,9 +49,9 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
     private T prototype = null;
 
 
-    protected AbstractBean(Class<T> clazz, BeanBuilder beanBuilder) throws BeanCreateException {
+    protected AbstractBean(Class<T> clazz, BeanFactory beanFactory) throws BeanCreateException {
         Assert.notNull(clazz);
-        setBeanBuilder(beanBuilder);
+        setBeanFactory(beanFactory);
         initBean(clazz);
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
         return instance;
     }
 
-    @Override
+   // @Override
     public boolean hasConstructorInjectPoint() {
         return this.getConstructorInjectPoint() != null;
     }
@@ -105,7 +105,6 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
             if(!this.hasConstructorInjectPoint())
                 return this.getProxyClass().newInstance();
 
-            // TODO 未处理代理类
             Constructor<T> constructor =  this.getConstructorInjectPoint().getConstructor();
             ParameterInjectPoint[] parameterInjectPoints = this.getConstructorInjectPoint().getParameterInjectPoints();
             int len = parameterInjectPoints.length;
@@ -114,22 +113,27 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
                 ParameterInjectPoint parameterInjectPoint = parameterInjectPoints[i];
                 Type type = parameterInjectPoint.getType();
                 Set<Qualifiee> qualifiees = parameterInjectPoint.getQualifiees();
-                args[i] = getBeanBuilder().getBeanFactory().get(type, qualifiees);
+                args[i] = getBeanFactory().get(type, qualifiees);
             }
 
-            return constructor.newInstance(args);
+            Constructor<T> proxyConstructor =  this.getProxyClass().getConstructor(constructor.getParameterTypes());
+
+            return proxyConstructor.newInstance(args);
+
         } catch (IllegalAccessException e) {
             throw new BeanCreateException("Cannot resolve class [" + getBeanClass().getName() + "]");
         } catch (InstantiationException e) {
             throw new BeanCreateException("Cannot instantiate class [" + getBeanClass().getName() + "]");
         } catch (InvocationTargetException e) {
             throw new BeanCreateException("Cannot call inject constructor for class [" + getBeanClass().getName() + "]");
+        } catch (NoSuchMethodException e) {
+            throw new BeanCreateException("Cannot find inject constructor for class [" + getBeanClass().getName() + "]");
         }
 
     }
 
     private void resolveFieldInjectPoints(T instance) throws BeanCreateException, MultipleBeanException, NoSuchBeanException {
-        BeanFactory beanFactory = this.getBeanBuilder().getBeanFactory();
+        final BeanFactory beanFactory = this.getBeanFactory();
         for(FieldInjectPoint fieldInjectPoint : this.getFieldInjectPoints()) {
 
             Field field = fieldInjectPoint.getField();
@@ -149,10 +153,17 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
 
     }
 
+    @SuppressWarnings("unchecked")
     private void initBean(Class<T> clazz) throws BeanCreateException {
         //clazz must be set first, because all init*() method after use it
         setBeanClass(clazz);
-        setProxyClass(clazz); ///TODO AOP Transaction
+
+        ProxyFactory proxyFactory = new ProxyFactory();
+        // TODO AOP 在此设置过滤，以及MethodHandler
+        proxyFactory.setSuperclass(clazz);
+        Class<T> proxyClass = proxyFactory.createClass();
+
+        setProxyClass(proxyClass);
 
         setBeanName(determineBeanName(clazz));
         setScope(determineBeanScope(clazz));
@@ -164,7 +175,6 @@ public abstract class AbstractBean<T> extends BeanDefinition<T> {
         initFieldInjects();
         initMethodInjects();
         initConstructorInjects();
-        //TODO 初始化各个注入点（field，method，构造方法）
 
         initBean();
     }

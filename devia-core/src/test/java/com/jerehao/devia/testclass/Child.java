@@ -27,7 +27,7 @@ import com.jerehao.devia.beans.annotation.Named;
 @Named()
 public class Child {
 
-    @Inject
+    //@Inject
     private Mother mother;
 
     public Mother getMother() {
@@ -35,10 +35,11 @@ public class Child {
     }
 
     @Inject
-    public Child(@Named("mother") Mother mother) {
+    public Child(@Named("mother2") Mother mother) {
+        this.mother = mother;
     }
 
-    @Inject
+    //@Inject
     public void setMother(@Named("mm") Mother mother) {
         this.mother = mother;
     }

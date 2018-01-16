@@ -94,8 +94,6 @@ public final class DispatcherServlet extends HttpServlet {
             LOGGER.debug("Initializing servlet '" + getServletName() + "'");
         }
 
-        initBeans();
-
         initEnvironment();
 
         initServletContextConfig();
@@ -110,8 +108,6 @@ public final class DispatcherServlet extends HttpServlet {
         }
     }
 
-    private void initBeans() {
-    }
 
     /**
      * 初始化servlet参数设置

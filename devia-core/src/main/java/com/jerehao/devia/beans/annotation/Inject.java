@@ -16,8 +16,6 @@
 
 package com.jerehao.devia.beans.annotation;
 
-import com.jerehao.devia.beans.annotation.scope.Singleton;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

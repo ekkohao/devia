@@ -45,3 +45,20 @@ Devia注解：
 provider<T> 不转化，直接支持
 
 bean创建过程优化，完成到Context.get()
+
+## 2018-01-16
+
+拦截器支持
+增加配置文件中interceptors的读取
+形如：
+
+```
+<interceptors>
+    <interceptor class="">
+        <path></path>
+    </interceptor>
+</interceptors>
+```
+
+或直接使用注解配置
+

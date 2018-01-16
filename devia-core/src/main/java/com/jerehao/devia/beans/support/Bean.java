@@ -16,6 +16,7 @@
 
 package com.jerehao.devia.beans.support;
 
+import com.jerehao.devia.beans.BeanFactory;
 import com.jerehao.devia.beans.build.BeanBuilder;
 import com.jerehao.devia.beans.exception.BeanCreateException;
 import com.jerehao.devia.beans.exception.MultipleBeanException;
@@ -39,8 +40,6 @@ public interface Bean<T> {
 
     T create() throws BeanCreateException, NoSuchBeanException, MultipleBeanException;
 
-    T getBeanInstance();
-
     String getBeanName();
 
     Class<T> getBeanClass();
@@ -57,15 +56,15 @@ public interface Bean<T> {
 
     Qualifiee getQualifiee(Class<? extends Annotation> clazz);
 
-    Set<FieldInjectPoint> getFieldInjectPoints();
+//    Set<FieldInjectPoint> getFieldInjectPoints();
+//
+//    Set<MethodInjectPoint> getMethodInjectPoints();
+//
+//    ConstructorInjectPoint<T> getConstructorInjectPoint();
 
-    Set<MethodInjectPoint> getMethodInjectPoints();
-
-    ConstructorInjectPoint<T> getConstructorInjectPoint();
-
-    boolean hasConstructorInjectPoint();
+//    boolean hasConstructorInjectPoint();
 
     boolean satisfiedQualifiees(Set<Qualifiee> qualifiees);
 
-    BeanBuilder getBeanBuilder();
+    BeanFactory getBeanFactory();
 }

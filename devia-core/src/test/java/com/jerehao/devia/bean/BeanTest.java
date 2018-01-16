@@ -19,11 +19,16 @@ package com.jerehao.devia.bean;
 import com.jerehao.devia.beans.BeanFactory;
 import com.jerehao.devia.beans.DeviaBeanFactory;
 import com.jerehao.devia.beans.build.BeanBuilder;
+import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.BeanException;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
 import com.jerehao.devia.beans.support.Bean;
 import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
 import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
 import com.jerehao.devia.testclass.Child;
 import com.jerehao.devia.testclass.Mother;
+import com.jerehao.devia.testclass.Mother2;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -39,24 +44,15 @@ public class BeanTest {
         BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
 
         beanBuilder.createBean(Mother.class);
+        beanBuilder.createBean(Mother2.class);
         beanBuilder.createBean(Child.class);
 
-        Bean<Mother> bean = beanFactory.getBean(Mother.class);
-        Bean<Child> bean1 = beanFactory.getBean(Child.class);
-
-        System.out.println(bean1.getBeanName());
-        for(FieldInjectPoint fieldInjectPoint : bean1.getFieldInjectPoints()) {
-            System.out.println(fieldInjectPoint.getType());
+        try {
+            Mother mother = beanFactory.get("mother2");
+            Child child = beanFactory.get(Child.class);
+            System.out.println("name : " + child.getMother().getName());
+        } catch (BeanException e) {
+            System.out.println(e.getMessage());
         }
-        for(MethodInjectPoint methodInjectPoint : bean1.getMethodInjectPoints()) {
-            System.out.println(methodInjectPoint.getMethod());
-        }
-        System.out.println(Arrays.toString(bean1.getFieldInjectPoints().toArray()));
-
-        System.out.println("-----------------------");
-        Mother mother = bean.getBeanInstance();
-        Child child = bean1.getBeanInstance();
-
-        System.out.println(child.getMother().getName());
     }
 }

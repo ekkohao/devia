@@ -16,6 +16,10 @@
 
 package com.jerehao.devia.beans.context;
 
+import com.jerehao.devia.beans.exception.BeanCreateException;
+import com.jerehao.devia.beans.exception.MultipleBeanException;
+import com.jerehao.devia.beans.exception.NoSuchBeanException;
+import com.jerehao.devia.beans.support.Bean;
 import com.jerehao.devia.beans.support.BeanScope;
 
 /**
@@ -28,7 +32,9 @@ public class SingletonContext extends AbstractContext {
         super(BeanScope.SINGLETON);
     }
 
-//    public SingletonContext(BeanScope scope) {
-//        super(scope);
-//    }
+
+    @Override
+    public <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException {
+        return bean.create();
+    }
 }

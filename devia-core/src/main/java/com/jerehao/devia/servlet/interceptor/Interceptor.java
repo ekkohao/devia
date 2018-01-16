@@ -14,25 +14,28 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.beans.context;
+package com.jerehao.devia.servlet.interceptor;
 
-import com.jerehao.devia.beans.exception.BeanCreateException;
-import com.jerehao.devia.beans.exception.MultipleBeanException;
-import com.jerehao.devia.beans.exception.NoSuchBeanException;
-import com.jerehao.devia.beans.support.Bean;
-import com.jerehao.devia.beans.support.BeanScope;
-import com.jerehao.devia.beans.support.inject.Qualifiee;
-
-import java.lang.reflect.Type;
-import java.util.Set;
+import com.jerehao.devia.servlet.DeviaServletContext;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-15 18:46 jerehao
+ * @version 0.0.1 2018-01-16 9:04 jerehao
  */
-public interface Context {
+public interface Interceptor {
+    /**
+     * 增加配置文件中interceptors的读取
+     *  形如：
+     *      <interceptors>
+     *          <interceptor class="">
+     *              <path></path>
+     *          </interceptor>
+     *      </interceptors>
+     * 或直接使用注解配置
+     */
 
-    BeanScope getScope();
+    boolean preHandler(DeviaServletContext context, Object o);
 
-    <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException;
+    void postHandler(DeviaServletContext context, Object o);
+
 }
