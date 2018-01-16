@@ -14,31 +14,34 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
+package com.jerehao.devia.core.util;
 
-
-import com.jerehao.devia.bean.annotation.Named;
+import java.text.MessageFormat;
+import java.util.Objects;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-16 14:48 jerehao
  */
+public final class StringUtils {
 
-
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
+    public static boolean isEmptyOrNull(String s) {
+        return s == null || s.isEmpty();
     }
 
-    public String getName() {
-        return name;
+    public static boolean equals(String s, String s2) {
+        return Objects.equals(s, s2);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static String build(String s, Object... args) {
+        return MessageFormat.format(s, args);
     }
+
+    public static String trim(String s) {
+        if(s == null)
+            return null;
+        return s.trim();
+    }
+
+    private StringUtils() {}
 }

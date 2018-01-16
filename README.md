@@ -23,7 +23,7 @@ getBean()方法修正，增加重复bean异常抛出
 
 Bean创建过程中循环依赖检测
 
-类{com.jerehao.devia.beans.build.BeanBuilder},允许创建类型相同，但qualifiee不同的bea
+类{com.jerehao.devia.bean.build.BeanBuilder},允许创建类型相同，但qualifiee不同的bea
 
 ## 2018-01-15
 
@@ -61,4 +61,29 @@ bean创建过程优化，完成到Context.get()
 ```
 
 或直接使用注解配置
+
+------
+
+完全注解配置
+
+web.xml 中，指定注解类（@ApplicationConfig）
+
+```
+@ApplicationConfig
+@AutoScanPackage(["package1","package2"])
+@ResourcesMapping(mapping="", location="")
+public class ApplicationConfig {
+    
+    @Bean
+    public BeanClass beanName() {
+        return new BeanClass();
+    }
+    
+    @Bean
+    public BeanClass2 beanName2() {
+        return new BeanClass(beanName());
+    }
+}
+
+```
 

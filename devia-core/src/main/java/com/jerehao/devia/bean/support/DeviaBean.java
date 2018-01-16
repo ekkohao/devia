@@ -14,31 +14,18 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
+package com.jerehao.devia.bean.support;
 
-
-import com.jerehao.devia.bean.annotation.Named;
+import com.jerehao.devia.bean.BeanFactory;
+import com.jerehao.devia.bean.exception.BeanCreateException;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-11 20:32 jerehao
  */
+public class DeviaBean<T> extends AbstractBean<T> {
 
-
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public DeviaBean(Class<T> clazz, BeanFactory beanFactory) throws BeanCreateException {
+        super(clazz, beanFactory);
     }
 }

@@ -37,11 +37,18 @@ public final class AntPathMather {
 
     private AntPathMather(){}
 
+    //要保证模式串初始模式一致，比如都以"/"开始
     public static boolean Match(String patten, String path) {
-        return doMatch(patten, path);
+        return doMatch(patten, path, true);
     }
 
-    private static boolean doMatch(String patten, String path) {
+    //TODO test 部分匹配
+    public static boolean Match(String patten, String path, boolean fullMatch) {
+        return doMatch(patten, path, fullMatch);
+    }
+
+
+    private static boolean doMatch(String patten, String path, boolean fullMatch) {
         String[] pattenArr = StringUtils.split(patten, PATH_SEPARATOR);
         String[] pathArr = StringUtils.split(path, PATH_SEPARATOR);
         int pattenHead = 0, pathHead = 0;
@@ -58,11 +65,26 @@ public final class AntPathMather {
                 return false;
         }
 
-        //比较模式串最后一个**之后的模式，如有不匹配则返回false
-        while(pathHead <= pathTail && pattenHead <= pattenTail) {
-            if(StringUtils.equals(pattenArr[pattenTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
-                break;
-            if(!StringMatch(pattenArr[pattenTail--], pathArr[pathTail--]))
+        if(fullMatch) {
+            //比较模式串最后一个**之后的模式，如有不匹配则返回false
+            while (pathHead <= pathTail && pattenHead <= pattenTail) {
+                if (StringUtils.equals(pattenArr[pattenTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
+                    break;
+                if (!StringMatch(pattenArr[pattenTail--], pathArr[pathTail--]))
+                    return false;
+            }
+        }
+        else {
+            boolean partMatch = false;
+            while (pathHead <= pathTail && pattenHead <= pattenTail) {
+                if (StringUtils.equals(pattenArr[pattenTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD)) {
+                    partMatch = true;
+                    break;
+                }
+                if (StringMatch(pattenArr[pattenTail], pathArr[pathTail--]))
+                    --pattenTail;
+            }
+            if(!partMatch)
                 return false;
         }
 

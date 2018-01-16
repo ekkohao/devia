@@ -24,7 +24,10 @@ import java.util.*;
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-05 16:31 jerehao
+ *
+ * @deprecated
  */
+@Deprecated
 public final class StaticResource {
 
     private static final String PATH_SEPARATOR = "/";

@@ -14,31 +14,19 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
+package com.jerehao.devia.application;
 
-
-import com.jerehao.devia.bean.annotation.Named;
+import com.jerehao.devia.config.annotation.ApplicationConfig;
+import com.jerehao.devia.config.annotation.AutoScanPackage;
+import com.jerehao.devia.config.annotation.WebResource;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-16 14:14 jerehao
  */
-
-
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+@ApplicationConfig
+@AutoScanPackage("com")
+@WebResource(uri = "/css", locationTo = "/resources/css" , exceptURI = "/font", file = "css")
+@WebResource(uri = "/js", locationTo = "/resources/js" , file = "js")
+public class AppConfig {
 }

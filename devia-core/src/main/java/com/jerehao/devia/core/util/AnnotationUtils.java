@@ -16,9 +16,9 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.annotation.Inject;
-import com.jerehao.devia.beans.annotation.Named;
-import com.jerehao.devia.beans.annotation.Scope;
+import com.jerehao.devia.bean.annotation.Inject;
+import com.jerehao.devia.bean.annotation.Named;
+import com.jerehao.devia.bean.annotation.Scope;
 
 import java.lang.annotation.*;
 import java.util.*;

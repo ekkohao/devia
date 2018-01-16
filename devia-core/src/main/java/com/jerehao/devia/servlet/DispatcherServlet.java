@@ -16,9 +16,13 @@
 
 package com.jerehao.devia.servlet;
 
+import com.jerehao.devia.application.AppConfig;
 import com.jerehao.devia.application.ApplicationManager;
+import com.jerehao.devia.config.ApplicationConfigReader;
+import com.jerehao.devia.config.Configuration;
 import com.jerehao.devia.core.resource.FileSystemResource;
 import com.jerehao.devia.core.resource.Resource;
+import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.handler.RequestDispatcherHandler;
 import com.jerehao.devia.servlet.handler.StaticResourceHandler;
@@ -36,9 +40,13 @@ import java.net.MalformedURLException;
  */
 public final class DispatcherServlet extends HttpServlet {
 
-    private static final String DEFAULT_SERVLET_CONFIG_FILENAME_SUFFIX = "-servlet.xml";
+    //private static final String DEFAULT_SERVLET_CONFIG_FILENAME_SUFFIX = "-servlet.xml";
 
-    public static final String XML_NAMESPACE_MVC_URI = "http://www.jerehao.com/mvc/";
+    //public static final String XML_NAMESPACE_MVC_URI = "http://www.jerehao.com/mvc/";
+
+    private static final String PARAMETER_CONFIG_CLASS = "configClass";
+
+    private static final String DEFAULT_CONFIG_CLASS = AppConfig.class.getName();
 
     /**
      * Default serial version uid.
@@ -49,19 +57,6 @@ public final class DispatcherServlet extends HttpServlet {
      * Logger.
      */
     private static final Logger LOGGER = Logger.getLogger(DispatcherServlet.class);
-
-    /**
-     * set context config location
-     * if this isn't set, the location is {@code /WEB-INF/$servlet-name$-servlet.xml}
-     */
-    private String contextConfigLocation;
-
-    /**
-     * base path to create beans
-     * [..]多级包路径 = [.**.]
-     * [*]零个或多个字符
-     */
-    private String scanPaths;
 
     /**
      * 每次浏览器请求会执行service方法
@@ -90,61 +85,57 @@ public final class DispatcherServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Initializing servlet '" + getServletName() + "'");
-        }
+        LOGGER.debug("Initializing servlet '" + getServletName() + "'");
 
-        initEnvironment();
+        //start app by config class
+        ApplicationManager.start(getConfigClass());
 
-        initServletContextConfig();
-
+        //add path handler
         HandlerExecutionChain.addHandler(new StaticResourceHandler());
         HandlerExecutionChain.addHandler(new RequestDispatcherHandler());
 
         initServlet();
 
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Initialize servlet '" + getServletName() + "' completed!");
-        }
+        LOGGER.debug("Initialize servlet '" + getServletName() + "' completed!");
     }
 
 
-    /**
-     * 初始化servlet参数设置
-     */
-    private void initEnvironment() {
-        contextConfigLocation = getServletConfig().getInitParameter("contextConfigLocation");
-        if(contextConfigLocation == null)
-            contextConfigLocation = getServletName() + DEFAULT_SERVLET_CONFIG_FILENAME_SUFFIX;
-        LOGGER.info("To use context config location: " + contextConfigLocation);
-    }
+//    /**
+//     * 初始化servlet参数设置
+//     */
+//    private void initEnvironment() {
+//
+//        configClass = getConfigClass();
+//
+//
+//    }
 
     /**
      * 加载静态资源
      */
-    private void initServletContextConfig() {
-        try {
-            Resource resource = new FileSystemResource(
-                    this.getServletContext().getResource(this.contextConfigLocation).getFile());
-            DeviaContextConfigReader contextConfigReader = new DeviaContextConfigReader(resource);
-            contextConfigReader.loadStaticResources();
-
-            scanPaths = contextConfigReader.getComponentScanPath();
-            LOGGER.trace("Set scan path: " + scanPaths);
-        } catch (MalformedURLException e) {
-            LOGGER.error(
-                    "Context config file '" + this.contextConfigLocation + "' cannot be found.",e);
-        }
-        //before this to set scanPaths
-        afterServletContextConfig();
-    }
-
-    private void afterServletContextConfig() {
-
-        ApplicationManager.setScanPaths(scanPaths);
-        ApplicationManager.start();
-
-    }
+//    private void initServletContextConfig() {
+//        try {
+//            Resource resource = new FileSystemResource(
+//                    this.getServletContext().getResource(this.contextConfigLocation).getFile());
+//            DeviaContextConfigReader contextConfigReader = new DeviaContextConfigReader(resource);
+//            contextConfigReader.loadStaticResources();
+//
+//            scanPaths = contextConfigReader.getComponentScanPath();
+//            LOGGER.trace("Set scan path: " + scanPaths);
+//        } catch (MalformedURLException e) {
+//            LOGGER.error(
+//                    "Context config file '" + this.contextConfigLocation + "' cannot be found.",e);
+//        }
+//        //before this to set scanPaths
+//        afterServletContextConfig();
+//    }
+//
+//    private void afterServletContextConfig() {
+//
+//        ApplicationManager.setScanPaths(scanPaths);
+//        ApplicationManager.start();
+//
+//    }
 
     /**
      * nothing to do
@@ -152,6 +143,19 @@ public final class DispatcherServlet extends HttpServlet {
      */
     private void initServlet() {
 
+    }
+
+    private Class<?> getConfigClass() {
+        String configClassName = getServletConfig().getInitParameter(PARAMETER_CONFIG_CLASS);
+        if(StringUtils.isEmptyOrNull(configClassName))
+            configClassName = DEFAULT_CONFIG_CLASS;
+        Class<?> configClass = null;
+        try {
+            configClass = Class.forName(configClassName);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(StringUtils.build("Config class [{0}] not found.", configClassName));
+        }
+        return configClass;
     }
 
 }

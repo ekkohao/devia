@@ -38,6 +38,8 @@ import java.util.Set;
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-03 20:36 jerehao
+ *
+ * @deprecated
  */
 public class DeviaContextConfigReader {
 
@@ -88,6 +90,7 @@ public class DeviaContextConfigReader {
             e.printStackTrace();
         }
     }
+
 
     public void loadStaticResources() {
         LOGGER.info("Loading static resources config ...");

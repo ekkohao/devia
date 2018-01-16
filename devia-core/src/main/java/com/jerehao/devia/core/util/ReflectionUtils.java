@@ -31,7 +31,7 @@ import java.util.Set;
  */
 public final class ReflectionUtils {
 
-    //get all field except final field
+    //get all field exceptURI final field
     public static Set<Field> getAllFields(final Class<?> clazz) {
         Set<Field> fields = new HashSet<>();
         Class<?> current = clazz;
@@ -50,7 +50,7 @@ public final class ReflectionUtils {
         return fields;
     }
 
-    //get class all methods except abstract method
+    //get class all methods exceptURI abstract method
     public static Set<Method> getAllMethods(final Class<?> clazz) {
         final Set<Method> methods = new HashSet<>();
 

@@ -16,37 +16,46 @@
 
 package com.jerehao.devia.application;
 
-import com.jerehao.devia.beans.BeanFactory;
-import com.jerehao.devia.beans.build.BeanBuilder;
-import com.jerehao.devia.beans.build.ComponentScan;
-import com.jerehao.devia.beans.DeviaBeanFactory;
+import com.jerehao.devia.bean.BeanFactory;
+import com.jerehao.devia.bean.build.BeanBuilder;
+import com.jerehao.devia.config.ComponentScan;
+import com.jerehao.devia.bean.DeviaBeanFactory;
+import com.jerehao.devia.common.annotation.NotNull;
+import com.jerehao.devia.config.ApplicationConfigReader;
+import com.jerehao.devia.config.Configuration;
+import com.jerehao.devia.config.annotation.WebResource;
+import com.jerehao.devia.core.util.StringUtils;
+import com.jerehao.devia.logging.Logger;
 
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-11 14:50 jerehao
  */
-public final class ApplicationManager {
-    private static String scanPaths;
 
-    private static boolean isRunning;
+public final class ApplicationManager {
+
+    private static final Logger LOGGER = Logger.getLogger(ApplicationManager.class);
+
+    private static boolean isRunning = false;
 
     private static BeanFactory beanFactory;
 
-    static {
-        scanPaths = ComponentScan.DEFAULT_SCAN_PACKAGE;
-        isRunning = false;
+
+    public static BeanFactory getBeanFactory() {
+        return beanFactory;
     }
 
-    public static void setScanPaths(String _scanPaths) {
-        scanPaths = _scanPaths;
-    }
+    public static void start(@NotNull Class<?> configClass) {
 
-    public static void start() {
+        LOGGER.info(StringUtils.build("To use config class [{0}]", configClass.getName()));
+
+        Configuration configuration = ApplicationConfigReader.reader(configClass);
+        initApplication(configuration);
+
         isRunning = true;
-
-        initBeanFactory();
     }
 
     public static void stop() {
@@ -59,17 +68,21 @@ public final class ApplicationManager {
         return isRunning;
     }
 
-    public static BeanFactory getBeanFactory() {
-        return beanFactory;
+    private static void initApplication(Configuration configuration) {
+        initBeanFactory(configuration.getAutoScanPackage());
+        initWebResources(configuration.getWebResources());
+    }
+
+    private static void initBeanFactory(String scanPaths) {
+        beanFactory = DeviaBeanFactory.getBeanFactory();
+        final BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
+        Set<Class<?>> classes = ComponentScan.getPathClasses(scanPaths, Configuration.autoScanAnnotationTypes);
+        beanBuilder.createBeans(classes);
+    }
+
+    private static void initWebResources(List<WebResource> webResources) {
+
     }
 
     private ApplicationManager() {}
-
-    private static void initBeanFactory() {
-        beanFactory = DeviaBeanFactory.getBeanFactory();
-        final BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
-
-        Set<Class<?>> classes = ComponentScan.getPathClasses(scanPaths);
-        beanBuilder.createBeans(classes);
-    }
 }

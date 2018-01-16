@@ -14,31 +14,16 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
+package com.jerehao.devia.config.annotation;
 
-
-import com.jerehao.devia.bean.annotation.Named;
+import java.lang.annotation.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-16 14:10 jerehao
  */
-
-
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+@Documented
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ApplicationConfig {
 }

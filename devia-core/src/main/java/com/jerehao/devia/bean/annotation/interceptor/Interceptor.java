@@ -14,31 +14,23 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
+package com.jerehao.devia.bean.annotation.interceptor;
 
-
-import com.jerehao.devia.bean.annotation.Named;
+import java.lang.annotation.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-16 9:06 jerehao
  */
 
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Documented
+public @interface Interceptor {
 
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * the path pattern to intercept
+     * @return path pattern
+     */
+    String[] value();
 }

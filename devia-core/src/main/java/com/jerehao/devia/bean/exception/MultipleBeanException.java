@@ -14,31 +14,26 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
-
-
-import com.jerehao.devia.bean.annotation.Named;
+package com.jerehao.devia.bean.exception;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-14 19:48 jerehao
  */
-
-
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
+public class MultipleBeanException extends BeanException {
+    public MultipleBeanException() {
+        super();
     }
 
-    public String getName() {
-        return name;
+    public MultipleBeanException(String message) {
+        super(message);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public MultipleBeanException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public MultipleBeanException(Throwable cause) {
+        super(cause);
     }
 }

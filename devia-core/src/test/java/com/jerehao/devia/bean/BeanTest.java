@@ -16,22 +16,11 @@
 
 package com.jerehao.devia.bean;
 
-import com.jerehao.devia.beans.BeanFactory;
-import com.jerehao.devia.beans.DeviaBeanFactory;
-import com.jerehao.devia.beans.build.BeanBuilder;
-import com.jerehao.devia.beans.exception.BeanCreateException;
-import com.jerehao.devia.beans.exception.BeanException;
-import com.jerehao.devia.beans.exception.MultipleBeanException;
-import com.jerehao.devia.beans.exception.NoSuchBeanException;
-import com.jerehao.devia.beans.support.Bean;
-import com.jerehao.devia.beans.support.inject.FieldInjectPoint;
-import com.jerehao.devia.beans.support.inject.MethodInjectPoint;
+import com.jerehao.devia.bean.build.BeanBuilder;
 import com.jerehao.devia.testclass.Child;
 import com.jerehao.devia.testclass.Mother;
 import com.jerehao.devia.testclass.Mother2;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -47,12 +36,8 @@ public class BeanTest {
         beanBuilder.createBean(Mother2.class);
         beanBuilder.createBean(Child.class);
 
-        try {
             Mother mother = beanFactory.get("mother2");
             Child child = beanFactory.get(Child.class);
             System.out.println("name : " + child.getMother().getName());
-        } catch (BeanException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }

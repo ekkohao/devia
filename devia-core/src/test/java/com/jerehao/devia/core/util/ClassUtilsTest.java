@@ -16,14 +16,12 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.beans.annotation.Named;
 import com.jerehao.devia.testclass.BBB;
 import org.junit.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Target;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -57,6 +55,6 @@ public class ClassUtilsTest {
 
     @Test
     public void testGetAllFields() {
-        System.out.println(Arrays.toString(Named.class.getDeclaredMethods()));
+        System.out.println(StringUtils.build("111%s{11}", "hahha"));
     }
 }

@@ -17,8 +17,8 @@
 package com.jerehao.devia.testclass;
 
 
-import com.jerehao.devia.beans.annotation.Inject;
-import com.jerehao.devia.beans.annotation.Named;
+import com.jerehao.devia.bean.annotation.Inject;
+import com.jerehao.devia.bean.annotation.Named;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>

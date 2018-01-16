@@ -14,31 +14,27 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.testclass;
+package com.jerehao.devia.bean.context;
 
-
-import com.jerehao.devia.bean.annotation.Named;
+import com.jerehao.devia.bean.exception.BeanCreateException;
+import com.jerehao.devia.bean.exception.MultipleBeanException;
+import com.jerehao.devia.bean.exception.NoSuchBeanException;
+import com.jerehao.devia.bean.support.Bean;
+import com.jerehao.devia.bean.support.BeanScope;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-12 19:03 jerehao
+ * @version 0.0.1 2018-01-15 19:11 jerehao
  */
+public class SingletonContext extends AbstractContext {
 
-
-@Named("mother2")
-public class Mother2 extends Mother {
-
-    private String name;
-
-    public Mother2() {
-        this.name = "mami2";
+    public SingletonContext() {
+        super(BeanScope.SINGLETON);
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException {
+        return bean.create();
     }
 }
