@@ -16,9 +16,13 @@
 
 package com.jerehao.devia.application;
 
+import com.jerehao.devia.bean.annotation.Scope;
+import com.jerehao.devia.bean.support.BeanScope;
 import com.jerehao.devia.config.annotation.ApplicationConfig;
 import com.jerehao.devia.config.annotation.AutoScanPackage;
+import com.jerehao.devia.config.annotation.Bean;
 import com.jerehao.devia.config.annotation.WebResource;
+import com.jerehao.devia.servlet.HandlerExecutionChain;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
@@ -32,4 +36,10 @@ import java.lang.annotation.Target;
 @WebResource(value = "/css", locationTo = "/resources/css", fileFilter = "*.css")
 @WebResource(value = "/js", locationTo = "/resources/js" , fileFilter = "*.js")
 public class AppConfig {
+
+    @Bean
+    @Scope(BeanScope.PROTOTYPE)
+    public HandlerExecutionChain gets() {
+        return new HandlerExecutionChain();
+    }
 }

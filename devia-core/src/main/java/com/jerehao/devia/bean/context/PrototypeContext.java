@@ -16,6 +16,10 @@
 
 package com.jerehao.devia.bean.context;
 
+import com.jerehao.devia.bean.exception.BeanCreateException;
+import com.jerehao.devia.bean.exception.MultipleBeanException;
+import com.jerehao.devia.bean.exception.NoSuchBeanException;
+import com.jerehao.devia.bean.support.Bean;
 import com.jerehao.devia.bean.support.BeanScope;
 
 /**
@@ -28,7 +32,8 @@ public class PrototypeContext extends AbstractContext {
         super(BeanScope.PROTOTYPE);
     }
 
-//    public PrototypeContext(BeanScope scope) {
-//        super(scope);
-//    }
+    @Override
+    public <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException {
+        return bean.create();
+    }
 }

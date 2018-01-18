@@ -64,14 +64,15 @@ bean创建过程优化，完成到Context.get()
 
 ------
 
+(完成)
 完全注解配置
 
 web.xml 中，指定注解类（@ApplicationConfig）
 
 ```
 @ApplicationConfig
-@AutoScanPackage(["package1","package2"])
-@ResourcesMapping(mapping="", location="")
+@AutoScanPackage("package1,package2")
+@ResourcesMapping(value="", location="", fileFilter)
 public class ApplicationConfig {
     
     @Bean

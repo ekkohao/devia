@@ -32,9 +32,4 @@ public class SingletonContext extends AbstractContext {
         super(BeanScope.SINGLETON);
     }
 
-
-    @Override
-    public <T> T get(Bean<T> bean) throws MultipleBeanException, NoSuchBeanException, BeanCreateException {
-        return bean.create();
-    }
 }

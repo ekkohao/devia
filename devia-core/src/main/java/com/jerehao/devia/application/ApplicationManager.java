@@ -24,7 +24,9 @@ import com.jerehao.devia.common.annotation.NotNull;
 import com.jerehao.devia.config.annotation.WebResource;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
+import com.jerehao.devia.servlet.HandlerExecutionChain;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 
@@ -78,15 +80,18 @@ public final class ApplicationManager {
     }
 
     private static void initApplication(Configuration configuration) {
-        initBeanFactory(configuration.getAutoScanPackage());
+        initBeanFactory(configuration.getAutoScanPackage(), configuration.getConfigClass());
         initWebResources(configuration.getWebResources());
     }
 
-    private static void initBeanFactory(String scanPaths) {
+    private static void initBeanFactory(String[] scanPaths, Class<?> configClass) {
         beanFactory = DeviaBeanFactory.getBeanFactory();
+
         final BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
         Set<Class<?>> classes = ComponentScan.getPathClasses(scanPaths, Configuration.autoScanAnnotationTypes);
+
         beanBuilder.createBeans(classes);
+        beanBuilder.createBean(configClass);
     }
 
     private static void initWebResources(List<WebResource> webResources) {

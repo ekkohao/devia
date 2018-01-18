@@ -54,20 +54,20 @@ public class ComponentScan {
 
     private final Class<?> scanAnnotationTypes[];
 
-    private final String scanPaths;
+    private final String[] scanPaths;
 
     private Set<Class<?>> classes;
 
     private boolean scanned;
 
-    private ComponentScan(String scanPaths, Class<?>[] scanAnnotationTypes) {
+    private ComponentScan(String[] scanPaths, Class<?>[] scanAnnotationTypes) {
         this.scanPaths = scanPaths;
         this.scanAnnotationTypes = scanAnnotationTypes;
         classes = new LinkedHashSet<>();
         scanned = false;
     }
 
-    public static Set<Class<?>> getPathClasses(String scanPaths, Class<?>[] scanAnnotationTypes) {
+    public static Set<Class<?>> getPathClasses(String[] scanPaths, Class<?>[] scanAnnotationTypes) {
         ComponentScan sc = new ComponentScan(scanPaths, scanAnnotationTypes);
         return sc.getClasses();
     }
@@ -83,12 +83,15 @@ public class ComponentScan {
 
     private void scanAllPath() {
         Set<URL> resources = new LinkedHashSet<>();
-        if (scanPaths == null || scanPaths.isEmpty())
-            resources.addAll(doScanPathAndGetResources(Configuration.DEFAULT_AUTO_SCAN_PACKAGE));
-        for (String path : StringUtils.split(scanPaths, SCAN_PATH_SEPARATOR_CHAR))
-            resources.addAll(doScanPathAndGetResources(path));
 
-        this.classes.addAll(getBeanClassesByURLs(resources));
+        if (scanPaths == null || scanPaths.length < 1)
+            resources.addAll(doScanPathAndGetResources(Configuration.DEFAULT_AUTO_SCAN_PACKAGE));
+        else {
+            for (String path : scanPaths)
+                resources.addAll(doScanPathAndGetResources(path));
+
+            this.classes.addAll(getBeanClassesByURLs(resources));
+        }
     }
 
     private Set<Class<?>> getBeanClassesByURLs(Set<URL> resources) {

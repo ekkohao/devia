@@ -46,11 +46,7 @@ public abstract class BeanDefinition<T> implements Bean<T> {
 
     private final Map<Class<? extends Annotation>, Qualifiee> qualifieeMap = new HashMap<>();
 
-    private final Set<FieldInjectPoint> fieldInjectPoints = new LinkedHashSet<>();
 
-    private final Set<MethodInjectPoint> methodInjectPoints = new LinkedHashSet<>();
-
-    private ConstructorInjectPoint<T> constructorInjectPoint = null;
 
     @Override
     public String getBeanName() {
@@ -95,21 +91,6 @@ public abstract class BeanDefinition<T> implements Bean<T> {
             return null;
     }
 
-    //@Override
-    protected Set<FieldInjectPoint> getFieldInjectPoints() {
-        return fieldInjectPoints;
-    }
-
-    //@Override
-    protected Set<MethodInjectPoint> getMethodInjectPoints() {
-        return methodInjectPoints;
-    }
-
-    //@Override
-    protected ConstructorInjectPoint<T> getConstructorInjectPoint() {
-        return constructorInjectPoint;
-    }
-
     @Override
     public BeanFactory getBeanFactory() {
         return beanFactory;
@@ -139,18 +120,6 @@ public abstract class BeanDefinition<T> implements Bean<T> {
 
     protected void addQualifiee(Class<? extends Annotation> clazz,Qualifiee qualifiee) {
         this.qualifieeMap.put(clazz, qualifiee);
-    }
-
-    protected void addFieldInjectPoint(FieldInjectPoint fieldInjectPoint) {
-        this.fieldInjectPoints.add(fieldInjectPoint);
-    }
-
-    protected void addMethodInjectPoint(MethodInjectPoint methodInjectPoint) {
-        this.methodInjectPoints.add(methodInjectPoint);
-    }
-
-    protected void setConstructorInjectPoint(ConstructorInjectPoint<T> constructorInjectPoint) {
-        this.constructorInjectPoint = constructorInjectPoint;
     }
 
     protected void setBeanFactory(BeanFactory beanFactory) {

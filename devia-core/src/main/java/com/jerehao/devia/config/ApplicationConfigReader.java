@@ -16,6 +16,8 @@
 
 package com.jerehao.devia.config;
 
+import com.jerehao.devia.bean.support.Bean;
+import com.jerehao.devia.bean.support.DeviaBean;
 import com.jerehao.devia.common.annotation.NotNull;
 import com.jerehao.devia.common.annotation.Nullable;
 import com.jerehao.devia.config.annotation.ApplicationConfig;
@@ -24,9 +26,8 @@ import com.jerehao.devia.config.annotation.WebResource;
 import com.jerehao.devia.config.annotation.WebResources;
 import com.jerehao.devia.core.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -34,7 +35,7 @@ import java.util.List;
  */
 public final class ApplicationConfigReader {
 
-    public static Configuration reader(@NotNull Class<?> configClass) {
+    public static Configuration reader(@Nullable Class<?> configClass) {
 
         if(configClass == null || !configClass.isAnnotationPresent(ApplicationConfig.class))
             throw new RuntimeException(StringUtils.build(
@@ -42,24 +43,27 @@ public final class ApplicationConfigReader {
                     configClass,
                     ApplicationConfig.class.getName()));
 
-        String scanPackage = readAutoScanPackage(configClass);
+
+        String[] scanPackage = readAutoScanPackage(configClass);
         List<WebResource> resources = readWebResources(configClass);
 
-        return new Configuration(scanPackage, resources);
+        return new Configuration(scanPackage, resources, configClass);
 
     }
 
-    private static String readAutoScanPackage(@NotNull Class<?> configClass) {
+    private static String[] readAutoScanPackage(@NotNull Class<?> configClass) {
         if(!configClass.isAnnotationPresent(AutoScanPackage.class))
-            return Configuration.DEFAULT_AUTO_SCAN_PACKAGE;
+            return new String[]{Configuration.DEFAULT_AUTO_SCAN_PACKAGE};
 
         return configClass.getAnnotation(AutoScanPackage.class).value();
     }
 
     private static List<WebResource> readWebResources(@NotNull Class<?> configClass) {
         List<WebResource> resources = new LinkedList<>();
+
         if(!configClass.isAnnotationPresent(WebResources.class))
             return resources;
+
         resources.addAll(Arrays.asList(configClass.getAnnotation(WebResources.class).value()));
         return resources;
     }

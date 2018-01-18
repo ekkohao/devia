@@ -21,6 +21,7 @@ import com.jerehao.devia.config.annotation.WebResource;
 import com.jerehao.devia.core.util.AnnotationUtils;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,20 +43,27 @@ public class Configuration {
         };
     }
 
-    private final String autoScanPackage;
+    private final String[] autoScanPackages;
 
     private final List<WebResource> resources;
 
-    public Configuration(String autoScanPackage, List<WebResource> resources) {
-        this.autoScanPackage = autoScanPackage;
+    private final Class<?> configClass;
+
+    public Configuration(String[] autoScanPackages, List<WebResource> resources, Class<?> configClass) {
+        this.autoScanPackages = autoScanPackages;
         this.resources = resources;
+        this.configClass = configClass;
     }
 
-    public String getAutoScanPackage() {
-        return autoScanPackage;
+    public String[] getAutoScanPackage() {
+        return autoScanPackages;
     }
 
     public List<WebResource> getWebResources() {
         return resources;
+    }
+
+    public Class<?> getConfigClass() {
+        return configClass;
     }
 }
