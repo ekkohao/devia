@@ -101,7 +101,7 @@ public class FileSystemResource extends AbstractResource implements WritableReso
 
     @Override
     public String getDescription() {
-        return "file '" + this.file.getAbsolutePath() + "'";
+        return "limit '" + this.file.getAbsolutePath() + "'";
     }
 
     @Override

@@ -16,17 +16,15 @@
 
 package com.jerehao.devia.servlet.handler;
 
+import com.jerehao.devia.application.ApplicationManager;
+import com.jerehao.devia.config.ResourceMappingStorer;
+import com.jerehao.devia.config.WebResourceMapping;
+import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.HandlerExecutionChain;
 import com.jerehao.devia.servlet.DeviaServletContext;
 import com.jerehao.devia.servlet.helper.RequestAttributeKeys;
-import com.jerehao.devia.servlet.helper.StaticResource;
 import com.jerehao.devia.servlet.renderer.StaticResourceRenderer;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -53,10 +51,15 @@ public class StaticResourceHandler implements Handler {
     @Override
     public void handle(DeviaServletContext servletContext, HandlerExecutionChain chain) {
         LOGGER.info("StaticResource Handler " + servletContext.getRequest().getRequestURI());
-        String locationURI = StaticResource.getLocationURI(servletContext.getRequest().getRequestURI());
-        servletContext.getRequest().setAttribute(RequestAttributeKeys.IS_STATIC_RESOURCE, locationURI != null);
-        if(locationURI != null) {
-            servletContext.getRequest().setAttribute(RequestAttributeKeys.STATIC_LOCATION_URI, locationURI);
+
+        ResourceMappingStorer mappingStorer = ApplicationManager.getResourceMappingStorer();
+        String localURI = mappingStorer.getLocalURI(servletContext.getRequest().getRequestURI());
+
+        servletContext.getRequest().setAttribute(RequestAttributeKeys.IS_STATIC_RESOURCE, StringUtils.isEmptyOrNull(localURI));
+        System.out.println("localURI: " + localURI);
+
+        if(!StringUtils.isEmptyOrNull(localURI)) {
+            servletContext.getRequest().setAttribute(RequestAttributeKeys.STATIC_LOCATION_URI, localURI);
             servletContext.setRenderer(new StaticResourceRenderer());
             return;
         }

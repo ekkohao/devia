@@ -86,7 +86,7 @@ public class DeviaContextConfigReader {
             root = documentLoader.loadDocument(contextConfig).getDocumentElement();
             root.normalize();
         } catch (IOException | ParserConfigurationException | SAXException e) {
-            LOGGER.error("Get context config file document root element error.");
+            LOGGER.error("Get context config fileFilter document root element error.");
             e.printStackTrace();
         }
     }

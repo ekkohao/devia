@@ -20,9 +20,9 @@ import java.lang.annotation.*;
 
 /**
  * if locate to "/resource/css"
- * "/css/**" means "/css/a/b/c/file.txt" -> "/resource/css/file.txt"
- * "/css" means "/css/a/b/c/file.txt" -> "/resource/css/a/b/c/file.txt"
- * "/css/**\/b means "/css/a/b/c/file.txt" -> "/resource/css/c/file.txt"
+ * "/css/**" means "/css/a/b/c/fileFilter.txt" -> "/resource/css/fileFilter.txt"
+ * "/css" means "/css/a/b/c/fileFilter.txt" -> "/resource/css/a/b/c/fileFilter.txt"
+ * "/css/**\/b means "/css/a/b/c/fileFilter.txt" -> "/resource/css/c/fileFilter.txt"
  *
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2018-01-16 14:10 jerehao
@@ -34,7 +34,7 @@ import java.lang.annotation.*;
 public @interface WebResource {
 
     /**
-     * value is the uri pattern need to mapping without file
+     * value is the uri pattern need to mapping without fileFilter
      * use {@code "-"} at the patten beginnings, represent that this pattern are exclude
      * use {@code ","} to separator different pattern
      * eg.
@@ -53,16 +53,16 @@ public @interface WebResource {
     String locationTo() default "";
 
     /**
-     * file to mapping
+     * fileFilter to mapping
      * eg.
      *      "/*.css, /*.js, /*.png"
      *
-     * also you can use {@code "-"} to exclude some file
+     * also you can use {@code "-"} to exclude some fileFilter
      * eg.
      *      "/*, -/*.txt"
      *
-     * @return file name pattern
+     * @return fileFilter name pattern
      */
-    String file() default "*";
+    String[] fileFilter() default "*";
 
 }

@@ -14,22 +14,12 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.application;
-
-import com.jerehao.devia.config.annotation.ApplicationConfig;
-import com.jerehao.devia.config.annotation.AutoScanPackage;
-import com.jerehao.devia.config.annotation.WebResource;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
+package com.jerehao.devia.config;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-16 14:14 jerehao
+ * @version 0.0.1 2018-01-17 21:02 jerehao
  */
-@ApplicationConfig
-@AutoScanPackage("com")
-@WebResource(value = "/css", locationTo = "/resources/css", fileFilter = "*.css")
-@WebResource(value = "/js", locationTo = "/resources/js" , fileFilter = "*.js")
-public class AppConfig {
+public interface ResourceMappingStorer {
+    String getLocalURI(String requestURI);
 }

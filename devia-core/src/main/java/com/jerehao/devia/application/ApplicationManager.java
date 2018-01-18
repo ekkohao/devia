@@ -18,11 +18,9 @@ package com.jerehao.devia.application;
 
 import com.jerehao.devia.bean.BeanFactory;
 import com.jerehao.devia.bean.build.BeanBuilder;
-import com.jerehao.devia.config.ComponentScan;
+import com.jerehao.devia.config.*;
 import com.jerehao.devia.bean.DeviaBeanFactory;
 import com.jerehao.devia.common.annotation.NotNull;
-import com.jerehao.devia.config.ApplicationConfigReader;
-import com.jerehao.devia.config.Configuration;
 import com.jerehao.devia.config.annotation.WebResource;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
@@ -39,33 +37,44 @@ public final class ApplicationManager {
 
     private static final Logger LOGGER = Logger.getLogger(ApplicationManager.class);
 
-    private static boolean isRunning = false;
+    private static boolean running = false;
 
     private static BeanFactory beanFactory;
+
+    private static ResourceMappingStorer resourceMappingStorer;
 
 
     public static BeanFactory getBeanFactory() {
         return beanFactory;
     }
 
+    public static ResourceMappingStorer getResourceMappingStorer() {
+        return resourceMappingStorer;
+    }
+
     public static void start(@NotNull Class<?> configClass) {
+        if(running) {
+            LOGGER.error("Application already started.");
+            return;
+        }
+
 
         LOGGER.info(StringUtils.build("To use config class [{0}]", configClass.getName()));
 
         Configuration configuration = ApplicationConfigReader.reader(configClass);
         initApplication(configuration);
 
-        isRunning = true;
+        running = true;
     }
 
     public static void stop() {
         if(!running())
             return;
-        isRunning = false;
+        running = false;
     }
 
     public static boolean running() {
-        return isRunning;
+        return running;
     }
 
     private static void initApplication(Configuration configuration) {
@@ -81,7 +90,7 @@ public final class ApplicationManager {
     }
 
     private static void initWebResources(List<WebResource> webResources) {
-
+        resourceMappingStorer = WebResourceMapping.getResourceMappingStore(webResources);
     }
 
     private ApplicationManager() {}

@@ -18,16 +18,14 @@ package com.jerehao.devia.core.util;
 
 
 import com.jerehao.devia.logging.Logger;
-import com.jerehao.devia.servlet.helper.StaticResource;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -46,10 +44,10 @@ public class ResourceUtils {
     /** Pseudo URL prefix for loading from the class path: "classpath:" */
     public static final String CLASSPATH_URL_PREFIX = "classpath:";
 
-    /** URL prefix for loading from the file system: "file:" */
+    /** URL prefix for loading from the fileFilter system: "fileFilter:" */
     public static final String FILE_URL_PREFIX = "file:";
 
-    /** URL protocol for a file in the file system: "file" */
+    /** URL protocol for a fileFilter in the fileFilter system: "fileFilter" */
     public static final String FILE_URL_PROTOCOL = "file";
 
     public static final String JAR_URL_PROTOCOL = "jar";
@@ -66,20 +64,22 @@ public class ResourceUtils {
     private ResourceUtils(){}
 
     /**
-     * recognize the location is a url address if protocol contains in {@code http,https,file,ftp,classpath}
+     * recognize the location is a url address if protocol contains in {@code http,https,fileFilter,ftp,classpath}
      * @param resourceLocation the resource location
      * @return {@code true} if {@code resourceLocation} start with the special protocol
      */
     public static boolean isURL(final String resourceLocation) {
-        if(null == resourceLocation)
+        if(StringUtils.isEmptyOrNull(resourceLocation))
             return false;
         if(resourceLocation.startsWith(CLASSPATH_URL_PREFIX))
             return true;
+
         try {
             final URL url = new URL(resourceLocation);
         } catch (MalformedURLException e) {
             return false;
         }
+
         return true;
     }
 
@@ -87,7 +87,7 @@ public class ResourceUtils {
         if(url == null)
             return null;
         if(!FILE_URL_PROTOCOL.equals(url.getProtocol())) {
-            LOGGER.info("resource url '" + url + "' isn't a file url, it cannot be resolved a file");
+            LOGGER.info("resource url '" + url + "' isn't a fileFilter url, it cannot be resolved a fileFilter");
             return null;
         }
 
@@ -106,9 +106,9 @@ public class ResourceUtils {
     }
 
     public static File getFile(String path) {
-        File file = null;
+        File file;
 
-        if(StringUtils.isEmpty(path))
+        if(StringUtils.isEmptyOrNull(path))
             path = "/";
         try {
             file = new File(new URL(path).toURI().getSchemeSpecificPart());
@@ -142,11 +142,11 @@ public class ResourceUtils {
         try {
             return new URL(resourceLocation);
         } catch (MalformedURLException e) {
-            //if resourceLocation is a file path
+            //if resourceLocation is a fileFilter path
             try {
                 return new File(resourceLocation).toURI().toURL();
             } catch (MalformedURLException e2) {
-                throw new FileNotFoundException("Resource '" + resourceLocation + "' is neither a URL nor a file path.");
+                throw new FileNotFoundException("Resource '" + resourceLocation + "' is neither a URL nor a fileFilter path.");
             }
         }
     }

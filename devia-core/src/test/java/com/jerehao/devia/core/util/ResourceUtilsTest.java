@@ -33,8 +33,17 @@ public class ResourceUtilsTest {
         Assert.assertFalse(ResourceUtils.isURL("aa:bb"));
         Assert.assertTrue(ResourceUtils.isURL("http://aa"));
         Assert.assertTrue(ResourceUtils.isURL("classpath:a"));
-        Assert.assertTrue(ResourceUtils.isURL("file:a"));
+        Assert.assertTrue(ResourceUtils.isURL("fileFilter:a"));
         Assert.assertFalse(ResourceUtils.isURL("/a.jsp"));
+    }
+
+    @Test
+    public void testIsURI(){
+//        Assert.assertTrue(ResourceUtils.isURI("/a/b/c/d"));
+//        Assert.assertTrue(ResourceUtils.isURI("http://aa/c"));
+//        //Assert.assertTrue(ResourceUtils.isURI("classpath:a"));
+//        Assert.assertTrue(ResourceUtils.isURI("fileFilter:/a/c"));
+//        Assert.assertTrue(ResourceUtils.isURI("/a.jsp"));
     }
 
     @Test

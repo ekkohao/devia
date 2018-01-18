@@ -186,13 +186,13 @@ public class ComponentScan {
                 jarFile = getJarFileFromURL(url);
                 closeJarFileFlag = true;
             } catch (IOException e) {
-                LOGGER.error("Cannot read jar file on path [" + url.getPath() + "]", e);
+                LOGGER.error("Cannot read jar fileFilter on path [" + url.getPath() + "]", e);
                 return resources;
             }
         }
 
         if (jarFile == null) {
-            LOGGER.error("Cannot read jar file on path [" + url.getPath() + "]");
+            LOGGER.error("Cannot read jar fileFilter on path [" + url.getPath() + "]");
             return resources;
         }
 
@@ -206,7 +206,7 @@ public class ComponentScan {
                 } catch (MalformedURLException e) {
                     LOGGER.error("New URL ERROR", e);
                 }
-                LOGGER.info("Find jar file entry [" + entryPath + "]");
+                LOGGER.info("Find jar fileFilter entry [" + entryPath + "]");
             }
         }
 
@@ -214,7 +214,7 @@ public class ComponentScan {
             try {
                 jarFile.close();
             } catch (IOException e) {
-                LOGGER.error("Close jar file [" + jarFile.getName() + "] error", e);
+                LOGGER.error("Close jar fileFilter [" + jarFile.getName() + "] error", e);
             }
         }
 
@@ -246,7 +246,7 @@ public class ComponentScan {
             try {
                 resources.add(file.toURI().toURL());
             } catch (MalformedURLException e) {
-                LOGGER.error("Parse file ["+ file.getPath() +"] to url error.", e);
+                LOGGER.error("Parse fileFilter ["+ file.getPath() +"] to url error.", e);
             }
 
         return resources;
@@ -264,7 +264,7 @@ public class ComponentScan {
     }
 
     /**
-     * path must be has no protocol prefix like "file:"
+     * path must be has no protocol prefix like "fileFilter:"
      *
      * @param path
      * @return

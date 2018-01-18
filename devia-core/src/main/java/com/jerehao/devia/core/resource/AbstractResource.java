@@ -82,7 +82,7 @@ public abstract class AbstractResource implements Resource {
 
     @Override
     public File getFile() throws IOException {
-        throw new FileNotFoundException("cannot get file for resource " + getDescription());
+        throw new FileNotFoundException("cannot get fileFilter for resource " + getDescription());
     }
 
     @Override

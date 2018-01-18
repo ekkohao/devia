@@ -41,18 +41,12 @@ public class DeviaBeanFactory extends AbstractBeanFactory {
 
     private static final Logger LOGGER = Logger.getLogger(DeviaBeanFactory.class);
 
-    private static final BeanFactory instance;
-
     private Context singletonContext;
 
     private Context prototypeContext;
 
-    static {
-        instance = new DeviaBeanFactory();
-    }
-
     public static BeanFactory getBeanFactory() {
-        return instance;
+        return new DeviaBeanFactory();
     }
 
     private DeviaBeanFactory() {

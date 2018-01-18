@@ -124,7 +124,7 @@ public final class DispatcherServlet extends HttpServlet {
 //            LOGGER.trace("Set scan path: " + scanPaths);
 //        } catch (MalformedURLException e) {
 //            LOGGER.error(
-//                    "Context config file '" + this.contextConfigLocation + "' cannot be found.",e);
+//                    "Context config fileFilter '" + this.contextConfigLocation + "' cannot be found.",e);
 //        }
 //        //before this to set scanPaths
 //        afterServletContextConfig();

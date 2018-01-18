@@ -16,7 +16,7 @@
 
 package com.jerehao.devia.core.util;
 
-import org.apache.commons.lang3.StringUtils;
+import com.jerehao.devia.common.annotation.Nullable;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,110 +38,206 @@ public final class AntPathMather {
     private AntPathMather(){}
 
     //要保证模式串初始模式一致，比如都以"/"开始
-    public static boolean Match(String patten, String path) {
-        return doMatch(patten, path, true);
+    public static boolean Match(String pattern, String path) {
+        return Match(pattern, path, true);
     }
 
     //TODO test 部分匹配
-    public static boolean Match(String patten, String path, boolean fullMatch) {
-        return doMatch(patten, path, fullMatch);
-    }
-
-
-    private static boolean doMatch(String patten, String path, boolean fullMatch) {
-        String[] pattenArr = StringUtils.split(patten, PATH_SEPARATOR);
-        String[] pathArr = StringUtils.split(path, PATH_SEPARATOR);
-        int pattenHead = 0, pathHead = 0;
-        int pattenTail = pattenArr.length - 1, pathTail = pathArr.length - 1;
-
-        if(!StringUtils.contains(patten, ZERO_OR_MORE_DIRECTORIES_WILDCARD) && pathTail != pattenTail)
+    public static boolean Match(String pattern, String path, boolean fullMatch) {
+        if(StringUtils.isEmptyOrNull(pattern))
+            return true;
+        if(StringUtils.isEmptyOrNull(path))
             return false;
 
-        //比较模式串第一个**之前的模式，如有不匹配则返回false
-        while(pathHead <= pathTail && pattenHead <= pattenTail) {
-            if(StringUtils.equals(pattenArr[pattenHead], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
+        String matchedPart = getPartialMatched(pattern, path);
+        return fullMatch ? StringUtils.equals(path, matchedPart) : !StringUtils.isEmptyOrNull(matchedPart);
+    }
+
+    /**
+     * <pre>
+     *     getPartialMatched("/a/b/** /f/", "/a/b/c/d/e/f/g/")    "/a/b/c/d/e/f/"
+     *     getPartialMatched("/a/b/**", "/a/b/c/d/e/f/g/")    "/a/b/c/d/e/f/g/"
+     *     getPartialMatched("/a/b", "/a/b/c/d/e/f/g/")    "/a/b"
+     * </pre>
+     *
+     * @param pattern
+     * @param path
+     * @return
+     */
+    public static String getPartialMatched(@Nullable String pattern,@Nullable String path) {
+        if(StringUtils.isEmptyOrNull(pattern))
+            return path;
+        if(StringUtils.isEmptyOrNull(path))
+            return "";
+
+        String[] patternArr = StringUtils.split(pattern, PATH_SEPARATOR);
+        String[] pathArr = StringUtils.split(path, PATH_SEPARATOR);
+        int patternHead = 0, pathHead = 0;
+        int patternTail = patternArr.length - 1, pathTail = pathArr.length - 1;
+
+        //比较模式串第一个**之前的模式
+        while(pathHead <= pathTail && patternHead <= patternTail) {
+            if(StringUtils.equals(patternArr[patternHead], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
                 break;
-            if(!StringMatch(pattenArr[pattenHead++], pathArr[pathHead++]))
-                return false;
+            if(!StringMatch(patternArr[patternHead++], pathArr[pathHead++]))
+                return "";
         }
 
-        if(fullMatch) {
-            //比较模式串最后一个**之后的模式，如有不匹配则返回false
-            while (pathHead <= pathTail && pattenHead <= pattenTail) {
-                if (StringUtils.equals(pattenArr[pattenTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
-                    break;
-                if (!StringMatch(pattenArr[pattenTail--], pathArr[pathTail--]))
-                    return false;
-            }
-        }
-        else {
-            boolean partMatch = false;
-            while (pathHead <= pathTail && pattenHead <= pattenTail) {
-                if (StringUtils.equals(pattenArr[pattenTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD)) {
-                    partMatch = true;
+        if(patternHead > patternTail)
+            return StringUtils.join(pathArr, PATH_SEPARATOR, 0, pathHead - 1);
+
+        int longestMatchedIndex = pathArr.length - 1;
+        if(!StringUtils.equals(patternArr[patternTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD)) {
+            //比较最后一个**之后的模式
+            int pathTailTmp = pathTail; //record flag
+            int patternTailTmp = patternTail;
+            boolean partMatched = false;
+
+            while (pathHead <= pathTail && patternHead <= patternTail) {
+
+                if (StringUtils.equals(patternArr[patternTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD)) {
+                    partMatched = true;
                     break;
                 }
-                if (StringMatch(pattenArr[pattenTail], pathArr[pathTail--]))
-                    --pattenTail;
+
+                if (StringMatch(patternArr[patternTail], pathArr[pathTail])) {
+                    --pathTail;
+                    --patternTail;
+                    if (StringUtils.equals(patternArr[patternTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD)) {
+                        partMatched = true;
+                        break;
+                    }
+                }
+                else {
+                    patternTail = patternTailTmp;
+                    pathTail = --pathTailTmp;
+                }
             }
-            if(!partMatch)
-                return false;
+
+            //part matched
+            if(partMatched) {
+                longestMatchedIndex = pathTailTmp;
+            }
+            else
+                return "";
         }
 
         //只剩模式串包含**的匹配
-        if(pattenHead >= pattenTail)
-            return true;
+        if(patternHead >= patternTail)
+            return StringUtils.join(pathArr, PATH_SEPARATOR, 0, longestMatchedIndex);
 
         //寻找模式串中不是**的路径
         List<Integer> specialIndex = new LinkedList<>();
-        for(int i = pattenHead; i <= pattenTail; ++i) {
-            if(!StringUtils.equals(pattenArr[i], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
+        for(int i = patternHead; i <= patternTail; ++i) {
+            if(!StringUtils.equals(patternArr[i], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
                 specialIndex.add(i);
         }
 
         int checkFlag = 0;
 
         while(pathHead <= pathTail && checkFlag < specialIndex.size()) {
-            if(StringMatch(pattenArr[specialIndex.get(checkFlag)], pathArr[pathHead]))
+            if(StringMatch(patternArr[specialIndex.get(checkFlag)], pathArr[pathHead]))
                 ++checkFlag;
             ++pathHead;
         }
-        return checkFlag == specialIndex.size();
+        return checkFlag == specialIndex.size() ? StringUtils.join(pathArr, PATH_SEPARATOR, 0, longestMatchedIndex) : "";
     }
 
-    private static boolean StringMatch(String patten, String str) {
-        int pattenHead = 0, strHead = 0;
-        int pattenTail = patten.length() - 1, strTail = str.length() - 1;
+
+//    private static boolean doMatch(String pattern, String path, boolean fullMatch) {
+//        String[] patternArr = StringUtils.split(pattern, PATH_SEPARATOR);
+//        String[] pathArr = StringUtils.split(path, PATH_SEPARATOR);
+//        int patternHead = 0, pathHead = 0;
+//        int patternTail = patternArr.length - 1, pathTail = pathArr.length - 1;
+//
+//        if(!StringUtils.contains(pattern, ZERO_OR_MORE_DIRECTORIES_WILDCARD) && pathTail != patternTail)
+//            return false;
+//
+//        //比较模式串第一个**之前的模式，如有不匹配则返回false
+//        while(pathHead <= pathTail && patternHead <= patternTail) {
+//            if(StringUtils.equals(patternArr[patternHead], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
+//                break;
+//            if(!StringMatch(patternArr[patternHead++], pathArr[pathHead++]))
+//                return false;
+//        }
+//
+//        if(fullMatch) {
+//            //比较模式串最后一个**之后的模式，如有不匹配则返回false
+//            while (pathHead <= pathTail && patternHead <= patternTail) {
+//                if (StringUtils.equals(patternArr[patternTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
+//                    break;
+//                if (!StringMatch(patternArr[patternTail--], pathArr[pathTail--]))
+//                    return false;
+//            }
+//        }
+//        else {
+//            boolean partMatch = false;
+//            while (pathHead <= pathTail && patternHead <= patternTail) {
+//                if (StringUtils.equals(patternArr[patternTail], ZERO_OR_MORE_DIRECTORIES_WILDCARD)) {
+//                    partMatch = true;
+//                    break;
+//                }
+//                if (StringMatch(patternArr[patternTail], pathArr[pathTail--]))
+//                    --patternTail;
+//            }
+//            if(!partMatch)
+//                return false;
+//        }
+//
+//        //只剩模式串包含**的匹配
+//        if(patternHead >= patternTail)
+//            return true;
+//
+//        //寻找模式串中不是**的路径
+//        List<Integer> specialIndex = new LinkedList<>();
+//        for(int i = patternHead; i <= patternTail; ++i) {
+//            if(!StringUtils.equals(patternArr[i], ZERO_OR_MORE_DIRECTORIES_WILDCARD))
+//                specialIndex.add(i);
+//        }
+//
+//        int checkFlag = 0;
+//
+//        while(pathHead <= pathTail && checkFlag < specialIndex.size()) {
+//            if(StringMatch(patternArr[specialIndex.get(checkFlag)], pathArr[pathHead]))
+//                ++checkFlag;
+//            ++pathHead;
+//        }
+//        return checkFlag == specialIndex.size();
+//    }
+
+    private static boolean StringMatch(String pattern, String str) {
+        int patternHead = 0, strHead = 0;
+        int patternTail = pattern.length() - 1, strTail = str.length() - 1;
 
         //比较模式串第一个通配符之前的字符，不匹配返回false
-        while(pattenHead <= pattenTail && strHead <= strTail) {
-            if(StringUtils.equals(patten.substring(pattenHead, pattenHead + 1), ZERO_OR_MORE_CHARACTERS_WILDCARD))
+        while(patternHead <= patternTail && strHead <= strTail) {
+            if(StringUtils.equals(pattern.substring(patternHead, patternHead + 1), ZERO_OR_MORE_CHARACTERS_WILDCARD))
                 break;
-            if(!charMatch(patten.charAt(pattenHead++), str.charAt(strHead++)))
+            if(!charMatch(pattern.charAt(patternHead++), str.charAt(strHead++)))
                 return false;
         }
 
         //比较模式串最后一个通配符之后的字符，不匹配返回false
-        while(pattenHead <= pattenTail && strHead <= strTail) {
-            if(StringUtils.equals(patten.substring(pattenTail, pattenTail + 1), ZERO_OR_MORE_CHARACTERS_WILDCARD))
+        while(patternHead <= patternTail && strHead <= strTail) {
+            if(StringUtils.equals(pattern.substring(patternTail, patternTail + 1), ZERO_OR_MORE_CHARACTERS_WILDCARD))
                 break;
-            if(!charMatch(patten.charAt(pattenTail--),str.charAt(strTail--)))
+            if(!charMatch(pattern.charAt(patternTail--),str.charAt(strTail--)))
                 return false;
         }
 
-        if(pattenHead >= pattenTail)
+        if(patternHead >= patternTail)
             return true;
 
         List<Integer> specialIndex = new LinkedList<>();
-        for(int i = pattenHead; i <= pattenTail; ++i) {
-            if(!StringUtils.equals(patten.substring(i, i + 1), ZERO_OR_MORE_CHARACTERS_WILDCARD))
+        for(int i = patternHead; i <= patternTail; ++i) {
+            if(!StringUtils.equals(pattern.substring(i, i + 1), ZERO_OR_MORE_CHARACTERS_WILDCARD))
                 specialIndex.add(i);
         }
 
         int checkFlag = 0;
 
         while(strHead <= strTail && checkFlag < specialIndex.size()) {
-            if(charMatch(patten.charAt(specialIndex.get(checkFlag)), str.charAt(strHead)))
+            if(charMatch(pattern.charAt(specialIndex.get(checkFlag)), str.charAt(strHead)))
                 ++checkFlag;
             ++strHead;
         }
@@ -149,8 +245,8 @@ public final class AntPathMather {
 
     }
 
-    private static boolean charMatch(char patten, char c) {
-        return patten == ONE_CHARACTER_WILDCARD.charAt(0) || patten == c;
+    private static boolean charMatch(char pattern, char c) {
+        return pattern == ONE_CHARACTER_WILDCARD.charAt(0) || pattern == c;
     }
 
 }

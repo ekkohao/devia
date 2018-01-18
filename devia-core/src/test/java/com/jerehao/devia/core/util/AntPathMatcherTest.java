@@ -31,4 +31,18 @@ public class AntPathMatcherTest {
         Assert.assertTrue(AntPathMather.Match("/a/**/c","/a/b/c"));
         Assert.assertTrue(AntPathMather.Match("/a/**/s/?/?/c?er","/a/b/a/s/d/f/cder"));
     }
+
+    @Test
+    public void TestGetPartialMatched() {
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/b","/a/b/c"), "/a/b");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/**/b","/a/b"), "/a/b");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/b/**","/a/b/c/d"), "/a/b/c/d");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/b/**/d","/a/b/c/d/e/e/d/e"), "/a/b/c/d/e/e/d");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/**/b/**/c","/a/b/c/b/c/a/b/c/a"), "/a/b/c/b/c/a/b/c");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/**/b","/a/b/c"), "/a/b");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/b*/c","/a/b/c"), "/a/b/c");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/*","/a/b/c"), "/a/b");
+        Assert.assertEquals(AntPathMather.getPartialMatched("/a/**/*","/a/b/c"), "/a/b/c");
+
+    }
 }
