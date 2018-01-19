@@ -14,28 +14,24 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.application;
+package com.jerehao.devia.config.annotation;
 
-import com.jerehao.devia.bean.annotation.Scope;
-import com.jerehao.devia.bean.support.BeanScope;
-import com.jerehao.devia.config.annotation.*;
-import com.jerehao.devia.servlet.HandlerExecutionChain;
 import com.jerehao.devia.servlet.interceptor.HandlerInterceptor;
+
+import java.lang.annotation.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-16 14:14 jerehao
+ * @version 0.0.1 2018-01-18 16:49 jerehao
  */
-@ApplicationConfig
-@AutoScanPackage("com")
-@WebResource(value = "/css", locationTo = "/resources/css", fileFilter = "*.css")
-@WebResource(value = "/js", locationTo = "/resources/js" , fileFilter = "*.js")
-@Interceptor(HandlerInterceptor.class)
-public class AppConfig {
 
-    @Bean
-    @Scope(BeanScope.PROTOTYPE)
-    public HandlerExecutionChain gets() {
-        return new HandlerExecutionChain();
-    }
+@Repeatable(Interceptors.class)
+@Documented
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Interceptor {
+
+    Class<? extends HandlerInterceptor> value();
+
+    int order() default Integer.MAX_VALUE;
 }

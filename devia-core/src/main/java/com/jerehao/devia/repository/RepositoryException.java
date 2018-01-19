@@ -14,23 +14,27 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.bean.annotation.interceptor;
-
-import java.lang.annotation.*;
+package com.jerehao.devia.repository;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-16 9:06 jerehao
+ * @version 0.0.1 2018-01-19 21:47 jerehao
  */
+public class RepositoryException extends RuntimeException {
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-@Documented
-public @interface Interceptor {
+    public RepositoryException() {
+        super();
+    }
 
-    /**
-     * the path pattern to intercept
-     * @return path pattern
-     */
-    String[] value();
+    public RepositoryException(String message) {
+        super(message);
+    }
+
+    public RepositoryException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public RepositoryException(Throwable cause) {
+        super(cause);
+    }
 }

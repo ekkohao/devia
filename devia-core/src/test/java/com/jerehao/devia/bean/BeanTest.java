@@ -20,7 +20,9 @@ import com.jerehao.devia.bean.build.BeanBuilder;
 import com.jerehao.devia.testclass.Child;
 import com.jerehao.devia.testclass.Mother;
 import com.jerehao.devia.testclass.Mother2;
+import org.json.JSONObject;
 import org.junit.Test;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -39,5 +41,19 @@ public class BeanTest {
             Mother mother = beanFactory.get("mother2");
             Child child = beanFactory.get(Child.class);
             System.out.println("name : " + child.getMother().getName());
+    }
+
+    @Test
+    public void testJSON() {
+        String s1 = "{\"a\": true}";
+        String s2 = "{\"a\": \"111\"}";;
+
+        JSONObject jsonObject1 = new JSONObject(s1);
+        JSONObject jsonObject2 = new JSONObject(s2);
+
+        System.out.println(jsonObject1.get("a").equals(true));
+        System.out.println(jsonObject2.get("a").equals("111"));
+
+
     }
 }

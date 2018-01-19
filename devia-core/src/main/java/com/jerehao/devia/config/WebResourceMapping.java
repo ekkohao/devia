@@ -205,7 +205,7 @@ class MappingEntity{
         if(!s.startsWith("/"))
             s = "/" + s;
 
-        if(s.endsWith("/"))
+        if(s.endsWith("/") && s.length() > 1)
             s = s.substring(0, s.length() - 1);
 
         return s;

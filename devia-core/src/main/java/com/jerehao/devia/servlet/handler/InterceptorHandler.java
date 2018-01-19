@@ -14,28 +14,36 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.application;
+package com.jerehao.devia.servlet.handler;
 
-import com.jerehao.devia.bean.annotation.Scope;
-import com.jerehao.devia.bean.support.BeanScope;
-import com.jerehao.devia.config.annotation.*;
+import com.jerehao.devia.servlet.DeviaServletContext;
 import com.jerehao.devia.servlet.HandlerExecutionChain;
 import com.jerehao.devia.servlet.interceptor.HandlerInterceptor;
 
+import java.util.List;
+
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-16 14:14 jerehao
+ * @version 0.0.1 2018-01-18 17:05 jerehao
  */
-@ApplicationConfig
-@AutoScanPackage("com")
-@WebResource(value = "/css", locationTo = "/resources/css", fileFilter = "*.css")
-@WebResource(value = "/js", locationTo = "/resources/js" , fileFilter = "*.js")
-@Interceptor(HandlerInterceptor.class)
-public class AppConfig {
+public class InterceptorHandler implements Handler {
 
-    @Bean
-    @Scope(BeanScope.PROTOTYPE)
-    public HandlerExecutionChain gets() {
-        return new HandlerExecutionChain();
+    private HandlerInterceptor handlerInterceptor;
+
+    public InterceptorHandler(HandlerInterceptor handlerInterceptor) {
+        this.handlerInterceptor = handlerInterceptor;
+    }
+
+    @Override
+    public void handle(DeviaServletContext servletContext, HandlerExecutionChain chain) {
+
+//        servletContext.
+//
+//        handlerInterceptor.postHandler(servletContext);
+//
+//        chain.next();
+//
+//        handlerInterceptor.postHandler(servletContext);
+
     }
 }

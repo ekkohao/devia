@@ -24,9 +24,13 @@ import com.jerehao.devia.common.annotation.NotNull;
 import com.jerehao.devia.config.annotation.WebResource;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
+import com.jerehao.devia.repository.jdbc.SimpleDataSource;
 import com.jerehao.devia.servlet.HandlerExecutionChain;
 
+import javax.servlet.ServletContext;
 import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 
@@ -45,6 +49,7 @@ public final class ApplicationManager {
 
     private static ResourceMappingStorer resourceMappingStorer;
 
+    private static ServletContext servletContext;
 
     public static BeanFactory getBeanFactory() {
         return beanFactory;
@@ -54,12 +59,18 @@ public final class ApplicationManager {
         return resourceMappingStorer;
     }
 
-    public static void start(@NotNull Class<?> configClass) {
+    public static ServletContext getServletContext() {
+        return servletContext;
+    }
+
+    public static void start(@NotNull Class<?> configClass, ServletContext servletContext) {
         if(running) {
             LOGGER.error("Application already started.");
             return;
         }
 
+        ApplicationManager.servletContext = servletContext;
+        ApplicationProperties.readProperties(servletContext);
 
         LOGGER.info(StringUtils.build("To use config class [{0}]", configClass.getName()));
 
@@ -97,6 +108,7 @@ public final class ApplicationManager {
     private static void initWebResources(List<WebResource> webResources) {
         resourceMappingStorer = WebResourceMapping.getResourceMappingStore(webResources);
     }
+
 
     private ApplicationManager() {}
 }

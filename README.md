@@ -23,6 +23,7 @@ getBean()方法修正，增加重复bean异常抛出
 
 Bean创建过程中循环依赖检测
 
+（完成）
 类{com.jerehao.devia.bean.build.BeanBuilder},允许创建类型相同，但qualifiee不同的bea
 
 ## 2018-01-15
@@ -87,4 +88,17 @@ public class ApplicationConfig {
 }
 
 ```
+
+## 2018-01-18
+
+支持拦截器
+
+-----------------
+
+数据库相关
+
+
+## 2018-01-19
+
+只对单个查询做缓存
 

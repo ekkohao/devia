@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-package com.jerehao.devia.servlet.interceptor;
+package com.jerehao.devia.config.annotation;
 
-import com.jerehao.devia.servlet.DeviaServletContext;
+import java.lang.annotation.*;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
- * @version 0.0.1 2018-01-16 9:04 jerehao
+ * @version 0.0.1 2018-01-16 14:10 jerehao
  */
-public interface Interceptor {
+@Documented
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Interceptors {
+
     /**
-     * 增加配置文件中interceptors的读取
-     *  形如：
-     *      <interceptors>
-     *          <interceptor class="">
-     *              <path></path>
-     *          </interceptor>
-     *      </interceptors>
-     * 或直接使用注解配置
+     * the url pattern need to mapping
+     * @return url pattern
      */
-
-    boolean preHandler(DeviaServletContext context, Object o);
-
-    void postHandler(DeviaServletContext context, Object o);
-
+    Interceptor[] value();
 }

@@ -87,62 +87,16 @@ public final class DispatcherServlet extends HttpServlet {
     public void init() throws ServletException {
         LOGGER.debug("Initializing servlet '" + getServletName() + "'");
 
-        //start app by config class
-        ApplicationManager.start(getConfigClass());
+
+
+        //start app by config class and servletContext
+        ApplicationManager.start(getConfigClass(), getServletContext());
 
         //add path handler
         HandlerExecutionChain.addHandler(new StaticResourceHandler());
         HandlerExecutionChain.addHandler(new RequestDispatcherHandler());
 
-        initServlet();
-
         LOGGER.debug("Initialize servlet '" + getServletName() + "' completed!");
-    }
-
-
-//    /**
-//     * 初始化servlet参数设置
-//     */
-//    private void initEnvironment() {
-//
-//        configClass = getConfigClass();
-//
-//
-//    }
-
-    /**
-     * 加载静态资源
-     */
-//    private void initServletContextConfig() {
-//        try {
-//            Resource resource = new FileSystemResource(
-//                    this.getServletContext().getResource(this.contextConfigLocation).getFile());
-//            DeviaContextConfigReader contextConfigReader = new DeviaContextConfigReader(resource);
-//            contextConfigReader.loadStaticResources();
-//
-//            scanPaths = contextConfigReader.getComponentScanPath();
-//            LOGGER.trace("Set scan path: " + scanPaths);
-//        } catch (MalformedURLException e) {
-//            LOGGER.error(
-//                    "Context config fileFilter '" + this.contextConfigLocation + "' cannot be found.",e);
-//        }
-//        //before this to set scanPaths
-//        afterServletContextConfig();
-//    }
-//
-//    private void afterServletContextConfig() {
-//
-//        ApplicationManager.setScanPaths(scanPaths);
-//        ApplicationManager.start();
-//
-//    }
-
-    /**
-     * nothing to do
-     * 留给子类继承
-     */
-    private void initServlet() {
-
     }
 
     private Class<?> getConfigClass() {

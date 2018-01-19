@@ -22,11 +22,12 @@ import org.apache.logging.log4j.LogManager;
  * @author <a href="http://jerehao.com">jerehao</a>
  * @version 0.0.1 2017-12-22 11:23 jerehao
  */
-public final class Logger {
+public final class Logger extends java.util.logging.Logger {
 
     private org.apache.logging.log4j.Logger logger;
 
     private Logger(final String className) {
+        super(className,null);
         logger = LogManager.getLogger(className);
     }
 

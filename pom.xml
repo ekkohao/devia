@@ -12,7 +12,7 @@
         <module>devia-core</module>
         <module>devia-demo</module>
     </modules>
-    <beanName>Devia</beanName>
+    <name>Devia</name>
 
     <properties>
         <!--project version-->
@@ -38,6 +38,12 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>20171018</version>
             </dependency>
 
             <dependency>
