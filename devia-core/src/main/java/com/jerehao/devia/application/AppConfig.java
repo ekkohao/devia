@@ -27,7 +27,7 @@ import com.jerehao.devia.servlet.interceptor.HandlerInterceptor;
  * @version 0.0.1 2018-01-16 14:14 jerehao
  */
 @ApplicationConfig
-@AutoScanPackage("com")
+@AutoScanPackage("com.jerehao.devia.demo")
 @WebResource(value = "/css", locationTo = "/resources/css", fileFilter = "*.css")
 @WebResource(value = "/js", locationTo = "/resources/js" , fileFilter = "*.js")
 @Interceptor(HandlerInterceptor.class)

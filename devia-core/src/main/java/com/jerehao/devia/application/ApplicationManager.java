@@ -17,22 +17,23 @@
 package com.jerehao.devia.application;
 
 import com.jerehao.devia.bean.BeanFactory;
+import com.jerehao.devia.bean.annotation.BeanAnnotationProcessor;
 import com.jerehao.devia.bean.build.BeanBuilder;
 import com.jerehao.devia.config.*;
 import com.jerehao.devia.bean.DeviaBeanFactory;
 import com.jerehao.devia.common.annotation.NotNull;
 import com.jerehao.devia.config.annotation.WebResource;
+import com.jerehao.devia.config.AnnotationProcessor;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
-import com.jerehao.devia.repository.jdbc.SimpleDataSource;
-import com.jerehao.devia.servlet.HandlerExecutionChain;
+import com.jerehao.devia.model.DeviaModelFactory;
+import com.jerehao.devia.model.ModelBuilder;
+import com.jerehao.devia.model.ModelFactory;
+import com.jerehao.devia.model.annotation.ModelAnnotationProcessor;
 
 import javax.servlet.ServletContext;
-import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -51,6 +52,10 @@ public final class ApplicationManager {
 
     private static ServletContext servletContext;
 
+    private static ModelFactory modelFactory;
+
+    // function
+
     public static BeanFactory getBeanFactory() {
         return beanFactory;
     }
@@ -63,11 +68,18 @@ public final class ApplicationManager {
         return servletContext;
     }
 
+    public static ModelFactory getModelFactory() {
+        return modelFactory;
+    }
+
     public static void start(@NotNull Class<?> configClass, ServletContext servletContext) {
         if(running) {
             LOGGER.error("Application already started.");
             return;
         }
+
+        beanFactory = DeviaBeanFactory.getBeanFactory();
+        modelFactory = DeviaModelFactory.getModelFactory();
 
         ApplicationManager.servletContext = servletContext;
         ApplicationProperties.readProperties(servletContext);
@@ -75,6 +87,8 @@ public final class ApplicationManager {
         LOGGER.info(StringUtils.build("To use config class [{0}]", configClass.getName()));
 
         Configuration configuration = ApplicationConfigReader.reader(configClass);
+
+        //init anything after config reader
         initApplication(configuration);
 
         running = true;
@@ -91,24 +105,25 @@ public final class ApplicationManager {
     }
 
     private static void initApplication(Configuration configuration) {
-        initBeanFactory(configuration.getAutoScanPackage(), configuration.getConfigClass());
+        initBeanFactoryAndAnnotationProcessor(configuration.getAutoScanPackage(), configuration.getConfigClass());
         initWebResources(configuration.getWebResources());
     }
 
-    private static void initBeanFactory(String[] scanPaths, Class<?> configClass) {
-        beanFactory = DeviaBeanFactory.getBeanFactory();
+    private static void initBeanFactoryAndAnnotationProcessor(String[] scanPaths, Class<?> configClass) {
 
-        final BeanBuilder beanBuilder = beanFactory.getBeanBuilder();
-        Set<Class<?>> classes = ComponentScan.getPathClasses(scanPaths, Configuration.autoScanAnnotationTypes);
+        List<AnnotationProcessor> annotationProcessors = new LinkedList<>();
 
-        beanBuilder.createBeans(classes);
-        beanBuilder.createBean(configClass);
+        annotationProcessors.add(new BeanAnnotationProcessor(beanFactory.getBeanBuilder()));
+        annotationProcessors.add(new ModelAnnotationProcessor(modelFactory.getModelBuilder()));
+
+        ComponentScan.doScanAndProcess(scanPaths, annotationProcessors);
+
+        beanFactory.getBeanBuilder().createBean(configClass);
     }
 
     private static void initWebResources(List<WebResource> webResources) {
         resourceMappingStorer = WebResourceMapping.getResourceMappingStore(webResources);
     }
-
 
     private ApplicationManager() {}
 }

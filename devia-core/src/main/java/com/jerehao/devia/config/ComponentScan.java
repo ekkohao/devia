@@ -27,10 +27,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
-import java.util.Enumeration;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -52,33 +51,38 @@ public class ComponentScan {
 
     private static final char SCAN_PATH_SEPARATOR_CHAR = ',';
 
-    private final Class<?> scanAnnotationTypes[];
+    private final List<Class<?>[]> needProcessAnnotations = new LinkedList<>();
+
+    private final List<AnnotationProcessor> annotationProcessors;
 
     private final String[] scanPaths;
 
-    private Set<Class<?>> classes;
+    //private Set<Class<?>> classes;
 
     private boolean scanned;
 
-    private ComponentScan(String[] scanPaths, Class<?>[] scanAnnotationTypes) {
+    private ComponentScan(String[] scanPaths, List<AnnotationProcessor> annotationProcessors) {
         this.scanPaths = scanPaths;
-        this.scanAnnotationTypes = scanAnnotationTypes;
-        classes = new LinkedHashSet<>();
+        this.annotationProcessors = annotationProcessors;
+
+        for(AnnotationProcessor annotationProcessor : annotationProcessors) {
+            Class<?> classes[] = new Class[annotationProcessor.getTargetAnnotations().size()];
+            needProcessAnnotations.add(annotationProcessor.getTargetAnnotations().toArray(classes));
+        }
+
         scanned = false;
     }
 
-    public static Set<Class<?>> getPathClasses(String[] scanPaths, Class<?>[] scanAnnotationTypes) {
-        ComponentScan sc = new ComponentScan(scanPaths, scanAnnotationTypes);
-        return sc.getClasses();
+    public static void doScanAndProcess(String[] scanPaths, List<AnnotationProcessor> annotationProcessors) {
+        ComponentScan sc = new ComponentScan(scanPaths, annotationProcessors);
+        sc.scan();
     }
 
-    public Set<Class<?>> getClasses() {
+    public void scan() {
         if (!scanned) {
             scanAllPath();
             scanned = true;
         }
-
-        return this.classes;
     }
 
     private void scanAllPath() {
@@ -90,37 +94,49 @@ public class ComponentScan {
             for (String path : scanPaths)
                 resources.addAll(doScanPathAndGetResources(path));
 
-            this.classes.addAll(getBeanClassesByURLs(resources));
+            scanResourceAndProcess(resources);
         }
     }
 
-    private Set<Class<?>> getBeanClassesByURLs(Set<URL> resources) {
-        Set<Class<?>> beanClasses = new LinkedHashSet<>();
+    private void scanResourceAndProcess(Set<URL> resources) {
         for (URL url : resources) {
+            ClassFile classFile;
+
             try {
-                ClassFile classFile = new ClassFile(new DataInputStream(url.openStream()));
-                AnnotationsAttribute annotationsAttribute = (AnnotationsAttribute) classFile.getAttribute(AnnotationsAttribute.visibleTag);
-                if (annotationsAttribute == null || annotationsAttribute.numAnnotations() < 1)
-                    continue;
-                Annotation[] annotations = annotationsAttribute.getAnnotations();
-                for (Annotation annotation : annotations) {
-                    if (ClassUtils.equalsAny(annotation.getClass(), scanAnnotationTypes)) {
-                        try {
-                            beanClasses.add(ClassUtils.getDefaultClassLoader().loadClass(classFile.getName()));
-                        } catch (ClassNotFoundException e) {
-                            LOGGER.error("Cannot load class [" + classFile.getName() + "]", e);
-                        }
-                        break;
-                    }
-                }
-
-
+                classFile = new ClassFile(new DataInputStream(url.openStream()));
             } catch (IOException e) {
-                LOGGER.error("Cannot open url [" + url.getPath() + "]", e);
+                LOGGER.error("Can not open file [{0}]", url.getFile());
+                continue;
             }
 
+            AnnotationsAttribute annotationsAttribute = (AnnotationsAttribute) classFile.getAttribute(AnnotationsAttribute.visibleTag);
+
+            if (annotationsAttribute == null || annotationsAttribute.numAnnotations() < 1)
+                continue;
+
+            Annotation[] annotations = annotationsAttribute.getAnnotations();
+
+            for( int i = 0, len = annotationProcessors.size(); i < len; ++i) {
+                if (anyAnnotationMatched(annotations, needProcessAnnotations.get(i))) {
+                    try {
+                        annotationProcessors.get(i).process(ClassUtils.getDefaultClassLoader().loadClass(classFile.getName()));
+                    } catch (ClassNotFoundException e) {
+                        LOGGER.error("Cannot load class [{0}]", classFile.getName());
+                    }
+                }
+            }
         }
-        return beanClasses;
+    }
+
+    private boolean anyAnnotationMatched(Annotation[] annotations, Class<?>[] classes) {
+        for(Annotation annotation : annotations) {
+            for(Class<?> clazz : classes) {
+                if(StringUtils.equals(annotation.getTypeName(), clazz.getName()))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     private Set<URL> doScanPathAndGetResources(String path) {

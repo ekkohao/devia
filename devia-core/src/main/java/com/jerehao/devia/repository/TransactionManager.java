@@ -40,9 +40,10 @@ public class TransactionManager {
         dataSource = SimpleDataSource.getInstance();
     }
 
-    public static TransactionManager getInstance() {
+    public static TransactionManager getTransactionManage() {
         if(instance == null)
             instance = new TransactionManager();
+
         return instance;
     }
 

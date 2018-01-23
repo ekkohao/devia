@@ -122,12 +122,41 @@ public class PlatformRepository {
         return columnAffected;
     }
 
+    protected int executeInsert(String prepare, Object... params) {
+        Connection connection = getConnection();
+        Statement statement;
+        try {
+            if(params == null || params.length < 1) {
+                statement = connection.createStatement();
+                statement.execute(prepare);
+            }
+            else {
+                PreparedStatement preparedStatement = connection.prepareStatement(prepare);
+                for(int i = 0; i < params.length; ++i) {
+                    preparedStatement.setObject(i + 1, params[i]);
+                }
+                preparedStatement.executeUpdate();
+                statement = preparedStatement;
+            }
+
+            ResultSet rs = statement.getGeneratedKeys();
+            return rs.next() ? rs.getInt(1) : -1 ;
+        }
+        catch (SQLException e) {
+            throw new RepositoryException();
+        }
+    }
+
     private Connection getConnection() {
         return transactionManager.hasTransaction() ?
                 transactionManager.getTransaction().getConnection() : transactionManager.getConnection();
     }
 
+    //将resultSet当前指针的
     private JSONObject resultSetToJSONObjet(ResultSet resultSet) {
-        ///TODO 将单个resultSet查询结果转为JSONObject
+        JSONObject jsonObject = new JSONObject();
+        ///TODO 将resultSet查询结果转为JSONObject
+
+        return jsonObject;
     }
 }
