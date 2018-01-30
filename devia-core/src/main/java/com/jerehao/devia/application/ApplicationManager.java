@@ -18,18 +18,19 @@ package com.jerehao.devia.application;
 
 import com.jerehao.devia.bean.BeanFactory;
 import com.jerehao.devia.bean.annotation.BeanAnnotationProcessor;
-import com.jerehao.devia.bean.build.BeanBuilder;
-import com.jerehao.devia.config.*;
+import com.jerehao.devia.application.config.*;
 import com.jerehao.devia.bean.DeviaBeanFactory;
-import com.jerehao.devia.common.annotation.NotNull;
-import com.jerehao.devia.config.annotation.WebResource;
-import com.jerehao.devia.config.AnnotationProcessor;
+import com.jerehao.devia.core.common.annotation.NotNull;
+import com.jerehao.devia.application.annotation.WebResource;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
-import com.jerehao.devia.model.DeviaModelFactory;
-import com.jerehao.devia.model.ModelBuilder;
-import com.jerehao.devia.model.ModelFactory;
-import com.jerehao.devia.model.annotation.ModelAnnotationProcessor;
+import com.jerehao.devia.application.config.ResourceMappingStorer;
+import com.jerehao.devia.application.config.WebResourceMapping;
+import com.jerehao.devia.orm.jdbc.DatabaseEngine;
+import com.jerehao.devia.orm.jdbc.MySQLDatabaseEngine;
+import com.jerehao.devia.orm.model.DeviaModelManager;
+import com.jerehao.devia.orm.model.ModelManager;
+import com.jerehao.devia.orm.model.annotation.ModelAnnotationProcessor;
 
 import javax.servlet.ServletContext;
 import java.util.LinkedList;
@@ -52,7 +53,7 @@ public final class ApplicationManager {
 
     private static ServletContext servletContext;
 
-    private static ModelFactory modelFactory;
+    private static DatabaseEngine databaseEngine;
 
     // function
 
@@ -68,31 +69,33 @@ public final class ApplicationManager {
         return servletContext;
     }
 
-    public static ModelFactory getModelFactory() {
-        return modelFactory;
-    }
-
     public static void start(@NotNull Class<?> configClass, ServletContext servletContext) {
         if(running) {
             LOGGER.error("Application already started.");
             return;
         }
 
-        beanFactory = DeviaBeanFactory.getBeanFactory();
-        modelFactory = DeviaModelFactory.getModelFactory();
-
         ApplicationManager.servletContext = servletContext;
-        ApplicationProperties.readProperties(servletContext);
+
+        //after read properties
+        //to solve this 想办法不调用servletContext获取上下文路径
+        beanFactory = DeviaBeanFactory.getBeanFactory();
+        databaseEngine = MySQLDatabaseEngine.getDatabaseEngine();
 
         LOGGER.info(StringUtils.build("To use config class [{0}]", configClass.getName()));
 
         Configuration configuration = ApplicationConfigReader.reader(configClass);
 
         //init anything after config reader
-        initApplication(configuration);
+        initConfiguration(configuration);
+        afterInitConfiguration();
+
+        beanFactory.get("aaa");
 
         running = true;
     }
+
+
 
     public static void stop() {
         if(!running())
@@ -104,7 +107,7 @@ public final class ApplicationManager {
         return running;
     }
 
-    private static void initApplication(Configuration configuration) {
+    private static void initConfiguration(Configuration configuration) {
         initBeanFactoryAndAnnotationProcessor(configuration.getAutoScanPackage(), configuration.getConfigClass());
         initWebResources(configuration.getWebResources());
     }
@@ -114,7 +117,7 @@ public final class ApplicationManager {
         List<AnnotationProcessor> annotationProcessors = new LinkedList<>();
 
         annotationProcessors.add(new BeanAnnotationProcessor(beanFactory.getBeanBuilder()));
-        annotationProcessors.add(new ModelAnnotationProcessor(modelFactory.getModelBuilder()));
+        annotationProcessors.add(new ModelAnnotationProcessor(databaseEngine.getModelManager().getModelBuilder()));
 
         ComponentScan.doScanAndProcess(scanPaths, annotationProcessors);
 
@@ -123,6 +126,18 @@ public final class ApplicationManager {
 
     private static void initWebResources(List<WebResource> webResources) {
         resourceMappingStorer = WebResourceMapping.getResourceMappingStore(webResources);
+    }
+
+    private static void afterInitConfiguration() {
+        initDatabase();
+    }
+
+    private static void initDatabase() {
+        String mode = ApplicationProperties.getProperty(ApplicationProperties.Keys.DATABASE_MODE);
+
+        if(StringUtils.equals(mode, "rebuild"))
+            databaseEngine.rebuildDatabase();
+
     }
 
     private ApplicationManager() {}

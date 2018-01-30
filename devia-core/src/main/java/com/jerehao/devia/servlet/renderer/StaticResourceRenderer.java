@@ -22,9 +22,9 @@ import com.jerehao.devia.core.util.MimeType;
 import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.DeviaServletContext;
 import com.jerehao.devia.servlet.exception.NotSupportedHttpRequestMethodException;
-import com.jerehao.devia.servlet.helper.HttpCacheControl;
-import com.jerehao.devia.servlet.helper.HttpMethod;
-import com.jerehao.devia.servlet.helper.RequestAttributeKeys;
+import com.jerehao.devia.servlet.support.HttpCacheControl;
+import com.jerehao.devia.servlet.support.HttpMethod;
+import com.jerehao.devia.servlet.support.RequestAttributeKeys;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletContext;
@@ -34,7 +34,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
-import java.util.Arrays;
 import java.util.Base64;
 
 

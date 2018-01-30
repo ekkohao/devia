@@ -18,9 +18,7 @@ package com.jerehao.devia.core.util;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +29,7 @@ import java.util.Set;
  */
 public final class ReflectionUtils {
 
-    //get all field exceptURI final field
+    //get all field except final field
     public static Set<Field> getAllFields(final Class<?> clazz) {
         Set<Field> fields = new HashSet<>();
         Class<?> current = clazz;
@@ -50,7 +48,7 @@ public final class ReflectionUtils {
         return fields;
     }
 
-    //get class all methods exceptURI abstract method
+    //get class all methods except abstract method
     public static Set<Method> getAllMethods(final Class<?> clazz) {
         final Set<Method> methods = new HashSet<>();
 
@@ -68,12 +66,69 @@ public final class ReflectionUtils {
         return methods;
     }
 
+    public static Object getFieldValue(Field field, Object object) {
+        if(field.isAccessible())
+            try {
+                return field.get(object);
+            } catch (IllegalAccessException ignore) {
+                // never happened
+            }
+
+        Object ret = null;
+
+        field.setAccessible(true);
+        try {
+            ret = field.get(object);
+        } catch (IllegalAccessException ignore) {
+            // never happened
+        }
+        field.setAccessible(false);
+
+        return ret;
+    }
+
+    public static <T> T getInstance(Constructor<T> constructor, Object... args) throws InvocationTargetException, InstantiationException {
+        if (constructor.isAccessible()) {
+            try {
+                return constructor.newInstance(args);
+            } catch (IllegalAccessException ignore) {
+                //never happened
+            }
+        }
+        T instance = null;
+
+        constructor.setAccessible(true);
+        try {
+            instance = constructor.newInstance(args);
+        } catch (IllegalAccessException ignored) {
+            //never happened
+        }
+        constructor.setAccessible(false);
+
+        return instance;
+    }
+
+    /**
+     *
+     * @see ReflectionUtils#fieldCollectionContains(Collection, Field)
+     * @param field
+     * @param field2
+     * @return
+     */
     public static boolean fieldEquals(Field field, Field field2) {
         return StringUtils.equals(field2.getName(), field.getName())
                 && StringUtils.equals(field2.getGenericType().getTypeName(), field.getGenericType().getTypeName());
 
     }
 
+
+    /**
+     *
+     * @see ReflectionUtils#methodCollectionContains(Collection, Method)
+     * @param method
+     * @param method2
+     * @return
+     */
     public static boolean methodEquals(Method method, Method method2) {
 
         if(!StringUtils.equals(method.getName(), method2.getName()))
@@ -98,7 +153,13 @@ public final class ReflectionUtils {
         return true;
     }
 
-
+    /**
+     *
+     * @see ReflectionUtils#getAllFields(Class)
+     * @param collection
+     * @param field
+     * @return
+     */
     private static boolean fieldCollectionContains(Collection<Field> collection, Field field) {
         for(Field f : collection) {
             if(fieldEquals(f, field))
@@ -108,6 +169,13 @@ public final class ReflectionUtils {
         return false;
     }
 
+    /**
+     *
+     * @see ReflectionUtils#getAllMethods(Class)
+     * @param collection
+     * @param method
+     * @return
+     */
     private static boolean methodCollectionContains(Collection<Method> collection, Method method) {
         for(Method m : collection)
             if(methodEquals(m, method))

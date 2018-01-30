@@ -18,22 +18,15 @@ package com.jerehao.devia.servlet;
 
 import com.jerehao.devia.core.document.DefaultDocumentLoader;
 import com.jerehao.devia.core.document.DocumentLoader;
-import com.jerehao.devia.core.resource.FileSystemResource;
 import com.jerehao.devia.core.resource.Resource;
 import com.jerehao.devia.logging.Logger;
-import com.jerehao.devia.servlet.helper.StaticResource;
-import org.w3c.dom.Document;
+import com.jerehao.devia.servlet.support.StaticResource;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.servlet.ServletContext;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>

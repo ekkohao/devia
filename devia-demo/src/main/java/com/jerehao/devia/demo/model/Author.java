@@ -16,10 +16,13 @@
 
 package com.jerehao.devia.demo.model;
 
-import com.jerehao.devia.model.annotation.Column;
-import com.jerehao.devia.model.annotation.Model;
-import com.jerehao.devia.model.annotation.PrimaryKey;
-import com.jerehao.devia.model.table.DataType;
+
+import com.jerehao.devia.orm.model.annotation.Column;
+import com.jerehao.devia.orm.model.annotation.Model;
+import com.jerehao.devia.orm.model.annotation.PrimaryKey;
+import com.jerehao.devia.orm.model.support.DataType;
+import com.jerehao.devia.orm.model.support.GenerationPolicy;
+import com.jerehao.devia.orm.query.Property;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>
@@ -29,17 +32,17 @@ import com.jerehao.devia.model.table.DataType;
 @Model
 public class Author {
 
-    @PrimaryKey
+    @PrimaryKey(GenerationPolicy.UUID)
     @Column(type = DataType.INT, autoIncrement = true)
-    public static final String ID = "ID";
+    public static final Property ID = Property.forName("ID");
 
     @Column(type = DataType.VARCHAR, length = 36, notnull = true, unique = true)
-    public static final String NAME = "name";
+    public static final Property NAME = Property.forName("name");
 
     @Column(type = DataType.TINY_INT)
-    public static final String SEX = "SEX";
+    public static final Property SEX = Property.forName("sex");
 
     @Column(type = DataType.TINY_INT, defaultValue = "0")
-    public static final String ROLE = "role";
+    public static final Property AGE = Property.forName("age");
     
 }

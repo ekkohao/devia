@@ -18,10 +18,6 @@ package com.jerehao.devia.servlet;
 
 import com.jerehao.devia.application.AppConfig;
 import com.jerehao.devia.application.ApplicationManager;
-import com.jerehao.devia.config.ApplicationConfigReader;
-import com.jerehao.devia.config.Configuration;
-import com.jerehao.devia.core.resource.FileSystemResource;
-import com.jerehao.devia.core.resource.Resource;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.handler.RequestDispatcherHandler;
@@ -32,7 +28,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  * @author <a href="http://jerehao.com">jerehao</a>

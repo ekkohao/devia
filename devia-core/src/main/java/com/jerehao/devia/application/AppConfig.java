@@ -16,9 +16,9 @@
 
 package com.jerehao.devia.application;
 
+import com.jerehao.devia.application.annotation.*;
 import com.jerehao.devia.bean.annotation.Scope;
 import com.jerehao.devia.bean.support.BeanScope;
-import com.jerehao.devia.config.annotation.*;
 import com.jerehao.devia.servlet.HandlerExecutionChain;
 import com.jerehao.devia.servlet.interceptor.HandlerInterceptor;
 

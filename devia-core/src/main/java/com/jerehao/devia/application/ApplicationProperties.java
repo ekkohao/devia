@@ -16,9 +16,14 @@
 
 package com.jerehao.devia.application;
 
+import com.jerehao.devia.core.resource.FileSystemResource;
 import com.jerehao.devia.core.util.ClassUtils;
+import com.jerehao.devia.core.util.FileUtils;
+import com.jerehao.devia.core.util.ResourceUtils;
+import com.jerehao.devia.core.util.WebUtils;
 
 import javax.servlet.ServletContext;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -34,36 +39,48 @@ public final class ApplicationProperties {
 
     private static final Properties applicationProperties = new Properties();
 
+    private static boolean init = false;
+
     /**
      * read application properties
      */
+
+    static {
+        readProperties();
+    }
 
 
     public static String getProperty(String key) {
         return applicationProperties.getProperty(key);
     }
 
-    public static String getProperty(String key, String _default) {
+    public static String getPropertyOrDefault(String key, String _default) {
         return applicationProperties.getProperty(key, _default);
     }
 
-    public static void readProperties(ServletContext servletContext) {
-        InputStream in;
-        ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
+    public static void readProperties() {
+        if(init)
+            return;
 
-        in = servletContext.getResourceAsStream("/WEB-INF" + APPLICATION_PROPERTIES_FILE_PATH);
-        if(in != null) {
+        FileSystemResource resource = new FileSystemResource(WebUtils.getContextPath()
+                + "/WEB-INF"
+                + APPLICATION_PROPERTIES_FILE_PATH);
+
+        if(resource.isExist()) {
             try {
-                applicationProperties.load(in);
+                applicationProperties.load(resource.getInputStream());
+                init = true;
                 return;
             } catch (IOException ignored) {
             }
         }
-
+        InputStream in;
+        ClassLoader classLoader = ClassUtils.getDefaultClassLoader();
         in = classLoader.getResourceAsStream(APPLICATION_PROPERTIES_FILE_PATH);
         if(in != null) {
             try {
                 applicationProperties.load(in);
+                init = true;
                 return;
             } catch (IOException ignored) {
             }
@@ -77,7 +94,10 @@ public final class ApplicationProperties {
 
     public static class Keys {
 
-        public static final String JDBC_DATABASE = "jdbc.database";
+        public static final String DATABASE_ENGINE = "database.engine";
+
+        public static final String DATABASE_MODE = "database.mode";
+
 
         public static final String JDBC_DRIVER = "jdbc.driver";
 

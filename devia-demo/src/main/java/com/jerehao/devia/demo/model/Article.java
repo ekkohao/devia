@@ -16,11 +16,12 @@
 
 package com.jerehao.devia.demo.model;
 
-import com.jerehao.devia.model.annotation.Column;
-import com.jerehao.devia.model.annotation.Model;
-import com.jerehao.devia.model.annotation.PrimaryKey;
-import com.jerehao.devia.model.annotation.Table;
-import com.jerehao.devia.model.table.DataType;
+import com.jerehao.devia.orm.model.annotation.Column;
+import com.jerehao.devia.orm.model.annotation.Model;
+import com.jerehao.devia.orm.model.annotation.PrimaryKey;
+
+import com.jerehao.devia.orm.model.support.DataType;
+import com.jerehao.devia.orm.query.Property;
 import org.json.JSONObject;
 
 /**
@@ -29,22 +30,18 @@ import org.json.JSONObject;
  */
 
 @Model
-public class Article extends JSONObject {
-
-    @Table
-    public static final String TABLE_NAME = "article";
+public class Article{
 
     @PrimaryKey
     @Column(type = DataType.INT, autoIncrement = true)
-    public static final String ID = "ID";
+    public static final Property ID = Property.forName("ID");
 
     @Column(type = DataType.VARCHAR, length = 60, notnull = true)
-    public static final String TITLE = "title";
+    public static final Property TITLE = Property.forName("title");
 
     @Column(type = DataType.TEXT)
-    public static final String PASSAGE = "passage";
+    public static final Property PASSAGE = Property.forName("passage");
 
     @Column(type = DataType.INT)
-    public static final String AUTHOR_ID = "author_ID";
-
+    public static final Property AUTHOR_ID = Property.forName("author_ID");
 }

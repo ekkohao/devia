@@ -16,7 +16,7 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.common.annotation.Nullable;
+import com.jerehao.devia.core.common.annotation.Nullable;
 
 import java.util.LinkedList;
 import java.util.List;

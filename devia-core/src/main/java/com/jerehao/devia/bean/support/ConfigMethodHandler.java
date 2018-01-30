@@ -36,7 +36,7 @@ public class ConfigMethodHandler implements MethodHandler {
     private MethodFilter methodFilter = new MethodFilter() {
         @Override
         public boolean isHandled(Method m) {
-            return m.isAnnotationPresent(com.jerehao.devia.config.annotation.Bean.class);
+            return m.isAnnotationPresent(com.jerehao.devia.application.annotation.Bean.class);
         }
     };
 
@@ -52,7 +52,7 @@ public class ConfigMethodHandler implements MethodHandler {
     public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
         String methodName = thisMethod.getDeclaringClass().getName() + "#" + thisMethod.getName();
 
-        if(thisMethod.isAnnotationPresent(com.jerehao.devia.config.annotation.Bean.class)
+        if(thisMethod.isAnnotationPresent(com.jerehao.devia.application.annotation.Bean.class)
                 && !isScopePrototype(thisMethod)) {
             if(returnCached.containsKey(methodName))
                 return returnCached.get(methodName);

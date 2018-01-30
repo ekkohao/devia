@@ -22,7 +22,7 @@ import com.jerehao.devia.bean.support.Bean;
 import com.jerehao.devia.bean.build.BeanBuilder;
 import com.jerehao.devia.bean.exception.NoSuchBeanException;
 import com.jerehao.devia.bean.support.inject.Qualifiee;
-import com.jerehao.devia.common.annotation.NotNull;
+import com.jerehao.devia.core.common.annotation.NotNull;
 import com.sun.istack.internal.Nullable;
 
 import java.lang.reflect.Type;

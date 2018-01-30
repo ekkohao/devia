@@ -114,3 +114,11 @@ public class ApplicationConfig {
 
 保留model层来创建数据库，并辅助dao层
 dao层，直接使用sql语句创建
+
+枚举类型直接转字符串
+
+## 2018-01-26
+
+Model列定义和数据库匹配项检查
+
+对于枚举类型，如果设置DataType为数字则存索引。否则存名字。

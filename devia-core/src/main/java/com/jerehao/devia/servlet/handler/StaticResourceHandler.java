@@ -17,13 +17,12 @@
 package com.jerehao.devia.servlet.handler;
 
 import com.jerehao.devia.application.ApplicationManager;
-import com.jerehao.devia.config.ResourceMappingStorer;
-import com.jerehao.devia.config.WebResourceMapping;
+import com.jerehao.devia.application.config.ResourceMappingStorer;
 import com.jerehao.devia.core.util.StringUtils;
 import com.jerehao.devia.logging.Logger;
 import com.jerehao.devia.servlet.HandlerExecutionChain;
 import com.jerehao.devia.servlet.DeviaServletContext;
-import com.jerehao.devia.servlet.helper.RequestAttributeKeys;
+import com.jerehao.devia.servlet.support.RequestAttributeKeys;
 import com.jerehao.devia.servlet.renderer.StaticResourceRenderer;
 
 /**

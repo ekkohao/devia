@@ -16,7 +16,7 @@
 
 package com.jerehao.devia.servlet.renderer;
 
-import com.jerehao.devia.servlet.helper.HttpMethod;
+import com.jerehao.devia.servlet.support.HttpMethod;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;

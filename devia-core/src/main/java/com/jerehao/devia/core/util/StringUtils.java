@@ -16,7 +16,7 @@
 
 package com.jerehao.devia.core.util;
 
-import com.jerehao.devia.common.annotation.Nullable;
+import com.jerehao.devia.core.common.annotation.Nullable;
 
 import java.text.MessageFormat;
 import java.util.Objects;
@@ -60,6 +60,10 @@ public final class StringUtils {
                 return true;
 
         return false;
+    }
+
+    public static boolean equalsIgnoreCase(String str, String str2) {
+        return str == str2 || (str != null && str.equalsIgnoreCase(str2));
     }
 
     public static String build(String s, Object... args) {
@@ -125,7 +129,33 @@ public final class StringUtils {
         return str.replace(target,replacement);
     }
 
+    public static String toLowerFirst(@Nullable String s) {
+        if(isEmptyOrNull(s))
+            return s;
+
+        char c = s.charAt(0);
+
+        return (Character.isUpperCase(c)) ? Character.toLowerCase(c) + s.substring(1) : s;
+    }
+
     private StringUtils() {}
 
 
+    public static boolean containsAny(String value, String s, String ... strs) {
+        if(isAnyEmptyOrNull(value, s))
+            return false;
+
+        if(value.contains(s))
+            return true;
+
+        if(strs != null) {
+            for (String str : strs) {
+                if (value.contains(str))
+                    return true;
+            }
+        }
+
+        return false;
+
+    }
 }

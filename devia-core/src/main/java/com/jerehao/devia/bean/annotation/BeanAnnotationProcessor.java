@@ -16,9 +16,8 @@
 
 package com.jerehao.devia.bean.annotation;
 
-import com.jerehao.devia.bean.annotation.Named;
 import com.jerehao.devia.bean.build.BeanBuilder;
-import com.jerehao.devia.config.AnnotationProcessor;
+import com.jerehao.devia.application.config.AnnotationProcessor;
 import com.jerehao.devia.core.util.AnnotationUtils;
 
 import java.lang.annotation.Annotation;

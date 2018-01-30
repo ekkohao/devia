@@ -17,17 +17,14 @@
 package com.jerehao.devia.bean.support;
 
 import com.jerehao.devia.bean.BeanFactory;
-import com.jerehao.devia.bean.annotation.Named;
 import com.jerehao.devia.bean.exception.BeanCreateException;
 import com.jerehao.devia.bean.exception.MultipleBeanException;
 import com.jerehao.devia.bean.exception.NoBeanNameException;
 import com.jerehao.devia.bean.exception.NoSuchBeanException;
 import com.jerehao.devia.bean.support.inject.*;
-import com.jerehao.devia.common.annotation.NotNull;
-import com.jerehao.devia.common.annotation.Nullable;
-import com.jerehao.devia.config.annotation.ApplicationConfig;
+import com.jerehao.devia.core.common.annotation.NotNull;
+import com.jerehao.devia.application.annotation.ApplicationConfig;
 import com.jerehao.devia.core.util.AnnotationUtils;
-import com.jerehao.devia.core.util.Assert;
 import com.jerehao.devia.core.util.ClassUtils;
 import com.jerehao.devia.core.util.ReflectionUtils;
 import com.jerehao.devia.logging.Logger;
@@ -38,7 +35,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
